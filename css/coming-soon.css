@@ -1,0 +1,61 @@
+/* ============================================================
+   Coming Soon – /tech/
+   ============================================================ */
+
+body {
+  background-color: var(--tech-bg);
+  color: var(--tech-text);
+}
+
+.coming-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+}
+
+.coming-soon__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding: var(--space-8);
+}
+
+.coming-soon__back {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--tech-text);
+  opacity: 0.45;
+  transition: opacity var(--transition-base);
+}
+
+.coming-soon__back:hover {
+  opacity: 1;
+}
+
+.coming-soon__back:focus-visible {
+  outline: 2px solid var(--tech-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+  opacity: 1;
+}
+
+.coming-soon__label {
+  font-family: var(--font-headline);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tech-accent);
+  max-width: none;
+}
+
+.coming-soon__headline {
+  font-size: clamp(var(--text-5xl), 10vw, var(--text-7xl));
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--tech-text);
+}

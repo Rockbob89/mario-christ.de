@@ -1,0 +1,246 @@
+/* ============================================================
+   Landing Page – Split-Screen
+   ============================================================ */
+
+/* ── Name: volle Breite, Split läuft zwischen den Wörtern ── */
+.name-badge {
+  position: fixed;
+  top: clamp(1rem, 3vh, 1.75rem);
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  pointer-events: none;
+  font-family: var(--font-headline);
+  font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+/* Jedes Wort nimmt genau eine Hälfte ein */
+.name-badge__word:first-child {
+  flex: 1 1 50%;
+  text-align: right;
+  padding-right: 0.3em; /* halber Wortabstand zur Mittellinie */
+}
+
+.name-badge__word:last-child {
+  flex: 1 1 50%;
+  text-align: left;
+  padding-left: 0.3em;
+}
+
+/* ── Split Screen Wrapper ────────────────────────────────── */
+.split-screen {
+  display: flex;
+  height: 100dvh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+/* ── Individual Halves ───────────────────────────────────── */
+.split {
+  position: relative;
+  flex: 1 1 50%;
+  overflow: hidden;
+  /* Fix 4: langsamer, + Fix 1: transition-delay 0.12s verhindert Pixel-Wackler */
+  transition: flex var(--transition-split) 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.split__link {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.split--tech {
+  background-color: #E8EAED; /* --tech-bg explizit */
+  color: var(--tech-text);
+}
+
+.split--kicker {
+  background-color: #FFFFFF; /* --kicker-bg explizit */
+  color: var(--kicker-text);
+}
+
+/* ── Hover Expansion ─────────────────────────────────────── */
+.split-screen[data-active="tech"]   .split--tech   { flex-basis: 60%; }
+.split-screen[data-active="tech"]   .split--kicker { flex-basis: 40%; }
+
+.split-screen[data-active="kicker"] .split--tech   { flex-basis: 40%; }
+.split-screen[data-active="kicker"] .split--kicker { flex-basis: 60%; }
+
+/* ── Dim Overlay ─────────────────────────────────────────── */
+.split__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity var(--transition-split);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.split-screen[data-active="tech"]   .split--kicker .split__overlay { opacity: 0.2; }
+.split-screen[data-active="kicker"] .split--tech   .split__overlay { opacity: 0.2; }
+
+/* ── Content Layout ──────────────────────────────────────── */
+.split__content {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-16) var(--space-8) var(--space-8);
+  width: 100%;
+  max-width: 520px;
+
+  /* Fix 5: Ruhezustand leicht zurückgezogen */
+  transform: scale(0.97);
+  opacity: 0.85;
+  transition:
+    transform 0.5s ease,
+    opacity   0.5s ease;
+}
+
+/* Fix 5: Aktive Seite – Reveal mit Verzögerung nach Hover-Start */
+.split-screen[data-active="tech"]   .split--tech   .split__content,
+.split-screen[data-active="kicker"] .split--kicker .split__content {
+  transform: scale(1);
+  opacity: 1;
+  transition:
+    transform 0.5s ease 0.3s,
+    opacity   0.4s ease 0.3s;
+}
+
+/* Fix 5: Inaktive Seite – weiter zurückziehen */
+.split-screen[data-active="tech"]   .split--kicker .split__content,
+.split-screen[data-active="kicker"] .split--tech   .split__content {
+  transform: scale(0.95);
+  opacity: 0.7;
+  transition:
+    transform 0.5s ease,
+    opacity   0.4s ease;
+}
+
+/* ── Photo Placeholder – Fix 3: 65% der Viewport-Höhe ───── */
+.split__photo {
+  width: 100%;
+  height: 65vh;
+  max-height: 65vh;
+  font-size: var(--text-sm);
+}
+
+/* ── Label + Button ──────────────────────────────────────── */
+.split__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.split__label {
+  font-family: var(--font-headline);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  max-width: none;
+}
+
+/* Button über dem fullscreen-link */
+.split__text .btn {
+  position: relative;
+  z-index: 30;
+}
+
+.split__text .btn:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ── Mobile: Vertikales Stacking ─────────────────────────── */
+@media (max-width: 767px) {
+  /* Main als Flex-Column: Name oben, Split-Stack darunter */
+  #main {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    min-height: 100svh;
+  }
+
+  /* Name: aus fixed raus, fließt als eigene Zeile über dem Stack */
+  .name-badge {
+    position: static;
+    display: block;
+    text-align: center;
+    padding: var(--space-4) var(--space-4) var(--space-2);
+    font-size: var(--text-base);
+    flex-shrink: 0;
+  }
+
+  .name-badge__word:first-child,
+  .name-badge__word:last-child {
+    flex: none;
+    text-align: inherit;
+    padding: 0;
+  }
+
+  .name-badge__word:first-child::after {
+    content: '\00a0'; /* non-breaking space als Wortabstand */
+  }
+
+  /* Split-Stack füllt den restlichen Platz */
+  .split-screen {
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+    height: auto; /* überschreibt 100dvh vom Desktop */
+  }
+
+  .split {
+    flex: 1 1 50%;
+    transition: none;
+  }
+
+  /* Kein Split-Hover auf Mobile */
+  .split-screen[data-active="tech"]   .split--tech,
+  .split-screen[data-active="tech"]   .split--kicker,
+  .split-screen[data-active="kicker"] .split--tech,
+  .split-screen[data-active="kicker"] .split--kicker {
+    flex-basis: 50%;
+  }
+
+  .split__overlay { display: none; }
+
+  /* Content immer voll sichtbar auf Mobile */
+  .split__content,
+  .split-screen[data-active="tech"]   .split--tech   .split__content,
+  .split-screen[data-active="tech"]   .split--kicker .split__content,
+  .split-screen[data-active="kicker"] .split--tech   .split__content,
+  .split-screen[data-active="kicker"] .split--kicker .split__content {
+    transform: scale(1);
+    opacity: 1;
+    transition: none;
+    padding-top: var(--space-6);
+  }
+
+  .split__photo {
+    height: 35vh;
+    max-height: 35vh;
+  }
+}
+
+/* ── Fokus: Keyboard-Navigation ──────────────────────────── */
+.split:focus-within .split__overlay {
+  opacity: 0;
+}

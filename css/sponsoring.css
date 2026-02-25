@@ -1,0 +1,472 @@
+/* ============================================================
+   Sponsoring-Seite – /tischfussball/
+   ============================================================ */
+
+/* ── Sticky Navigation ───────────────────────────────────── */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background-color: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.sticky-nav__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--space-3) clamp(var(--space-4), 5vw, var(--space-12));
+  flex-wrap: wrap;
+}
+
+.sticky-nav__link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(245, 245, 245, 0.55);
+  white-space: nowrap;
+  transition: color var(--transition-base);
+  padding-block: var(--space-1);
+}
+
+.sticky-nav__link:hover {
+  color: var(--text-on-dark);
+}
+
+.sticky-nav__link.is-active {
+  color: var(--accent);
+}
+
+.sticky-nav__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+  color: var(--text-on-dark);
+}
+
+/* Nav-Höhe als Offset damit Sections nicht hinter der Nav landen */
+:target {
+  scroll-margin-top: 4rem;
+}
+
+/* ── Seiten-Offset für sticky nav ───────────────────────── */
+#main {
+  padding-top: 3rem; /* Höhe der sticky nav */
+}
+
+/* ── Section: Hero ───────────────────────────────────────── */
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  min-height: calc(100dvh - 3rem);
+  padding-block: var(--space-20);
+}
+
+.hero__headline {
+  font-size: clamp(var(--text-4xl), 5.5vw, var(--text-7xl));
+  font-weight: 800;
+  line-height: var(--leading-tight);
+  color: var(--text-on-dark);
+  margin-bottom: var(--space-6);
+}
+
+.hero__sub {
+  font-size: clamp(var(--text-base), 1.5vw, var(--text-xl));
+  color: rgba(245, 245, 245, 0.75);
+  margin-bottom: var(--space-10);
+  max-width: 48ch;
+}
+
+.hero__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  min-height: 400px;
+}
+
+/* ── Section: Das Argument ───────────────────────────────── */
+.argument__inner {
+  max-width: 760px;
+}
+
+.argument__headline {
+  margin-bottom: var(--space-4);
+}
+
+.argument__sub {
+  font-size: var(--text-xl);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: var(--space-12);
+  max-width: none;
+}
+
+.argument__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+.argument__biotop {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.argument__biotop-headline {
+  font-size: clamp(var(--text-xl), 2.5vw, var(--text-3xl));
+  margin-bottom: 0;
+}
+
+.argument__punchline {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ── Section: Über mich ──────────────────────────────────── */
+.about__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-12), 6vw, var(--space-20));
+  align-items: start;
+}
+
+.about__headline {
+  color: var(--text-on-dark);
+  margin-bottom: var(--space-4);
+}
+
+.about__tagline {
+  font-family: var(--font-headline);
+  font-size: clamp(var(--text-base), 1.5vw, var(--text-xl));
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-8);
+  max-width: none;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.about__text p {
+  color: rgba(245, 245, 245, 0.85);
+}
+
+.about__profiles {
+  font-size: var(--text-sm);
+  color: rgba(245, 245, 245, 0.55);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  max-width: none;
+}
+
+.about__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.about__photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+/* ── Credentials Grid ────────────────────────────────────── */
+.credentials__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1);
+}
+
+.credentials__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background-color: rgba(245, 245, 245, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.credentials__item--wide {
+  grid-column: 1 / -1;
+  background-color: transparent;
+  padding-inline: 0;
+}
+
+.credentials__value {
+  font-family: var(--font-headline);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.credentials__label {
+  font-size: var(--text-xs);
+  color: rgba(245, 245, 245, 0.55);
+  line-height: 1.4;
+}
+
+.credentials__label--note {
+  font-size: var(--text-sm);
+  color: rgba(245, 245, 245, 0.45);
+  font-style: italic;
+}
+
+.credentials__date {
+  font-size: var(--text-xs);
+  color: rgba(245, 245, 245, 0.3);
+  margin-top: var(--space-4);
+  max-width: none;
+}
+
+/* ── Section: Die Szene ──────────────────────────────────── */
+.scene__inner {
+  max-width: 960px;
+}
+
+.scene__headline {
+  margin-bottom: var(--space-8);
+}
+
+.scene__intro {
+  font-size: clamp(var(--text-base), 1.5vw, var(--text-lg));
+  margin-bottom: var(--space-12);
+}
+
+.scene__photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.scene__photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+.scene__close {
+  font-size: clamp(var(--text-base), 1.5vw, var(--text-lg));
+  font-weight: 500;
+}
+
+/* ── Section: Pakete ─────────────────────────────────────── */
+.packages__inner {
+  /* volle breite für grid */
+}
+
+.packages__headline {
+  color: var(--text-on-dark);
+  margin-bottom: var(--space-6);
+}
+
+.packages__intro {
+  font-size: clamp(var(--text-base), 1.5vw, var(--text-lg));
+  color: rgba(245, 245, 245, 0.75);
+  margin-bottom: var(--space-12);
+}
+
+.packages__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+.package {
+  background-color: rgba(245, 245, 245, 0.05);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.package:hover {
+  border-color: var(--accent);
+  background-color: rgba(220, 38, 38, 0.05);
+}
+
+.package__title {
+  font-family: var(--font-headline);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-on-dark);
+  line-height: var(--leading-snug);
+  margin-bottom: 0;
+}
+
+.package__body {
+  font-size: var(--text-base);
+  color: rgba(245, 245, 245, 0.75);
+  flex: 1;
+}
+
+.package__punchline {
+  font-size: var(--text-sm);
+  color: rgba(245, 245, 245, 0.5);
+  max-width: none;
+}
+
+.package__punchline em {
+  color: rgba(245, 245, 245, 0.5);
+  font-style: italic;
+}
+
+.packages__outro {
+  color: rgba(245, 245, 245, 0.6);
+  font-style: italic;
+  font-size: var(--text-base);
+  max-width: 60ch;
+}
+
+/* ── Section: Kontakt ────────────────────────────────────── */
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-12), 6vw, var(--space-20));
+  align-items: center;
+}
+
+.contact__headline {
+  font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+  margin-bottom: var(--space-6);
+}
+
+.contact__sub {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  margin-bottom: var(--space-10);
+}
+
+.contact__cta {
+  font-size: var(--text-base);
+  letter-spacing: 0.01em;
+}
+
+.contact__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.site-footer {
+  background-color: var(--page-bg-dark);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--border-light);
+}
+
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+}
+
+.site-footer__home {
+  font-size: var(--text-sm);
+  color: rgba(245, 245, 245, 0.4);
+  transition: color var(--transition-base);
+}
+
+.site-footer__home:hover {
+  color: var(--text-on-dark);
+}
+
+.site-footer__home:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .packages__grid {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sticky-nav__list {
+    gap: var(--space-4);
+  }
+
+  .sticky-nav__link {
+    font-size: var(--text-xs);
+  }
+
+  /* Hero: Stack auf Mobile */
+  .hero__inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-block: var(--space-16);
+    gap: var(--space-10);
+  }
+
+  .hero__photo {
+    order: -1;
+    aspect-ratio: 16 / 9;
+    min-height: auto;
+  }
+
+  /* About: Stack auf Mobile */
+  .about__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .about__sidebar {
+    order: -1;
+  }
+
+  .about__photo {
+    aspect-ratio: 3 / 2;
+  }
+
+  /* Szene: Stack */
+  .scene__photos {
+    grid-template-columns: 1fr;
+  }
+
+  /* Kontakt: Stack */
+  .contact__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__photo {
+    aspect-ratio: 3 / 2;
+  }
+
+  .credentials__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 479px) {
+  .sticky-nav__list {
+    gap: var(--space-3);
+  }
+
+  .credentials__list {
+    grid-template-columns: 1fr;
+  }
+}
