@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ── Google Fonts ────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Syne:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800&family=Syne:wght@600;700;800&display=swap');
 
 /* ── Design Tokens ───────────────────────────────────────── */
 :root {
@@ -30,8 +30,11 @@
   --border-light: rgba(245, 245, 245, 0.15);
 
   /* Typography */
+  --font-h1:       'Plus Jakarta Sans', sans-serif;
   --font-headline: 'Syne', sans-serif;
   --font-body:     'DM Sans', sans-serif;
+
+  color-scheme: light; /* Fix 10: kein Browser-Dark-Mode-Override */
 
   --text-xs:   0.75rem;   /*  12px */
   --text-sm:   0.875rem;  /*  14px */
@@ -142,6 +145,12 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: var(--leading-tight);
   letter-spacing: -0.02em;
+}
+
+/* Fix 1+2+3: Plus Jakarta Sans für H1 und H2, Syne nur noch H3 und kleiner */
+h1, h2 {
+  font-family: var(--font-h1);
+  font-weight: 800;
 }
 
 h1 { font-size: clamp(var(--text-4xl), 6vw, var(--text-7xl)); }

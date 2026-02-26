@@ -73,7 +73,7 @@
 }
 
 .hero__headline {
-  font-size: clamp(var(--text-4xl), 5.5vw, var(--text-7xl));
+  font-size: clamp(var(--text-4xl), 5vw, 3.5rem); /* Fix 1: Wucht zurück, max 56px */
   font-weight: 800;
   line-height: var(--leading-tight);
   color: var(--text-on-dark);
@@ -95,7 +95,8 @@
 
 /* ── Section: Das Argument ───────────────────────────────── */
 .argument__inner {
-  max-width: 760px;
+  max-width: 960px; /* Fix 4: zentriert, H2 hat Platz für eine Zeile */
+  margin-inline: auto;
 }
 
 .argument__headline {
@@ -219,9 +220,19 @@
   line-height: 1;
 }
 
+/* Fix 7: Kategorie-Label zwischen Zahl und Detail */
+.credentials__context {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.65);
+  line-height: 1;
+}
+
 .credentials__label {
   font-size: var(--text-xs);
-  color: rgba(245, 245, 245, 0.55);
+  color: rgba(245, 245, 245, 0.4);
   line-height: 1.4;
 }
 
@@ -338,7 +349,7 @@
   color: rgba(245, 245, 245, 0.6);
   font-style: italic;
   font-size: var(--text-base);
-  max-width: 60ch;
+  max-width: none; /* Fix 8: kein künstlicher Umbruch */
 }
 
 /* ── Section: Kontakt ────────────────────────────────────── */
@@ -358,10 +369,12 @@
   font-size: var(--text-lg);
   color: var(--text-muted);
   margin-bottom: var(--space-10);
+  text-wrap: balance; /* Fix 7: ausgeglichene Umbrüche */
 }
 
 .contact__cta {
-  font-size: var(--text-base);
+  font-size: var(--text-lg); /* Fix 9: größerer CTA */
+  padding: var(--space-4) var(--space-10);
   letter-spacing: 0.01em;
 }
 
@@ -398,6 +411,20 @@
   border-radius: var(--radius-sm);
 }
 
+/* ── Desktop: Sections als Vollbild-"Seiten" (Fix 2 + Fix 3) ── */
+@media (min-width: 768px) {
+  .argument,
+  .about,
+  .scene,
+  .packages,
+  .contact {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 1023px) {
   .packages__grid {
@@ -407,6 +434,16 @@
 }
 
 @media (max-width: 767px) {
+  /* Fix 4: Kein erzwungenes 100vh auf Mobile – natürlicher Content-Flow */
+  .argument,
+  .about,
+  .scene,
+  .packages,
+  .contact {
+    min-height: auto;
+    display: block;
+  }
+
   .sticky-nav__list {
     gap: var(--space-4);
   }
@@ -447,9 +484,16 @@
     grid-template-columns: 1fr;
   }
 
-  /* Kontakt: Stack */
+  /* Kontakt: Stack + alles zentriert (Fix 6) */
   .contact__inner {
     grid-template-columns: 1fr;
+  }
+
+  .contact__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .contact__photo {
