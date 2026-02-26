@@ -63,13 +63,22 @@
 }
 
 /* ── Section: Hero ───────────────────────────────────────── */
+
+/* .section gibt padding-block: section-padding; das überschreiben wir hier,
+   damit hero__inner allein die vertikale Positionierung steuert */
+.hero {
+  padding-block: 0;
+}
+
 .hero__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-16);
   align-items: center;
   min-height: calc(100dvh - 3rem);
-  padding-block: var(--space-20);
+  /* Asymmetrisch: weniger oben, mehr unten → optischer Schwerpunkt ~42% von oben */
+  padding-block-start: clamp(var(--space-8), 8vh, var(--space-16));
+  padding-block-end: clamp(var(--space-16), 22vh, var(--space-32));
 }
 
 .hero__headline {
