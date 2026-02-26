@@ -1,3 +1,9 @@
 # Lighthouse
 lighthouse-*.json
 lh-*.json
+
+# Interne Planungsdokumente (nicht auf GitHub Pages)
+CLAUDE.md
+CONTENT.md
+DESIGN_CHOICES.md
+BACKLOG.md
