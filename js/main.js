@@ -38,6 +38,16 @@ function initSplitScreen() {
   kickerSide.addEventListener('mouseenter', () => activate('kicker'));
   wrapper.addEventListener('mouseleave',    scheduleReset);
 
+  // Keyboard: focusin setzt data-active sofort (kein Delay – Nutzer ist schon da)
+  techSide.addEventListener('focusin',   () => { clearTimeout(resetTimer); clearTimeout(activateTimer); wrapper.setAttribute('data-active', 'tech'); });
+  kickerSide.addEventListener('focusin', () => { clearTimeout(resetTimer); clearTimeout(activateTimer); wrapper.setAttribute('data-active', 'kicker'); });
+  wrapper.addEventListener('focusout', (e) => {
+    if (!wrapper.contains(e.relatedTarget)) {
+      clearTimeout(activateTimer);
+      wrapper.removeAttribute('data-active');
+    }
+  });
+
   // Touch: erster Tap aktiviert, zweiter Tap navigiert
   let touchActive = null;
 

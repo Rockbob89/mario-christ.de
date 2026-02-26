@@ -275,7 +275,7 @@ em {
   border: 2px dashed rgba(26, 26, 46, 0.15);
   border-radius: var(--radius-md);
   padding: var(--space-8);
-  color: var(--text-muted);
+  color: #4B5563;
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
   font-style: italic;
@@ -284,7 +284,7 @@ em {
 .section--dark .img-placeholder {
   background-color: rgba(245, 245, 245, 0.05);
   border-color: rgba(245, 245, 245, 0.2);
-  color: rgba(245, 245, 245, 0.5);
+  color: rgba(245, 245, 245, 0.6);
 }
 
 /* ── Visually Hidden (Accessibility) ─────────────────────── */
@@ -340,6 +340,12 @@ em {
 
 .link-external:hover {
   color: var(--accent-hover);
+}
+
+.link-external:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .section--dark .link-external {
