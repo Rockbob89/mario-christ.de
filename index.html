@@ -30,59 +30,49 @@
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
   <main id="main">
-    <!-- Name: zwei Spans, je eine Hälfte – Trennlinie läuft zwischen den Wörtern -->
     <div class="name-badge" aria-hidden="true">
       <span class="name-badge__word">Mario</span>
       <span class="name-badge__word">Christ</span>
     </div>
 
-    <div class="split-screen" role="group" aria-label="Wähle einen Bereich">
+    <div class="landing" id="landing" role="group" aria-label="Wähle einen Bereich">
 
-      <!-- ── Linke Hälfte: Tech ─────────────────────────── -->
-      <section class="split split--tech" aria-label="Tech">
-        <a class="split__link" href="/tech/" tabindex="-1" aria-hidden="true"></a>
-
-        <div class="split__content">
-          <div
-            class="img-placeholder split__photo"
-            role="img"
-            aria-label="Foto-Platzhalter: Portrait-Aufnahme, professionell, neutraler Hintergrund oder büronahe Umgebung, ruhiger und konzentrierter Blick, leichtes Lächeln – Tech-Seite">
-            Portrait folgt.<br>Professionell, büronah, ruhiger Blick.
-          </div>
-
-          <div class="split__text">
-            <p class="split__label">Tech</p>
-            <a class="btn btn--tech" href="/tech/">
-              Coming Soon
-            </a>
-          </div>
+      <a class="section section--tech" href="/tech/" aria-label="Tech – Coming Soon">
+        <div
+          class="section__photo img-placeholder"
+          role="img"
+          aria-label="Foto-Platzhalter: Portrait-Aufnahme, professionell, büronahe Umgebung, ruhiger konzentrierter Blick, leichtes Lächeln – Tech-Seite">
         </div>
+        <span class="mobile-label mobile-label--tech" aria-hidden="true">Tech</span>
+      </a>
 
-        <div class="split__overlay" aria-hidden="true"></div>
-      </section>
+      <div class="mobile-bar" aria-hidden="true">
+        <div class="mobile-bar__red"></div>
+        <div class="mobile-bar__separator"></div>
+        <div class="mobile-bar__blue"></div>
+      </div>
 
-      <!-- ── Rechte Hälfte: Tischfußball ───────────────── -->
-      <section class="split split--kicker" aria-label="Tischfußball">
-        <a class="split__link" href="/tischfussball/" tabindex="-1" aria-hidden="true"></a>
-
-        <div class="split__content">
-          <div
-            class="img-placeholder split__photo"
-            role="img"
-            aria-label="Foto-Platzhalter: Action-Shot am Tisch, Seitenperspektive, konzentrierter Blick in Richtung Tor, Turnier-Atmosphäre oder Trikot sichtbar – Kicker-Seite">
-            Action-Shot folgt.<br>Am Tisch, Turnier-Atmosphäre, voller Fokus.
-          </div>
-
-          <div class="split__text">
-            <p class="split__label">Tischfußball</p>
-            <a class="btn btn--kicker" href="/tischfussball/">
-              Mehr erfahren
-            </a>
-          </div>
+      <a class="section section--foos" href="/tischfussball/" aria-label="Kickern – Sponsoring">
+        <div
+          class="section__photo img-placeholder"
+          role="img"
+          aria-label="Foto-Platzhalter: Action-Shot am Tisch, Seitenperspektive, konzentrierter Blick in Richtung Tor, Turnier-Atmosphäre im Hintergrund – Kickern-Seite">
         </div>
+        <span class="mobile-label mobile-label--foos" aria-hidden="true">Kickern</span>
+      </a>
 
-        <div class="split__overlay" aria-hidden="true"></div>
-      </section>
+      <div class="bar" id="bar" aria-hidden="true">
+        <div class="bar__shadow"></div>
+        <div class="bar__red"></div>
+        <div class="bar__separator"></div>
+        <div class="bar__blue"></div>
+      </div>
+
+      <div class="label label--tech" id="label-tech" aria-hidden="true"><span>Tech</span></div>
+      <div class="label label--foos" id="label-foos" aria-hidden="true"><span>Kickern</span></div>
+
+      <div class="hover-indicator hover-indicator--tech" aria-hidden="true">Tech →</div>
+      <div class="hover-indicator hover-indicator--foos" aria-hidden="true">Kickern →</div>
 
     </div>
   </main>

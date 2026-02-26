@@ -1,176 +1,210 @@
 /* ============================================================
-   Landing Page – Split-Screen
+   Landing Page – Diagonale
    ============================================================ */
 
-/* ── Name: volle Breite, Split läuft zwischen den Wörtern ── */
+/* ── Name Badge ──────────────────────────────────────────── */
 .name-badge {
   position: fixed;
   top: clamp(1rem, 3vh, 1.75rem);
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 100;
   display: flex;
+  gap: 0.6em;
   pointer-events: none;
   font-family: var(--font-headline);
   font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--text-on-dark);
+  white-space: nowrap;
 }
 
-/* Jedes Wort nimmt genau eine Hälfte ein */
-.name-badge__word:first-child {
-  flex: 1 1 50%;
-  text-align: right;
-  padding-right: 0.3em; /* halber Wortabstand zur Mittellinie */
-}
-
-.name-badge__word:last-child {
-  flex: 1 1 50%;
-  text-align: left;
-  padding-left: 0.3em;
-}
-
-/* ── Split Screen Wrapper ────────────────────────────────── */
-.split-screen {
-  display: flex;
+/* ── Landing Wrapper ─────────────────────────────────────── */
+.landing {
+  position: relative;
+  width: 100vw;
   height: 100dvh;
   min-height: 100svh;
   overflow: hidden;
 }
 
-/* ── Individual Halves ───────────────────────────────────── */
-.split {
-  position: relative;
-  flex: 1 1 50%;
-  overflow: hidden;
-  /* Fix 4: langsamer, + Fix 1: transition-delay 0.12s verhindert Pixel-Wackler */
-  transition: flex var(--transition-split) 0.12s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ── Sections: Dreieck-Hälften ───────────────────────────── */
+.landing .section {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding-block: 0; /* override global .section padding */
+  display: block;
   cursor: pointer;
+  transition: filter 0.4s ease;
+  text-decoration: none;
+  outline: none;
 }
 
-.split__link {
+.section--tech {
+  background-color: var(--page-bg-dark);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.section--foos {
+  background-color: var(--kicker-bg);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* ── Photo Placeholders ──────────────────────────────────── */
+.section__photo {
   position: absolute;
-  inset: 0;
-  z-index: 10;
-}
-
-.split--tech {
-  background-color: #E8EAED; /* --tech-bg explizit */
-  color: var(--tech-text);
-}
-
-.split--kicker {
-  background-color: #FFFFFF; /* --kicker-bg explizit */
-  color: var(--kicker-text);
-}
-
-/* ── Hover Expansion ─────────────────────────────────────── */
-.split-screen[data-active="tech"]   .split--tech   { flex-basis: 60%; }
-.split-screen[data-active="tech"]   .split--kicker { flex-basis: 40%; }
-
-.split-screen[data-active="kicker"] .split--tech   { flex-basis: 40%; }
-.split-screen[data-active="kicker"] .split--kicker { flex-basis: 60%; }
-
-/* ── Dim Overlay ─────────────────────────────────────────── */
-.split__overlay {
-  position: absolute;
-  inset: 0;
-  background-color: #000;
-  opacity: 0;
-  transition: opacity var(--transition-split);
+  opacity: 0.15;
   pointer-events: none;
-  z-index: 5;
 }
 
-.split-screen[data-active="tech"]   .split--kicker .split__overlay { opacity: 0.2; }
-.split-screen[data-active="kicker"] .split--tech   .split__overlay { opacity: 0.2; }
+.section--tech .section__photo {
+  top: 8%;
+  left: 6%;
+  width: 26%;
+  height: 36%;
+  background-color: rgba(245, 245, 245, 0.08);
+  border-color: rgba(245, 245, 245, 0.2);
+  color: rgba(245, 245, 245, 0.5);
+}
 
-/* ── Content Layout ──────────────────────────────────────── */
-.split__content {
-  position: relative;
-  z-index: 20;
+.section--foos .section__photo {
+  top: 53%;
+  left: 57%;
+  width: 28%;
+  height: 36%;
+}
+
+/* ── Mobile Labels (desktop: hidden) ─────────────────────── */
+.mobile-label {
+  display: none;
+}
+
+/* ── Mobile Bar (desktop: hidden) ────────────────────────── */
+.mobile-bar {
+  display: none;
+}
+
+/* ── Diagonal Bar ────────────────────────────────────────── */
+.bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vmax;
+  height: 8px;
+  z-index: 10;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-6);
-  padding: var(--space-16) var(--space-8) var(--space-8);
-  width: 100%;
-  max-width: 520px;
-
-  /* Fix 5: Ruhezustand leicht zurückgezogen */
-  transform: scale(0.97);
-  opacity: 0.85;
-  transition:
-    transform 0.5s ease,
-    opacity   0.5s ease;
+  align-items: stretch;
+  pointer-events: none;
+  visibility: hidden; /* shown after JS sets correct transform */
 }
 
-/* Fix 5: Aktive Seite – Reveal mit Verzögerung nach Hover-Start */
-.split-screen[data-active="tech"]   .split--tech   .split__content,
-.split-screen[data-active="kicker"] .split--kicker .split__content {
-  transform: scale(1);
-  opacity: 1;
-  transition:
-    transform 0.5s ease 0.3s,
-    opacity   0.4s ease 0.3s;
+.bar__shadow {
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
 }
 
-/* Fix 5: Inaktive Seite – weiter zurückziehen */
-.split-screen[data-active="tech"]   .split--kicker .split__content,
-.split-screen[data-active="kicker"] .split--tech   .split__content {
-  transform: scale(0.95);
-  opacity: 0.7;
-  transition:
-    transform 0.5s ease,
-    opacity   0.4s ease;
+.bar__red {
+  flex: 1;
+  background: var(--kicker-accent);
 }
 
-/* ── Photo Placeholder – Fix 3: 65% der Viewport-Höhe ───── */
-.split__photo {
-  width: 100%;
-  height: 65vh;
-  max-height: 65vh;
-  font-size: var(--text-sm);
+.bar__separator {
+  width: 2px;
+  flex-shrink: 0;
+  background: #E8E8E8;
 }
 
-/* ── Label + Button ──────────────────────────────────────── */
-.split__text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-  text-align: center;
+.bar__blue {
+  flex: 1;
+  background: var(--tech-accent);
 }
 
-.split__label {
+/* ── Labels entlang der Diagonale ────────────────────────── */
+.label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  visibility: hidden; /* shown after JS sets correct transform */
+}
+
+.label span {
+  display: block;
   font-family: var(--font-headline);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  opacity: 0.65;
-  max-width: none;
+  white-space: nowrap;
 }
 
-/* Button über dem fullscreen-link */
-.split__text .btn {
-  position: relative;
-  z-index: 30;
+.label--tech span {
+  color: var(--tech-bg);
 }
 
-.split__text .btn:focus-visible {
-  outline: 3px solid currentColor;
-  outline-offset: 3px;
+.label--foos span {
+  color: var(--kicker-accent);
 }
 
-/* ── Mobile: Vertikales Stacking ─────────────────────────── */
+/* ── Hover Indicators ────────────────────────────────────── */
+.hover-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  font-family: var(--font-headline);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.hover-indicator--tech {
+  background: var(--tech-accent);
+}
+
+.hover-indicator--foos {
+  background: var(--kicker-accent);
+}
+
+/* ── Hover States ────────────────────────────────────────── */
+.landing.hover-tech .section--tech  { filter: brightness(1.15); }
+.landing.hover-tech .section--foos  { filter: brightness(0.9); }
+.landing.hover-tech .label--foos    { opacity: 0.5; }
+.landing.hover-tech .hover-indicator--tech { opacity: 0.9; }
+
+.landing.hover-foos .section--foos  { filter: brightness(1.05); }
+.landing.hover-foos .section--tech  { filter: brightness(0.85); }
+.landing.hover-foos .label--tech    { opacity: 0.5; }
+.landing.hover-foos .hover-indicator--foos { opacity: 0.9; }
+
+/* ── Focus Visible ───────────────────────────────────────── */
+.section--tech:focus-visible {
+  outline: 3px solid var(--tech-accent);
+  outline-offset: -4px;
+}
+
+.section--foos:focus-visible {
+  outline: 3px solid var(--kicker-accent);
+  outline-offset: -4px;
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 767px) {
-  /* Main als Flex-Column: Name oben, Split-Stack darunter */
   #main {
     display: flex;
     flex-direction: column;
@@ -178,69 +212,95 @@
     min-height: 100svh;
   }
 
-  /* Name: aus fixed raus, fließt als eigene Zeile über dem Stack */
   .name-badge {
     position: static;
-    display: block;
-    text-align: center;
-    padding: var(--space-4) var(--space-4) var(--space-2);
+    transform: none;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-primary);
     font-size: var(--text-base);
     flex-shrink: 0;
   }
 
-  .name-badge__word:first-child,
-  .name-badge__word:last-child {
-    flex: none;
-    text-align: inherit;
-    padding: 0;
-  }
-
-  .name-badge__word:first-child::after {
-    content: '\00a0'; /* non-breaking space als Wortabstand */
-  }
-
-  /* Split-Stack füllt den restlichen Platz */
-  .split-screen {
+  .landing {
     flex: 1;
+    height: auto;
     min-height: 0;
+    display: flex;
     flex-direction: column;
-    height: auto; /* überschreibt 100dvh vom Desktop */
+    position: relative;
+    overflow: hidden;
   }
 
-  .split {
-    flex: 1 1 50%;
+  .landing .section {
+    position: relative;
+    inset: auto;
+    flex: 1;
+    clip-path: none;
     transition: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
-  /* Kein Split-Hover auf Mobile */
-  .split-screen[data-active="tech"]   .split--tech,
-  .split-screen[data-active="tech"]   .split--kicker,
-  .split-screen[data-active="kicker"] .split--tech,
-  .split-screen[data-active="kicker"] .split--kicker {
-    flex-basis: 50%;
+  .section__photo {
+    display: none;
   }
 
-  .split__overlay { display: none; }
-
-  /* Content immer voll sichtbar auf Mobile */
-  .split__content,
-  .split-screen[data-active="tech"]   .split--tech   .split__content,
-  .split-screen[data-active="tech"]   .split--kicker .split__content,
-  .split-screen[data-active="kicker"] .split--tech   .split__content,
-  .split-screen[data-active="kicker"] .split--kicker .split__content {
-    transform: scale(1);
-    opacity: 1;
-    transition: none;
-    padding-top: var(--space-6);
+  .mobile-label {
+    display: block;
+    font-family: var(--font-headline);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
   }
 
-  .split__photo {
-    height: 35vh;
-    max-height: 35vh;
+  .mobile-label--tech {
+    color: var(--text-on-dark);
   }
-}
 
-/* ── Fokus: Keyboard-Navigation ──────────────────────────── */
-.split:focus-within .split__overlay {
-  opacity: 0;
+  .mobile-label--foos {
+    color: var(--kicker-accent);
+  }
+
+  .mobile-bar {
+    display: flex;
+    height: 6px;
+    flex-shrink: 0;
+  }
+
+  .mobile-bar__red {
+    flex: 1;
+    background: linear-gradient(to right, transparent, var(--kicker-accent));
+  }
+
+  .mobile-bar__separator {
+    width: 2px;
+    background: #E8E8E8;
+    flex-shrink: 0;
+  }
+
+  .mobile-bar__blue {
+    flex: 1;
+    background: linear-gradient(to right, var(--tech-accent), transparent);
+  }
+
+  .bar,
+  .label,
+  .hover-indicator {
+    display: none;
+  }
+
+  /* No hover filters on mobile */
+  .landing.hover-tech .section--tech,
+  .landing.hover-tech .section--foos,
+  .landing.hover-foos .section--foos,
+  .landing.hover-foos .section--tech {
+    filter: none;
+  }
 }

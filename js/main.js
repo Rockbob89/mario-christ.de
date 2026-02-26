@@ -5,24 +5,50 @@
 
 'use strict';
 
-/* ── Landing Page: Split-Screen Hover ───────────────────── */
-function initSplitScreen() {
-  const wrapper = document.querySelector('.split-screen');
-  if (!wrapper) return;
+/* ── Landing Page: Diagonal ─────────────────────────────── */
+function initDiagonalLanding() {
+  const landing    = document.getElementById('landing');
+  if (!landing) return;
 
-  const techSide   = wrapper.querySelector('.split--tech');
-  const kickerSide = wrapper.querySelector('.split--kicker');
-  if (!techSide || !kickerSide) return;
+  const bar        = document.getElementById('bar');
+  const labelTech  = document.getElementById('label-tech');
+  const labelFoos  = document.getElementById('label-foos');
+  const sectionTech = landing.querySelector('.section--tech');
+  const sectionFoos = landing.querySelector('.section--foos');
+  if (!bar || !labelTech || !labelFoos || !sectionTech || !sectionFoos) return;
 
+  let resizeTimer  = null;
   let activateTimer = null;
-  let resetTimer    = null;
+  let resetTimer   = null;
 
-  // 130ms Aktivierungs-Delay: schnelle Maus-Durchfahrten lösen nichts aus
-  function activate(side) {
+  // Berechnet den Diagonal-Winkel und positioniert Bar + Labels
+  function updateDiagonal() {
+    const deg = -(Math.atan(window.innerHeight / window.innerWidth) * 180) / Math.PI;
+    const vw  = window.innerWidth / 100; // 1vw in px (für maximale Browser-Kompatibilität)
+
+    bar.style.transform      = `translate(-50%,-50%) rotate(${deg}deg)`;
+    labelTech.style.transform = `translate(-50%,-50%) rotate(${deg}deg) translate(${-29 * vw}px,-52px)`;
+    labelFoos.style.transform = `translate(-50%,-50%) rotate(${deg}deg) translate(${29 * vw}px,52px)`;
+
+    bar.style.visibility      = 'visible';
+    labelTech.style.visibility = 'visible';
+    labelFoos.style.visibility = 'visible';
+  }
+
+  updateDiagonal();
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateDiagonal, 100);
+  });
+
+  // 130ms Delay: verhindert Auslösung bei schnellen Maus-Durchfahrten
+  function setHoverClass(cls) {
     clearTimeout(resetTimer);
     clearTimeout(activateTimer);
     activateTimer = setTimeout(() => {
-      wrapper.setAttribute('data-active', side);
+      landing.classList.remove('hover-tech', 'hover-foos');
+      if (cls) landing.classList.add(cls);
     }, 130);
   }
 
@@ -30,45 +56,62 @@ function initSplitScreen() {
   function scheduleReset() {
     clearTimeout(activateTimer);
     resetTimer = setTimeout(() => {
-      wrapper.removeAttribute('data-active');
+      landing.classList.remove('hover-tech', 'hover-foos');
     }, 90);
   }
 
-  techSide.addEventListener('mouseenter',   () => activate('tech'));
-  kickerSide.addEventListener('mouseenter', () => activate('kicker'));
-  wrapper.addEventListener('mouseleave',    scheduleReset);
+  sectionTech.addEventListener('mouseenter', () => setHoverClass('hover-tech'));
+  sectionFoos.addEventListener('mouseenter', () => setHoverClass('hover-foos'));
+  landing.addEventListener('mouseleave', scheduleReset);
 
-  // Keyboard: focusin setzt data-active sofort (kein Delay – Nutzer ist schon da)
-  techSide.addEventListener('focusin',   () => { clearTimeout(resetTimer); clearTimeout(activateTimer); wrapper.setAttribute('data-active', 'tech'); });
-  kickerSide.addEventListener('focusin', () => { clearTimeout(resetTimer); clearTimeout(activateTimer); wrapper.setAttribute('data-active', 'kicker'); });
-  wrapper.addEventListener('focusout', (e) => {
-    if (!wrapper.contains(e.relatedTarget)) {
+  // Keyboard: focusin setzt Klasse sofort (kein Delay – Nutzer ist schon da)
+  sectionTech.addEventListener('focusin', () => {
+    clearTimeout(resetTimer);
+    clearTimeout(activateTimer);
+    landing.classList.remove('hover-tech', 'hover-foos');
+    landing.classList.add('hover-tech');
+  });
+
+  sectionFoos.addEventListener('focusin', () => {
+    clearTimeout(resetTimer);
+    clearTimeout(activateTimer);
+    landing.classList.remove('hover-tech', 'hover-foos');
+    landing.classList.add('hover-foos');
+  });
+
+  landing.addEventListener('focusout', (e) => {
+    if (!landing.contains(e.relatedTarget)) {
       clearTimeout(activateTimer);
-      wrapper.removeAttribute('data-active');
+      landing.classList.remove('hover-tech', 'hover-foos');
     }
   });
 
   // Touch: erster Tap aktiviert, zweiter Tap navigiert
   let touchActive = null;
 
-  function handleTouch(e, side) {
-    if (touchActive !== side) {
+  sectionTech.addEventListener('touchstart', (e) => {
+    if (touchActive !== 'tech') {
       e.preventDefault();
-      touchActive = side;
-      clearTimeout(resetTimer);
-      wrapper.setAttribute('data-active', side);
+      touchActive = 'tech';
+      landing.classList.remove('hover-tech', 'hover-foos');
+      landing.classList.add('hover-tech');
     }
-    // Zweiter Tap: Link greift normal
-  }
+  }, { passive: false });
 
-  techSide.addEventListener('touchstart',   (e) => handleTouch(e, 'tech'),   { passive: false });
-  kickerSide.addEventListener('touchstart', (e) => handleTouch(e, 'kicker'), { passive: false });
+  sectionFoos.addEventListener('touchstart', (e) => {
+    if (touchActive !== 'foos') {
+      e.preventDefault();
+      touchActive = 'foos';
+      landing.classList.remove('hover-tech', 'hover-foos');
+      landing.classList.add('hover-foos');
+    }
+  }, { passive: false });
 
   // Touch außerhalb → Reset
   document.addEventListener('touchstart', (e) => {
-    if (!wrapper.contains(e.target)) {
+    if (!landing.contains(e.target)) {
       touchActive = null;
-      wrapper.removeAttribute('data-active');
+      landing.classList.remove('hover-tech', 'hover-foos');
     }
   });
 }
@@ -103,6 +146,6 @@ function initStickyNav() {
 
 /* ── Init ────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  initSplitScreen();
+  initDiagonalLanding();
   initStickyNav();
 });
