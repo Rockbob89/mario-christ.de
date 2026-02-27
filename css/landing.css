@@ -53,6 +53,7 @@
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
+
 /* ── Photo Placeholders ──────────────────────────────────── */
 .section__photo {
   position: absolute;
@@ -87,7 +88,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: 60% 15%;
 }
 
 /* ── Mobile Labels (desktop: hidden) ─────────────────────── */
@@ -164,6 +165,7 @@
 
 .label--foos span {
   color: var(--kicker-accent);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 /* ── Hover Indicators ────────────────────────────────────── */
