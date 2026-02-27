@@ -63,26 +63,35 @@
 }
 
 /* ── Section: Hero ───────────────────────────────────────── */
-
-/* .section gibt padding-block: section-padding; das überschreiben wir hier,
-   damit hero__inner allein die vertikale Positionierung steuert */
 .hero {
   padding-block: 0;
 }
 
+/* Kein .container – Padding wird pro Spalte gesteuert.
+   Bild geht rechts edge-to-edge, Text aligned mit den anderen Sections. */
 .hero__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
-  align-items: center;
-  min-height: calc(100dvh - 3rem);
-  /* Asymmetrisch: weniger oben, mehr unten → optischer Schwerpunkt ~42% von oben */
-  padding-block-start: clamp(var(--space-8), 8vh, var(--space-16));
-  padding-block-end: clamp(var(--space-16), 22vh, var(--space-32));
+  align-items: stretch;
+  min-height: 100dvh;
+  gap: 0;
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Linker Rand = identisch mit .container auf allen Viewport-Breiten */
+  padding-inline-start: max(
+    var(--space-4),
+    calc((100vw - var(--max-width)) / 2 + var(--space-4))
+  );
+  padding-inline-end: clamp(var(--space-8), 4vw, var(--space-16));
+  padding-block: clamp(var(--space-8), 6vh, var(--space-12));
 }
 
 .hero__headline {
-  font-size: clamp(var(--text-4xl), 5vw, 3.5rem); /* Fix 1: Wucht zurück, max 56px */
+  font-size: clamp(var(--text-4xl), 5vw, 3.5rem);
   font-weight: 800;
   line-height: var(--leading-tight);
   color: var(--text-on-dark);
@@ -98,12 +107,11 @@
 
 .hero__photo {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  min-height: 400px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   object-position: center;
-  border-radius: var(--radius-md);
-  transform: scale(0.75);
+  padding-block: var(--space-2);
+  /* kein border-radius, kein Schatten, kein aspect-ratio */
 }
 
 /* ── Section: Das Argument ───────────────────────────────── */
@@ -472,14 +480,19 @@
   .hero__inner {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding-block: var(--space-16);
-    gap: var(--space-10);
+    gap: 0;
+  }
+
+  .hero__text {
+    padding-inline: clamp(var(--space-4), 5vw, var(--space-12));
+    padding-block: var(--space-10);
   }
 
   .hero__photo {
     order: -1;
+    height: auto;
     aspect-ratio: 16 / 9;
-    min-height: auto;
+    padding-block: 0;
   }
 
   /* About: Stack auf Mobile */
