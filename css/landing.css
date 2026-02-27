@@ -56,8 +56,12 @@
 /* ── Photo Placeholders ──────────────────────────────────── */
 .section__photo {
   position: absolute;
-  opacity: 0.15;
   pointer-events: none;
+}
+
+/* Div-Platzhalter: schwach sichtbar */
+.section__photo:not(img) {
+  opacity: 0.15;
 }
 
 .section--tech .section__photo {
@@ -70,11 +74,20 @@
   color: rgba(245, 245, 245, 0.5);
 }
 
-.section--foos .section__photo {
+.section--foos .section__photo:not(img) {
   top: 53%;
   left: 57%;
   width: 28%;
   height: 36%;
+}
+
+/* Echtes Foto: füllt das Dreieck vollständig */
+.section--foos img.section__photo {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 /* ── Mobile Labels (desktop: hidden) ─────────────────────── */
