@@ -91,7 +91,7 @@
 }
 
 .hero__headline {
-  font-size: clamp(var(--text-4xl), 5vw, 3.5rem);
+  font-size: clamp(var(--text-5xl), 7vw, var(--text-7xl));
   font-weight: 800;
   line-height: var(--leading-tight);
   color: var(--text-on-dark);
@@ -99,10 +99,16 @@
 }
 
 .hero__sub {
-  font-size: clamp(var(--text-base), 1.5vw, var(--text-xl));
+  font-size: clamp(var(--text-lg), 2vw, var(--text-2xl));
   color: rgba(245, 245, 245, 0.75);
   margin-bottom: var(--space-10);
   max-width: 48ch;
+}
+
+.hero__cta {
+  font-size: var(--text-lg);
+  padding: var(--space-4) var(--space-10);
+  align-self: flex-start;
 }
 
 .hero__photo {
