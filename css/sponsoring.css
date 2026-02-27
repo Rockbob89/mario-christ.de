@@ -81,17 +81,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Linker Rand = identisch mit .container auf allen Viewport-Breiten */
-  padding-inline-start: max(
-    var(--space-4),
-    calc((100vw - var(--max-width)) / 2 + var(--space-4))
-  );
-  padding-inline-end: clamp(var(--space-8), 4vw, var(--space-16));
+  padding-inline-start: clamp(var(--space-6), 7vw, 6.5rem);
+  padding-inline-end: clamp(var(--space-6), 3vw, var(--space-12));
   padding-block: clamp(var(--space-8), 6vh, var(--space-12));
 }
 
 .hero__headline {
-  font-size: clamp(var(--text-5xl), 7vw, var(--text-7xl));
+  font-size: clamp(var(--text-5xl), 8vw, 5.5rem);
   font-weight: 800;
   line-height: var(--leading-tight);
   color: var(--text-on-dark);
@@ -106,8 +102,8 @@
 }
 
 .hero__cta {
-  font-size: var(--text-lg);
-  padding: var(--space-4) var(--space-10);
+  font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+  padding: var(--space-6) var(--space-12);
   align-self: flex-start;
 }
 
