@@ -520,7 +520,7 @@
   }
 
   .hero__cta {
-    align-self: center;
+    align-self: flex-start;
   }
 
   .hero__photo {
