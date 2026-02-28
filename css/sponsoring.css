@@ -285,22 +285,20 @@
 
 .scene__intro {
   font-size: clamp(var(--text-base), 1.5vw, var(--text-lg));
-  margin-bottom: var(--space-12);
 }
 
 .scene__photos {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-  margin-bottom: var(--space-12);
+  gap: var(--space-2);
+  margin-block: var(--space-10);
 }
 
 .scene__photo {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: center;
-  border-radius: var(--radius-sm);
 }
 
 .scene__close {
@@ -515,6 +513,11 @@
   /* Szene: Stack */
   .scene__photos {
     grid-template-columns: 1fr;
+    margin-block: var(--space-6);
+  }
+
+  .scene__photo {
+    aspect-ratio: 4 / 3;
   }
 
   /* Kontakt: Stack + alles zentriert (Fix 6) */
