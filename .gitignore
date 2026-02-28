@@ -14,3 +14,7 @@ mock*
 
 # WSL/Windows Metadata
 *.Identifier
+
+# Original JPGs – lokal behalten, nicht ins Repo
+img/**/*.jpg
+img/**/*.JPG
