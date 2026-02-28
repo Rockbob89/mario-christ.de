@@ -449,6 +449,13 @@
     flex-direction: column;
     justify-content: center;
   }
+
+}
+
+@media (min-width: 768px) and (max-height: 1100px) {
+  .scene__photo {
+    max-height: 43vh;
+  }
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
