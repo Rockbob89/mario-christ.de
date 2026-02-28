@@ -319,3 +319,23 @@
     filter: none;
   }
 }
+
+/* ── Touch devices: hover effects deaktivieren ───────────── */
+@media (hover: none) {
+  .landing.hover-tech .section--tech,
+  .landing.hover-tech .section--foos,
+  .landing.hover-foos .section--foos,
+  .landing.hover-foos .section--tech {
+    filter: none;
+  }
+
+  .landing.hover-tech .label--foos,
+  .landing.hover-foos .label--tech {
+    opacity: 1;
+  }
+
+  .landing.hover-tech .hover-indicator--tech,
+  .landing.hover-foos .hover-indicator--foos {
+    opacity: 0;
+  }
+}

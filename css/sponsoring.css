@@ -283,6 +283,7 @@
 
 .scene__headline {
   margin-bottom: var(--space-8);
+  text-wrap: balance;
 }
 
 .scene__intro {
@@ -316,6 +317,7 @@
 .packages__headline {
   color: var(--text-on-dark);
   margin-bottom: var(--space-6);
+  text-wrap: balance;
 }
 
 .packages__intro {
@@ -509,6 +511,18 @@
     padding-block: var(--space-10);
   }
 
+  .hero__headline {
+    font-size: var(--text-4xl);
+  }
+
+  .hero__sub {
+    font-size: var(--text-base);
+  }
+
+  .hero__cta {
+    align-self: center;
+  }
+
   .hero__photo {
     order: -1;
     height: auto;
@@ -543,6 +557,10 @@
 
   .credentials__list {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .credentials__date {
+    margin-top: var(--space-2);
   }
 }
 

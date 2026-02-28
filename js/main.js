@@ -90,6 +90,7 @@ function initDiagonalLanding() {
   let touchActive = null;
 
   sectionTech.addEventListener('touchstart', (e) => {
+    if (window.matchMedia('(hover: none)').matches) return;
     if (touchActive !== 'tech') {
       e.preventDefault();
       touchActive = 'tech';
@@ -99,6 +100,7 @@ function initDiagonalLanding() {
   }, { passive: false });
 
   sectionFoos.addEventListener('touchstart', (e) => {
+    if (window.matchMedia('(hover: none)').matches) return;
     if (touchActive !== 'foos') {
       e.preventDefault();
       touchActive = 'foos';
