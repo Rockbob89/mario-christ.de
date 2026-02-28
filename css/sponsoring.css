@@ -409,6 +409,8 @@
 .contact__photo {
   width: 100%;
   aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 /* ── Footer ──────────────────────────────────────────────── */
