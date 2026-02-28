@@ -403,6 +403,7 @@
   font-size: var(--text-lg);
   color: var(--text-muted);
   margin-bottom: var(--space-10);
+  margin-inline: auto;
   text-align: center;
   text-wrap: balance;
 }
