@@ -382,22 +382,29 @@
 
 /* ── Section: Kontakt ────────────────────────────────────── */
 .contact__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(var(--space-12), 6vw, var(--space-20));
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: var(--space-12);
+}
+
+.contact__text {
+  text-align: center;
+  width: 100%;
 }
 
 .contact__headline {
   font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
   margin-bottom: var(--space-6);
+  text-wrap: balance;
 }
 
 .contact__sub {
   font-size: var(--text-lg);
   color: var(--text-muted);
   margin-bottom: var(--space-10);
-  text-wrap: balance; /* Fix 7: ausgeglichene Umbrüche */
+  text-align: center;
+  text-wrap: balance;
 }
 
 .contact__cta {
@@ -408,7 +415,7 @@
 
 .contact__photo {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 6px;
 }
@@ -532,21 +539,6 @@
     aspect-ratio: 4 / 3;
   }
 
-  /* Kontakt: Stack + alles zentriert (Fix 6) */
-  .contact__inner {
-    grid-template-columns: 1fr;
-  }
-
-  .contact__text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .contact__photo {
-    aspect-ratio: 3 / 2;
-  }
 
   .credentials__list {
     grid-template-columns: 1fr 1fr;
