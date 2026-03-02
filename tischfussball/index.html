@@ -25,6 +25,65 @@
   <link rel="stylesheet" href="/css/sponsoring.css" />
 </head>
 <body>
+  <div id="auth-gate" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(to top, rgba(26,26,46,0.97) 60%, rgba(26,26,46,0.3) 100%);
+    align-items: flex-end; justify-content: center;
+    padding-bottom: clamp(2rem, 8vh, 5rem);
+  ">
+    <div style="text-align: center;">
+      <p style="
+        font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+        color: rgba(245,245,245,0.5); letter-spacing: 0.08em;
+        text-transform: uppercase; margin-bottom: 1rem;
+      ">Passwort</p>
+      <div style="display: flex; gap: 0.5rem; justify-content: center;">
+        <input id="auth-input" type="password" placeholder="···" style="
+          background: rgba(245,245,245,0.08); border: 1px solid rgba(245,245,245,0.15);
+          color: #F5F5F5; font-family: 'DM Sans', sans-serif; font-size: 1rem;
+          padding: 0.65rem 1rem; border-radius: 6px; outline: none; width: 180px;
+        " />
+        <button id="auth-btn" style="
+          background: #DC2626; color: #fff; border: none; cursor: pointer;
+          font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+          padding: 0.65rem 1.25rem; border-radius: 6px;
+        ">→</button>
+      </div>
+      <p id="auth-err" style="
+        color: #DC2626; font-family: 'DM Sans', sans-serif;
+        font-size: 0.8rem; margin-top: 0.75rem; opacity: 0;
+      ">Falsches Passwort.</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      if (sessionStorage.getItem('tf_auth') === '1') return;
+      var gate = document.getElementById('auth-gate');
+      gate.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100dvh';
+
+      function unlock() {
+        var val = document.getElementById('auth-input').value;
+        if (val === 'kurbelkraft') {
+          sessionStorage.setItem('tf_auth', '1');
+          gate.style.display = 'none';
+          document.body.style.overflow = '';
+          document.body.style.height = '';
+        } else {
+          document.getElementById('auth-err').style.opacity = '1';
+          document.getElementById('auth-input').value = '';
+        }
+      }
+
+      document.getElementById('auth-btn').addEventListener('click', unlock);
+      document.getElementById('auth-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') unlock();
+      });
+    })();
+  </script>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
   <!-- ── Sticky Anker-Navigation ───────────────────────── -->
