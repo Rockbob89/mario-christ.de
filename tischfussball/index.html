@@ -57,33 +57,7 @@
     </div>
   </div>
 
-  <script>
-    (function () {
-      if (sessionStorage.getItem('tf_auth') === '1') return;
-      var gate = document.getElementById('auth-gate');
-      gate.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      document.body.style.height = '100dvh';
-
-      function unlock() {
-        var val = document.getElementById('auth-input').value;
-        if (val === 'kurbelkraft') {
-          sessionStorage.setItem('tf_auth', '1');
-          gate.style.display = 'none';
-          document.body.style.overflow = '';
-          document.body.style.height = '';
-        } else {
-          document.getElementById('auth-err').style.opacity = '1';
-          document.getElementById('auth-input').value = '';
-        }
-      }
-
-      document.getElementById('auth-btn').addEventListener('click', unlock);
-      document.getElementById('auth-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') unlock();
-      });
-    })();
-  </script>
+  <div id="page-content" inert>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
   <!-- ── Sticky Anker-Navigation ───────────────────────── -->
@@ -297,6 +271,41 @@
       <a class="site-footer__home" href="/">← mario-christ.de</a>
     </div>
   </footer>
+
+  </div><!-- /#page-content -->
+
+  <script>
+    (function () {
+      var gate = document.getElementById('auth-gate');
+      var content = document.getElementById('page-content');
+      if (sessionStorage.getItem('tf_auth') === '1') {
+        content.removeAttribute('inert');
+        return;
+      }
+      gate.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100dvh';
+
+      function unlock() {
+        var val = document.getElementById('auth-input').value;
+        if (val === 'kurbelkraft') {
+          sessionStorage.setItem('tf_auth', '1');
+          gate.style.display = 'none';
+          content.removeAttribute('inert');
+          document.body.style.overflow = '';
+          document.body.style.height = '';
+        } else {
+          document.getElementById('auth-err').style.opacity = '1';
+          document.getElementById('auth-input').value = '';
+        }
+      }
+
+      document.getElementById('auth-btn').addEventListener('click', unlock);
+      document.getElementById('auth-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') unlock();
+      });
+    })();
+  </script>
 
   <script src="/js/main.js"></script>
 </body>
