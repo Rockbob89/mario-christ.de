@@ -286,9 +286,13 @@
       document.body.style.overflow = 'hidden';
       document.body.style.height = '100dvh';
 
-      function unlock() {
+      var PWD_HASH = 'f32ef48a537bf65341b1ceb4e251a40cceace78914e7dc04d3deb34bf6cd490a';
+
+      async function unlock() {
         var val = document.getElementById('auth-input').value;
-        if (val === 'kurbelkraft') {
+        var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(val));
+        var hex = Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+        if (hex === PWD_HASH) {
           sessionStorage.setItem('tf_auth', '1');
           gate.style.display = 'none';
           content.removeAttribute('inert');
