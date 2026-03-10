@@ -178,7 +178,7 @@
   font-weight: 600;
   color: var(--accent);
   letter-spacing: 0.04em;
-  margin-bottom: var(--space-8);
+  margin-bottom: 0;
   max-width: none;
 }
 
@@ -188,6 +188,10 @@
   gap: var(--space-6);
 }
 
+.about__text .accent-line {
+  margin-bottom: 0;
+}
+
 .about__text p {
   color: rgba(245, 245, 245, 0.85);
 }
@@ -195,24 +199,27 @@
 .about__identity {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  padding-block: var(--space-4);
+  gap: 0;
 }
 
 .about__identity p {
-  font-family: var(--font-h1);
-  font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
-  font-weight: 800;
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 700;
   color: var(--text-on-dark);
-  line-height: 1.15;
+  line-height: var(--leading-normal);
   max-width: none;
+}
+
+.about__identity em {
+  color: var(--accent);
+  font-style: normal;
 }
 
 .about__closer {
   font-family: var(--font-h1);
   font-size: clamp(var(--text-xl), 2vw, var(--text-2xl));
   font-weight: 800;
-  font-style: italic;
   color: var(--text-on-dark) !important;
   max-width: none;
   padding-top: var(--space-2);
