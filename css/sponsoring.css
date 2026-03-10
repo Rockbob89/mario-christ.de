@@ -159,6 +159,95 @@
   color: var(--text-primary);
 }
 
+/* ── Argument: Funnel-Zahlen ─────────────────────────────── */
+.argument__funnel {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.argument__funnel-chain {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.argument__funnel-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-1);
+  padding: var(--space-5) var(--space-4);
+  background-color: rgba(26, 26, 46, 0.04);
+  border-radius: var(--radius-lg);
+}
+
+.argument__funnel-step--highlight {
+  background-color: rgba(220, 38, 38, 0.07);
+  outline: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.argument__funnel-num {
+  font-family: var(--font-h1);
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.argument__funnel-step--highlight .argument__funnel-num {
+  color: var(--accent);
+}
+
+.argument__funnel-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.argument__funnel-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.argument__funnel-arrow {
+  color: var(--accent);
+  font-size: var(--text-lg);
+  opacity: 0.6;
+  line-height: 1;
+}
+
+.argument__funnel-filter {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 7ch;
+  line-height: 1.3;
+}
+
+.argument__funnel-closer {
+  text-align: center;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+  max-width: none;
+}
+
+.argument__funnel-source {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  max-width: none;
+}
+
 /* ── Section: Über mich ──────────────────────────────────── */
 .about__inner {
   display: grid;
@@ -542,6 +631,40 @@
   .about__photo {
     aspect-ratio: 4 / 3;
     object-position: 50% 25%;
+  }
+
+  /* Argument Funnel: Stack */
+  .argument__funnel-chain {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .argument__funnel-step {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    justify-content: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .argument__funnel-num {
+    font-size: var(--text-2xl);
+    min-width: 4.5rem;
+  }
+
+  .argument__funnel-connector {
+    flex-direction: row;
+    gap: var(--space-3);
+    padding-inline: var(--space-4);
+  }
+
+  .argument__funnel-arrow {
+    transform: rotate(90deg);
+  }
+
+  .argument__funnel-filter {
+    max-width: none;
   }
 
   /* Szene: Stack */
