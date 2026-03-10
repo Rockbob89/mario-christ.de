@@ -377,11 +377,6 @@
   transition: border-color var(--transition-base), background-color var(--transition-base);
 }
 
-.package--featured {
-  border-color: rgba(220, 38, 38, 0.4);
-  background-color: rgba(220, 38, 38, 0.07);
-}
-
 .package:hover {
   border-color: var(--accent);
   background-color: rgba(220, 38, 38, 0.05);
