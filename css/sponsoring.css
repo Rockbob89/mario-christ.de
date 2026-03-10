@@ -169,7 +169,7 @@
 
 .about__headline {
   color: var(--text-on-dark);
-  margin-bottom: var(--space-4);
+  margin-bottom: 0;
 }
 
 .about__tagline {
@@ -196,25 +196,26 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  padding-block: var(--space-6);
+  padding-block: var(--space-4);
 }
 
 .about__identity p {
   font-family: var(--font-h1);
-  font-size: clamp(var(--text-xl), 2.5vw, var(--text-3xl));
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
   font-weight: 800;
   color: var(--text-on-dark);
-  line-height: 1.2;
+  line-height: 1.15;
   max-width: none;
 }
 
 .about__closer {
   font-family: var(--font-h1);
-  font-size: clamp(var(--text-lg), 1.5vw, var(--text-xl));
-  font-weight: 700;
+  font-size: clamp(var(--text-xl), 2vw, var(--text-2xl));
+  font-weight: 800;
   font-style: italic;
-  color: rgba(245, 245, 245, 0.85) !important;
+  color: var(--text-on-dark) !important;
   max-width: none;
+  padding-top: var(--space-2);
 }
 
 .about__profiles {
