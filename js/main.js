@@ -87,10 +87,12 @@ function initDiagonalLanding() {
   });
 
   // Touch: erster Tap aktiviert, zweiter Tap navigiert
+  // Nur auf großen Viewports (Laptops mit Touchscreen) – auf Phones direkt navigieren
   let touchActive = null;
+  const isDesktop = () => window.innerWidth >= 768;
 
   sectionTech.addEventListener('touchstart', (e) => {
-    if (window.matchMedia('(hover: none)').matches) return;
+    if (!isDesktop()) return;
     if (touchActive !== 'tech') {
       e.preventDefault();
       touchActive = 'tech';
@@ -100,7 +102,7 @@ function initDiagonalLanding() {
   }, { passive: false });
 
   sectionFoos.addEventListener('touchstart', (e) => {
-    if (window.matchMedia('(hover: none)').matches) return;
+    if (!isDesktop()) return;
     if (touchActive !== 'foos') {
       e.preventDefault();
       touchActive = 'foos';
