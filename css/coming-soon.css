@@ -5,13 +5,16 @@
 body {
   background-color: var(--tech-bg);
   color: var(--tech-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 
 .coming-soon {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100dvh;
 }
 
 .coming-soon__content {

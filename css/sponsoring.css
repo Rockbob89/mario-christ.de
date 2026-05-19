@@ -463,34 +463,6 @@
   border-radius: 6px;
 }
 
-/* ── Footer ──────────────────────────────────────────────── */
-.site-footer {
-  background-color: var(--page-bg-dark);
-  padding-block: var(--space-6);
-  border-top: 1px solid var(--border-light);
-}
-
-.site-footer__inner {
-  display: flex;
-  align-items: center;
-}
-
-.site-footer__home {
-  font-size: var(--text-sm);
-  color: rgba(245, 245, 245, 0.6);
-  transition: color var(--transition-base);
-}
-
-.site-footer__home:hover {
-  color: var(--text-on-dark);
-}
-
-.site-footer__home:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
-}
-
 /* ── Desktop: Sections als Vollbild-"Seiten" (Fix 2 + Fix 3) ── */
 @media (min-width: 768px) {
   .argument,

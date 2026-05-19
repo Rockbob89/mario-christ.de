@@ -218,6 +218,42 @@
   outline-offset: -4px;
 }
 
+/* ── Landing Legal Pill (Impressum/Datenschutz) ─────────── */
+.landing-legal {
+  position: fixed;
+  bottom: clamp(0.75rem, 2vh, 1.25rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.4em 1em;
+  background-color: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(245, 245, 245, 0.85);
+  letter-spacing: 0.04em;
+}
+
+.landing-legal a {
+  color: inherit;
+  transition: color var(--transition-base);
+}
+
+.landing-legal a:hover {
+  color: #ffffff;
+}
+
+.landing-legal a:focus-visible {
+  outline: 2px solid var(--text-on-dark);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
 /* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 767px) {
   #main {

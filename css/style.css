@@ -425,3 +425,119 @@ em {
 .section--dark .link-external:hover {
   color: #FCA5A5;
 }
+
+/* ── Site Footer (global) ────────────────────────────────── */
+.site-footer {
+  background-color: var(--page-bg-dark);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--border-light);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.site-footer__home,
+.site-footer__legal a {
+  font-size: var(--text-sm);
+  color: rgba(245, 245, 245, 0.6);
+  transition: color var(--transition-base);
+}
+
+.site-footer__home:hover,
+.site-footer__legal a:hover {
+  color: var(--text-on-dark);
+}
+
+.site-footer__home:focus-visible,
+.site-footer__legal a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+
+/* ── Legal Pages (Impressum/Datenschutz) ─────────────────── */
+.legal-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-page__main {
+  flex: 1;
+  padding-block: clamp(var(--space-16), 10vw, var(--space-24));
+}
+
+.legal-page__back {
+  display: inline-block;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-8);
+  transition: color var(--transition-base);
+}
+
+.legal-page__back:hover {
+  color: var(--text-primary);
+}
+
+.legal-page h1 {
+  margin-bottom: var(--space-10);
+}
+
+.legal-page h2 {
+  font-size: clamp(var(--text-xl), 2.2vw, var(--text-2xl));
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-4);
+}
+
+.legal-page h3 {
+  font-size: var(--text-lg);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+}
+
+.legal-page p,
+.legal-page li {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-4);
+  max-width: 70ch;
+}
+
+.legal-page ul {
+  list-style: disc;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.legal-page ul li {
+  margin-bottom: var(--space-2);
+}
+
+.legal-page a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--transition-base);
+}
+
+.legal-page a:hover {
+  color: var(--accent-hover);
+}
+
+.legal-page address {
+  font-style: normal;
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-6);
+}
