@@ -24,3 +24,6 @@ img/**/*.JPG
 # Ausnahme: OG-Vorschaubilder sind generierte Assets – müssen deployed werden
 !img/og-*.jpg
 
+
+# Hero-Bild-Kandidaten (Quellmaterial, nur hero-tech.webp wird genutzt)
+img/ai_hero/
