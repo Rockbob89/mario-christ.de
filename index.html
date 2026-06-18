@@ -3,81 +3,150 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mario Christ – DevOps Engineer &amp; Bundesliga-Spieler Tischfußball</title>
-  <meta name="description" content="Mario Christ – DevOps Engineer und Bundesliga-Spieler im Tischfußball. Technologie, Leistungssport und Sponsoring in Hamburg." />
+  <title>Mario Christ – AI-Consulting für DSGVO- und EU-AI-Act-konformen Einsatz</title>
+  <meta name="description" content="AI-Consulting für den Mittelstand: KI rechtssicher einsetzen – DSGVO- und EU-AI-Act-konform, Sovereign-first, On-Premise. Beratung und Umsetzung aus DevOps-Hand." />
   <link rel="canonical" href="https://mario-christ.de/" />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://mario-christ.de/" />
-  <meta property="og:title"       content="Mario Christ – DevOps Engineer &amp; Bundesliga-Spieler Tischfußball" />
-  <meta property="og:description" content="Mario Christ – DevOps Engineer und Bundesliga-Spieler im Tischfußball. Technologie, Leistungssport und Sponsoring in Hamburg." />
+  <meta property="og:title"       content="Mario Christ – AI-Consulting für DSGVO- und EU-AI-Act-konformen Einsatz" />
+  <meta property="og:description" content="KI rechtssicher einsetzen – DSGVO- und EU-AI-Act-konform, Sovereign-first, On-Premise. Beratung und Umsetzung aus DevOps-Hand." />
   <meta property="og:image"       content="https://mario-christ.de/img/og-default.jpg" />
   <meta property="og:locale"      content="de_DE" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Mario Christ – DevOps Engineer &amp; Bundesliga-Spieler Tischfußball" />
-  <meta name="twitter:description" content="Mario Christ – DevOps Engineer und Bundesliga-Spieler im Tischfußball. Technologie, Leistungssport und Sponsoring in Hamburg." />
+  <meta name="twitter:title"       content="Mario Christ – AI-Consulting für DSGVO- und EU-AI-Act-konformen Einsatz" />
+  <meta name="twitter:description" content="KI rechtssicher einsetzen – DSGVO- und EU-AI-Act-konform, Sovereign-first, On-Premise." />
   <meta name="twitter:image"       content="https://mario-christ.de/img/og-default.jpg" />
 
+  <link rel="preload" href="/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/landing.css" />
+
+  <!-- Früh: js + anim-Flag setzen, bevor gepaintet wird (kein Flash, kein Layout-Shift) -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          d.classList.add('anim');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
+  <!-- NAV: SINGLE SOURCE (/index.html) — bei Änderung in /impressum/, /datenschutz/ syncen (NICHT /tischfussball/) -->
+  <!-- MC-BADGE: später <img src="/img/mc-logo.svg" alt="Mario Christ" width="40" height="40"> statt Text "MC" -->
+  <header class="site-nav">
+    <div class="site-nav__inner container">
+      <a class="mc-badge" href="/" aria-label="Startseite">MC</a>
+      <nav class="site-nav__links" aria-label="Hauptnavigation">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/tischfussball/">Foos</a>
+        <a href="/#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
   <main id="main">
-    <div class="name-badge" aria-hidden="true">
-      <span class="name-badge__word">Mario</span>
-      <span class="name-badge__word">Christ</span>
-    </div>
 
-    <div class="landing" id="landing" role="group" aria-label="Wähle einen Bereich">
-
-      <a class="section section--tech" href="/tech/" aria-label="Tech – Coming Soon">
-        <span class="mobile-label mobile-label--tech" aria-hidden="true">Tech</span>
-      </a>
-
-      <div class="mobile-bar" aria-hidden="true">
-        <div class="mobile-bar__red"></div>
-        <div class="mobile-bar__separator"></div>
-        <div class="mobile-bar__blue"></div>
+    <!-- ── Hero ──────────────────────────────────────────── -->
+    <section class="hero" id="hero" aria-label="Sicherheitsvorfall">
+      <div class="container">
+        <div class="hero__bulletin">
+          <p class="hero__label">Sicherheitsvorfall:</p>
+          <p class="hero__sentence">
+            <del class="hero__strike">Unbekannte Angreifer</del>
+            <ins class="hero__correction">Legal &amp; HR</ins>
+            laden sensible Vertragsdaten auf ausländische Server.
+          </p>
+          <p class="hero__sub">
+            Wissen Sie, was ChatGPT, Claude und Gemini mit Ihren Uploads machen?
+          </p>
+        </div>
+        <p class="hero__reassure">
+          Kein Grund zur Panik. Lassen Sie uns doch mal schauen, was heute möglich ist.
+        </p>
       </div>
+    </section>
 
-      <a class="section section--foos" href="/tischfussball/" aria-label="Kickern – Sponsoring">
-        <img class="section__photo"
-             src="/img/landing-kickern-1920w.webp"
-             srcset="/img/landing-kickern-800w.webp 800w,
-                     /img/landing-kickern-1920w.webp 1920w,
-                     /img/landing-kickern-2560w.webp 2560w"
-             sizes="(max-width: 767px) 100vw, (max-width: 1920px) 1920px, 2560px"
-             fetchpriority="high"
-             alt="Blick durch das Balleinwurf-Loch eines Kicker-Tisches auf Mario Christ" />
-        <span class="mobile-label mobile-label--foos" aria-hidden="true">Kickern</span>
-      </a>
-
-      <div class="bar" id="bar" aria-hidden="true">
-        <div class="bar__shadow"></div>
-        <div class="bar__red"></div>
-        <div class="bar__separator"></div>
-        <div class="bar__blue"></div>
+    <!-- ── Substanz: Was / Warum / Wie ───────────────────── -->
+    <section class="section substance__block" aria-label="Was ich mache">
+      <div class="container substance__inner">
+        <div>
+          <span class="accent-line" aria-hidden="true"></span>
+          <h2 class="substance__title">Was ich mache</h2>
+        </div>
+        <div class="substance__body">
+          <p>Ich helfe mittelständischen Unternehmen, KI einzusetzen, ohne dabei mit der DSGVO oder dem EU AI Act zu kollidieren. Das beginnt bei der Beratung: Wo bringt KI Ihnen wirklich etwas, welche Werkzeuge sind rechtlich sauber, was muss dokumentiert werden.</p>
+          <p>Wenn ein Projekt zur Umsetzung kommt, baue ich auch mit – On-Premise-Setups, lokale Sprachmodelle, die nötige Infrastruktur. Was ich nicht mache: 24/7-Support oder Managed Services. Dafür bin ich der Falsche.</p>
+        </div>
       </div>
+    </section>
 
-      <div class="label label--tech" id="label-tech" aria-hidden="true"><span>Tech</span></div>
-      <div class="label label--foos" id="label-foos" aria-hidden="true"><span>Kickern</span></div>
+    <section class="section substance__block" aria-label="Warum ich">
+      <div class="container substance__inner">
+        <div>
+          <span class="accent-line" aria-hidden="true"></span>
+          <h2 class="substance__title">Warum ich</h2>
+        </div>
+        <div class="substance__body">
+          <p>Ich komme aus dem DevOps. Ich rede nicht über Infrastruktur, ich baue sie – jeden Tag. Und ich arbeite täglich mit lokalen Sprachmodellen auf eigener Hardware, von der Quantisierung bis zum Deployment.</p>
+          <p>Ich kenne die Stolperstellen, weil ich selbst über sie gefallen bin. Wenn KI für Ihr Problem das falsche Werkzeug ist, sage ich Ihnen das – bevor Sie Geld ausgeben.</p>
+        </div>
+      </div>
+    </section>
 
-      <div class="hover-indicator hover-indicator--tech" aria-hidden="true">Tech →</div>
-      <div class="hover-indicator hover-indicator--foos" aria-hidden="true">Kickern →</div>
+    <section class="section substance__block" aria-label="Wie ich arbeite">
+      <div class="container substance__inner">
+        <div>
+          <span class="accent-line" aria-hidden="true"></span>
+          <h2 class="substance__title">Wie ich arbeite</h2>
+        </div>
+        <div class="substance__body">
+          <p><strong>Sovereign first.</strong> EU-Hosting oder On-Premise sind der Standard, US-Cloud nur, wenn es einen guten Grund gibt – und den nenne ich Ihnen.</p>
+          <p><strong>Pragmatismus vor Hype.</strong> Die Frage ist nicht, ob wir einen KI-Agenten bauen können, sondern ob Sie einen brauchen. Klare Scopes, feste Absprachen, keine versteckten Kosten.</p>
+        </div>
+      </div>
+    </section>
 
-    </div>
+    <!-- ── Kickern-Teaser ────────────────────────────────── -->
+    <section class="section section--dark foos-teaser" aria-label="Tischfußball">
+      <div class="container foos-teaser__inner">
+        <span class="accent-line" aria-hidden="true"></span>
+        <h2 class="foos-teaser__title">Nebenbei spiele ich in der Bundesliga.</h2>
+        <p class="foos-teaser__body">Tischfußball, um genau zu sein – seit über zehn Saisons, aktuell mit dem HSV Kurbelkraft. Falls Sie aus der Tech-Branche kommen und über Sponsoring, Teambuilding oder Recruiting nachdenken: Das ist eine eigene Geschichte.</p>
+        <a class="btn btn--kicker" href="/tischfussball/">Zum Sponsoring →</a>
+      </div>
+    </section>
+
+    <!-- ── Kontakt ───────────────────────────────────────── -->
+    <section class="section contact" id="kontakt" aria-label="Kontakt">
+      <div class="container contact__inner">
+        <span class="accent-line" aria-hidden="true"></span>
+        <h2 class="contact__title">Lassen Sie uns reden.</h2>
+        <p class="contact__body">Ein Erstgespräch kostet nichts und verpflichtet zu nichts. Schreiben Sie mir, worum es geht – ich melde mich.</p>
+        <a class="btn btn--kicker contact__mail" href="mailto:hallo@mario-christ.de">hallo@mario-christ.de</a>
+      </div>
+    </section>
+
   </main>
 
-  <nav class="landing-legal" aria-label="Rechtliches">
-    <a href="/impressum/">Impressum</a>
-    <span aria-hidden="true">·</span>
-    <a href="/datenschutz/">Datenschutz</a>
-  </nav>
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <a class="site-footer__home" href="/">← mario-christ.de</a>
+      <nav class="site-footer__legal" aria-label="Rechtliches">
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+      </nav>
+    </div>
+  </footer>
 
   <script src="/js/main.js"></script>
 </body>
