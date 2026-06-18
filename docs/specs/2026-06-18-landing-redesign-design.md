@@ -27,11 +27,28 @@ Kontakt ist Anker `#kontakt` auf `/`, **keine eigene Seite.**
 ## Navigation
 
 - Eine zentrale `<nav>`-Struktur, **per HTML-Duplikation** auf den **Consulting-/Hub-Seiten**: `/`, `/impressum/`, `/datenschutz/` (und später `/blog/`).
-- **`/tischfussball/` ist explizit ausgenommen.** Die Sponsoring-Seite ist eine eigenständige Landing für eine andere Zielgruppe (B2B-Sponsoren) und behält ihre eigene `.sticky-nav` (Anker-Navigation durch ihre Sektionen). Die globale Hub-Nav würde diese Funktion ohne Nutzen kaputtmachen. Die Seite bleibt **unangetastet** — der Rückweg zum Hub existiert bereits via Footer-Link `← mario-christ.de` (tischfussball/index.html:246). Kein Eingriff nötig.
+- **`/tischfussball/` bekommt NICHT die globale Hub-Nav.** Die Sponsoring-Seite ist eine eigenständige Landing für eine andere Zielgruppe (B2B-Sponsoren) und behält ihre eigene `.sticky-nav` (Anker-Navigation durch ihre Sektionen). Die globale Hub-Nav würde diese Funktion ohne Nutzen kaputtmachen.
+- **Zwei gezielte, vom User gewünschte Eingriffe in `/tischfussball/`** (heben die „unangetastet"-Regel für genau diese Features auf):
+  1. **MC-Badge** als Home-Anker in der sticht-nav (siehe MC-Badge unten) — helle Variante auf dunklem Nav-Grund.
+  2. **Burger-Menü** für die Anker-Nav auf Mobile (≤767px) statt der aktuellen Schrumpf-Liste.
 - **Single-Source-Master:** `/index.html`. Kommentar `<!-- NAV: SINGLE SOURCE — bei Änderung in /impressum/, /datenschutz/ syncen (NICHT /tischfussball/) -->` über dem Nav-Block in jeder Datei.
-- **Sichtbare Links (Phase 1):** Home (`/`), Foos (`/tischfussball/`), Kontakt (`/#kontakt`).
+- **Sichtbare Links (Phase 1):** MC-Badge (Home-Anker), Home (`/`), Foos (`/tischfussball/`), Kontakt (`/#kontakt`).
 - Blog kommt erst in Phase 3 dazu.
 - Aktive Seite markiert via `aria-current="page"`.
+
+### MC-Badge (Home-Anker, alle Seiten)
+
+- Konsistenter Home-Anker auf **allen** Seiten (`/`, `/impressum/`, `/datenschutz/`, `/tischfussball/`), Link auf `/`.
+- **Vorerst Text + CSS, kein Asset:** runder Hintergrund via `border-radius: 50%`, „MC" stilisiert, erbt Seitenschrift (`--font-headline` / Syne). **Eine** CSS-Klasse `.mc-badge`, leicht austauschbar.
+- Auf dunklem Grund (tischfussball sticky-nav, `section--dark`) helle Variante via Kontext-Override `.sticky-nav .mc-badge { ... }`.
+- **Späterer SVG-Tausch:** Mario liefert ein SVG-Monogramm nach. **Fester Pfad: `/img/mc-logo.svg`** (analog zu den anderen Bildern in `/img/`). Tausch: `MC`-Text im `<a class="mc-badge">` durch `<img src="/img/mc-logo.svg" …>` ersetzen — Klasse bleibt, Markup an einer Stelle pro Seite (Nav ist ohnehin dupliziert).
+
+### Burger-Menü (nur `/tischfussball/`, Mobile)
+
+- Auf `/tischfussball/` ersetzt ein Burger-Toggle die aktuelle Schrumpf-Liste auf Mobile (≤767px).
+- Button mit `aria-expanded` + `aria-controls`, Menü als ausklappende Liste unter der Nav-Leiste.
+- JS: Toggle öffnen/schließen, schließen bei Link-Klick und `Escape`.
+- Desktop unverändert: Burger versteckt, Link-Liste sichtbar.
 
 ## Seitenstruktur `/` (Landing)
 

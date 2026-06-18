@@ -25,8 +25,10 @@
 | `datenschutz/index.html` | Modify | Hub-Nav einfügen |
 | `tech/index.html` | Replace | Redirect → `/` |
 | `sitemap.xml` | Modify | `/tech/` entfernen |
+| `tischfussball/index.html` | Modify | MC-Badge + Burger in sticky-nav (Task 11) |
+| `css/sponsoring.css` | Modify | Burger- + Mobile-Menü-Styles, MC-Badge-Dark-Override (Task 11) |
 
-**Nicht angefasst:** `tischfussball/` (komplett), `css/sponsoring.css`, `css/coming-soon.css` (bleibt liegen, wird von tech-redirect nicht mehr referenziert).
+**Nicht angefasst:** `css/coming-soon.css` (bleibt liegen, wird von tech-redirect nicht mehr referenziert). `/tischfussball/` wird **nur minimal** angefasst (MC-Badge + Burger, Task 11) — Inhalt/Pitch/Design der Seite bleibt unverändert.
 
 ---
 
@@ -121,14 +123,42 @@ git commit -m "feat(css): caveat @font-face + --font-handwriting token"
 
 ---
 
-## Task 3: Hub-Nav-Styles in `style.css`
+## Task 3: Hub-Nav- + MC-Badge-Styles in `style.css`
 
 **Files:**
 - Modify: `css/style.css` (am Ende, nach `.site-footer`-Block)
 
-- [ ] **Step 1: Nav-Styles ans Ende von `style.css` anhängen**
+- [ ] **Step 1: MC-Badge + Nav-Styles ans Ende von `style.css` anhängen**
 
 ```css
+/* ── MC-Badge (Home-Anker, alle Seiten – Text+CSS, später SVG) ── */
+.mc-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--text-primary);
+  color: var(--page-bg);
+  font-family: var(--font-headline);
+  font-weight: 800;
+  font-size: var(--text-base);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  transition: transform var(--transition-base), background-color var(--transition-base);
+}
+
+.mc-badge:hover {
+  transform: scale(1.06);
+}
+
+.mc-badge:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* ── Site Nav (Hub-Seiten: /, /impressum, /datenschutz) ──── */
 .site-nav {
   position: sticky;
@@ -146,16 +176,6 @@ git commit -m "feat(css): caveat @font-face + --font-handwriting token"
   justify-content: space-between;
   gap: var(--space-4);
   padding-block: var(--space-3);
-}
-
-.site-nav__brand {
-  font-family: var(--font-headline);
-  font-weight: 700;
-  font-size: var(--text-lg);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  white-space: nowrap;
 }
 
 .site-nav__links {
@@ -190,15 +210,15 @@ git commit -m "feat(css): caveat @font-face + --font-handwriting token"
 Run:
 ```bash
 cd /home/sergio/projects/sponsoring/mario-christ.de
-grep -c '.site-nav' css/style.css
+grep -c '.site-nav' css/style.css && grep -c '.mc-badge' css/style.css
 ```
-Expected: Zahl ≥ 6.
+Expected: `.site-nav` ≥ 6, `.mc-badge` ≥ 3.
 
 - [ ] **Step 3: Commit**
 
 ```bash
 git add css/style.css
-git commit -m "feat(css): hub-nav styles (shared)"
+git commit -m "feat(css): hub-nav + mc-badge styles (shared)"
 ```
 
 ---
@@ -460,9 +480,10 @@ git commit -m "feat(css): landing.css neu – hero/substanz/teaser/kontakt"
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
   <!-- NAV: SINGLE SOURCE (/index.html) — bei Änderung in /impressum/, /datenschutz/ syncen (NICHT /tischfussball/) -->
+  <!-- MC-BADGE: später <img src="/img/mc-logo.svg" alt="Mario Christ" width="40" height="40"> statt Text "MC" -->
   <header class="site-nav">
     <div class="site-nav__inner container">
-      <a class="site-nav__brand" href="/">Mario Christ</a>
+      <a class="mc-badge" href="/" aria-label="Startseite">MC</a>
       <nav class="site-nav__links" aria-label="Hauptnavigation">
         <a href="/" aria-current="page">Home</a>
         <a href="/tischfussball/">Foos</a>
@@ -681,9 +702,10 @@ Direkt nach `<a class="skip-link" href="#main">Zum Inhalt springen</a>` (vor `<m
 ```html
 
   <!-- NAV: SYNC mit Master /index.html (NICHT /tischfussball/) -->
+  <!-- MC-BADGE: später <img src="/img/mc-logo.svg" alt="Mario Christ" width="40" height="40"> statt Text "MC" -->
   <header class="site-nav">
     <div class="site-nav__inner container">
-      <a class="site-nav__brand" href="/">Mario Christ</a>
+      <a class="mc-badge" href="/" aria-label="Startseite">MC</a>
       <nav class="site-nav__links" aria-label="Hauptnavigation">
         <a href="/">Home</a>
         <a href="/tischfussball/">Foos</a>
@@ -705,12 +727,12 @@ Run:
 ```bash
 cd /home/sergio/projects/sponsoring/mario-christ.de
 for f in impressum/index.html datenschutz/index.html; do
-  echo "$f: $(grep -c 'site-nav__brand' $f)"
+  echo "$f site-nav: $(grep -c 'site-nav__inner' $f)"
 done
-# Sicherstellen dass tischfussball KEINE hub-nav bekommen hat
-grep -c 'site-nav__brand' tischfussball/index.html
+# Sicherstellen dass tischfussball KEINE hub-nav (site-nav) bekommen hat
+echo "tischfussball site-nav: $(grep -c 'site-nav__inner' tischfussball/index.html)"
 ```
-Expected: `impressum/index.html: 1`, `datenschutz/index.html: 1`, und `0` für tischfussball.
+Expected: `impressum ... 1`, `datenschutz ... 1`, und `tischfussball site-nav: 0` (tischfussball nutzt `sticky-nav`, nicht `site-nav`).
 
 - [ ] **Step 4: Commit**
 
@@ -831,8 +853,9 @@ DevTools → Rendering → „Emulate prefers-reduced-motion: reduce" → Reload
 
 - [ ] **Step 5: Nav-Konsistenz + Links prüfen**
 
-- `/`, `/impressum/`, `/datenschutz/` zeigen identische Hub-Nav (Home / Foos / Kontakt).
-- `/tischfussball/` zeigt **keine** Hub-Nav, nur seine eigene sticky-nav.
+- `/`, `/impressum/`, `/datenschutz/` zeigen identische Hub-Nav (MC-Badge links, Home / Foos / Kontakt rechts).
+- `/tischfussball/` zeigt **keine** Hub-Nav, nur seine eigene sticky-nav (mit MC-Badge + Burger).
+- MC-Badge auf **allen vier** Seiten oben links, Klick → `/`.
 - „Foos" → `/tischfussball/`, „Kontakt" → scrollt zu `#kontakt`.
 - `http://localhost:8765/tech/` leitet sofort auf `/` weiter.
 - mailto-Button zeigt `hallo@mario-christ.de`.
@@ -862,17 +885,278 @@ git commit -m "fix(landing): verifikations-feedback eingearbeitet"
 
 ---
 
+## Task 11: `/tischfussball/` — MC-Badge + Burger-Menü (Mobile)
+
+**Files:**
+- Modify: `tischfussball/index.html` (sticky-nav, ca. Zeile 31–40; init via bestehendes `/js/main.js`)
+- Modify: `css/sponsoring.css` (sticky-nav-Block, ca. Zeile 5–53; Mobile-Block ca. Zeile 506)
+- Modify: `js/main.js` (neue Funktion + Init-Aufruf)
+
+**Hinweis:** Dies ist der einzige Eingriff in die Sponsoring-Seite, vom User explizit gewünscht. Inhalt/Pitch/Sektionen bleiben unverändert — nur die Nav-Leiste wird umgebaut.
+
+- [ ] **Step 1: sticky-nav-Markup in `tischfussball/index.html` umbauen**
+
+Den bestehenden Block ersetzen:
+
+```html
+  <!-- ── Sticky Anker-Navigation ───────────────────────── -->
+  <nav class="sticky-nav" aria-label="Seitennavigation">
+    <ul class="sticky-nav__list">
+      <li><a class="sticky-nav__link" href="#argument">Das Argument</a></li>
+      <li><a class="sticky-nav__link" href="#ueber-mich">Über mich</a></li>
+      <li><a class="sticky-nav__link" href="#szene">Die Szene</a></li>
+      <li><a class="sticky-nav__link" href="#pakete">Pakete</a></li>
+      <li><a class="sticky-nav__link" href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+```
+
+durch:
+
+```html
+  <!-- ── Sticky Anker-Navigation ───────────────────────── -->
+  <!-- MC-BADGE: später <img src="/img/mc-logo.svg" alt="Mario Christ" width="40" height="40"> statt Text "MC" -->
+  <nav class="sticky-nav" aria-label="Seitennavigation">
+    <div class="sticky-nav__inner">
+      <a class="mc-badge" href="/" aria-label="Startseite">MC</a>
+      <button class="sticky-nav__burger" type="button" aria-label="Menü öffnen"
+              aria-expanded="false" aria-controls="foos-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="sticky-nav__list" id="foos-menu">
+        <li><a class="sticky-nav__link" href="#argument">Das Argument</a></li>
+        <li><a class="sticky-nav__link" href="#ueber-mich">Über mich</a></li>
+        <li><a class="sticky-nav__link" href="#szene">Die Szene</a></li>
+        <li><a class="sticky-nav__link" href="#pakete">Pakete</a></li>
+        <li><a class="sticky-nav__link" href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+```
+
+- [ ] **Step 2: sticky-nav-Layout in `css/sponsoring.css` anpassen**
+
+Den `.sticky-nav__list`-Block (ca. Zeile 18–27) ersetzen:
+
+```css
+.sticky-nav__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--space-3) clamp(var(--space-4), 5vw, var(--space-12));
+  flex-wrap: wrap;
+}
+```
+
+durch:
+
+```css
+.sticky-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--space-3) clamp(var(--space-4), 5vw, var(--space-12));
+}
+
+.sticky-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+/* MC-Badge: helle Variante auf dunklem Nav-Grund */
+.sticky-nav .mc-badge {
+  background-color: var(--text-on-dark);
+  color: var(--page-bg-dark);
+}
+
+/* Burger: Desktop versteckt */
+.sticky-nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sticky-nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin-inline: auto;
+  background-color: var(--text-on-dark);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.sticky-nav__burger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Burger offen: X-Animation */
+.sticky-nav--open .sticky-nav__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.sticky-nav--open .sticky-nav__burger span:nth-child(2) { opacity: 0; }
+.sticky-nav--open .sticky-nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+```
+
+- [ ] **Step 3: Mobile-Verhalten in `css/sponsoring.css` ergänzen**
+
+Im bestehenden `@media (max-width: 767px)`-Block den vorhandenen `.sticky-nav__list`-Override (ca. Zeile 506–508) ersetzen:
+
+```css
+  .sticky-nav__list {
+    gap: var(--space-4);
+  }
+```
+
+durch:
+
+```css
+  .sticky-nav__burger {
+    display: flex;
+  }
+
+  .sticky-nav__list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2) clamp(var(--space-4), 5vw, var(--space-12)) var(--space-4);
+    background-color: rgba(26, 26, 46, 0.98);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .sticky-nav--open .sticky-nav__list {
+    display: flex;
+  }
+
+  .sticky-nav__list .sticky-nav__link {
+    display: block;
+    padding-block: var(--space-3);
+    font-size: var(--text-base);
+  }
+```
+
+- [ ] **Step 4: Burger-JS in `js/main.js` ergänzen**
+
+Vor dem `/* ── Init ── */`-Block diese Funktion einfügen:
+
+```js
+/* ── Sponsoring Page: Mobile Burger ─────────────────────── */
+function initFoosBurger() {
+  const nav    = document.querySelector('.sticky-nav');
+  if (!nav) return;
+  const burger = nav.querySelector('.sticky-nav__burger');
+  const menu   = nav.querySelector('.sticky-nav__list');
+  if (!burger || !menu) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('sticky-nav--open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  }
+
+  burger.addEventListener('click', () => {
+    setOpen(!nav.classList.contains('sticky-nav--open'));
+  });
+
+  // Schließen bei Link-Klick (Anker-Navigation)
+  menu.addEventListener('click', (e) => {
+    if (e.target.closest('.sticky-nav__link')) setOpen(false);
+  });
+
+  // Schließen bei Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+}
+```
+
+- [ ] **Step 5: Init-Block in `js/main.js` erweitern**
+
+Den `DOMContentLoaded`-Handler ändern von:
+
+```js
+document.addEventListener('DOMContentLoaded', () => {
+  initHero();
+  initStickyNav();
+});
+```
+
+zu:
+
+```js
+document.addEventListener('DOMContentLoaded', () => {
+  initHero();
+  initStickyNav();
+  initFoosBurger();
+});
+```
+
+- [ ] **Step 6: Verifizieren**
+
+Run:
+```bash
+cd /home/sergio/projects/sponsoring/mario-christ.de
+grep -c 'sticky-nav__burger' tischfussball/index.html   # erwartet 1
+grep -c 'mc-badge' tischfussball/index.html              # erwartet 1
+grep -c 'sticky-nav__inner' css/sponsoring.css           # erwartet ≥ 1
+grep -c 'initFoosBurger' js/main.js                      # erwartet 2 (Def + Aufruf)
+node --check js/main.js && echo "SYNTAX OK"
+```
+Expected: `1`, `1`, `≥1`, `2`, `SYNTAX OK`.
+
+- [ ] **Step 7: Burger manuell prüfen (lokaler Server aus Task 10)**
+
+`http://localhost:8765/tischfussball/` bei Mobile-Viewport (DevTools ≤767px):
+- Burger sichtbar, Link-Liste versteckt.
+- Klick → Menü klappt auf, Burger wird zu X.
+- Link-Klick → scrollt zur Section, Menü schließt.
+- Escape → Menü schließt.
+- MC-Badge oben links (hell auf dunkel), Klick → `/`.
+- Desktop-Viewport (≥768px): Burger weg, Link-Liste sichtbar, MC-Badge links.
+
+- [ ] **Step 8: Commit**
+
+```bash
+git add tischfussball/index.html css/sponsoring.css js/main.js
+git commit -m "feat(foos): mc-badge + mobile burger-menü in sticky-nav"
+```
+
+---
+
 ## Offene Punkte für Marios Review (kein Code)
 
-- **`hallo@mario-christ.de`** als Alias auf Marios Hauptadresse einrichten — Voraussetzung für Go-Live, nicht Teil dieses Plans.
+- **`hallo@mario-christ.de`** als Alias auf Marios Hauptadresse einrichten — Voraussetzung für Go-Live (Mario erledigt das).
 - **KI vs. AI in Title/Meta:** Plan nutzt „AI-Consulting" (laut Spec) im Title, „KI" im Fließtext (DACH-SEO). Bewusste Mischung — falls einheitlich gewünscht, eine Zeile Änderung.
-- **`og:image`** verweist auf `/img/og-default.jpg` — existiert diese Datei? Falls nein, vor Go-Live anlegen (sonst kaputtes Social-Preview).
+- **`og:image` (`/img/og-default.jpg`) fehlt** — Datei existiert nicht (verifiziert). Das ist das Vorschaubild beim Teilen des Links (LinkedIn/Slack/WhatsApp). Solange es fehlt, zeigt das Preview eine leere/kaputte Kachel. Format: 1200×630 px JPG/PNG. Lösung separat (siehe Chat) — nicht Teil dieses Plans.
+- **MC-SVG-Monogramm:** fester Pfad `/img/mc-logo.svg`. Sobald Mario es liefert, in den vier Nav-Blöcken (`index.html`, `impressum`, `datenschutz`, `tischfussball`) den Text `MC` im `<a class="mc-badge">` durch `<img src="/img/mc-logo.svg" alt="Mario Christ" width="40" height="40">` ersetzen. Klasse + restliches Styling bleiben.
 
 ---
 
 ## Self-Review-Ergebnis
 
-- **Spec-Coverage:** Hero (Task 4/5/6), Rahmen (Task 4 `.hero__bulletin`), beruhigende Zeile (Task 4/5/6), Substanz Was/Warum/Wie (Task 5), Kickern-Teaser dunkel (Task 5), Kontakt (Task 5), Nav nur auf Hub-Seiten (Task 3/5/7), `/tech`-Redirect (Task 8), sitemap (Task 9), Caveat (Task 1/2), reduced-motion + no-JS (Task 4/10), SEO/Meta (Task 5). ✓
+- **Spec-Coverage:** Hero (Task 4/5/6), Rahmen (Task 4 `.hero__bulletin`), beruhigende Zeile (Task 4/5/6), Substanz Was/Warum/Wie (Task 5), Kickern-Teaser dunkel (Task 5), Kontakt (Task 5), Nav nur auf Hub-Seiten (Task 3/5/7), MC-Badge alle Seiten (Task 3/5/7/11), Burger auf Foos (Task 11), `/tech`-Redirect (Task 8), sitemap (Task 9), Caveat (Task 1/2), reduced-motion + no-JS (Task 4/10), SEO/Meta (Task 5). ✓
+- **MC-Badge-Konsistenz:** Klasse `.mc-badge` in style.css (Task 3), Markup identisch in index/impressum/datenschutz (Task 3/5/7) + tischfussball-Dark-Variante (Task 11). SVG-Swap-Kommentar in allen vier Nav-Blöcken. ✓
+- **Burger:** Klassen `sticky-nav__inner`/`__burger`/`--open` konsistent in sponsoring.css (Task 11 Step 2/3) und main.js `initFoosBurger` (Task 11 Step 4). `initStickyNav` (IntersectionObserver für aktive Links) bleibt unberührt. ✓
 - **IntersectionObserver-Abweichung:** Spec nennt IO, damit der End-State beim Zurück-Scrollen persistiert. Dieser Plan erreicht das Ziel by construction (State-Klassen werden nur gesetzt, nie entfernt; ohne JS/anim steht der native End-State). Der Hero belegt ohnehin den ersten Viewport, daher ist IO unnötige Komplexität — bewusst weggelassen (YAGNI), Spec-Intent erfüllt.
 - **Layout-Shift:** `<ins>` nutzt `opacity` statt `display:none`, Breite immer reserviert. ✓
 - **Kein Flash:** Inline-Script im `<head>` setzt `html.anim` vor erstem Paint. ✓
