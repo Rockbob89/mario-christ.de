@@ -13,7 +13,7 @@ function initHero() {
   // (sonst reduced-motion oder no-JS → statischer End-State steht schon im HTML/CSS)
   if (!document.documentElement.classList.contains('anim')) return;
 
-  const READ_PAUSE = 1800; // Lesepause – kritisch, sonst zündet der Twist nicht
+  const READ_PAUSE = 3300; // Lesepause – Zeit, die ganze Zeile zu lesen, bevor der Twist zündet
   const STRIKE_TO_CORRECTION = 400;
   const CORRECTION_TO_REASSURE = 450;
 
