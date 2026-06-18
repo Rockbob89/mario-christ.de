@@ -246,7 +246,7 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
 @media (max-width: 767px) {
   .hero__br { display: none; }
 
-  /* Foto als gedämpfter Vollflächen-Hintergrund (füllt den dunklen Raum) */
+  /* Foto als Vollflächen-Hintergrund, kräftig abgedunkelt für Text drauf */
   .hero__media {
     inset: 0;
     width: 100%;
@@ -254,25 +254,38 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
   }
   .hero::before {
     background: linear-gradient(to bottom,
-      rgba(26, 26, 46, 0.74) 0%,
-      rgba(26, 26, 46, 0.86) 100%);
+      rgba(20, 20, 34, 0.82) 0%,
+      rgba(20, 20, 34, 0.93) 100%);
   }
 
-  /* Strike wrappt korrekt: native line-through statt absoluter Pseudo-Linie
-     (die versagt bei Umbruch von "Unbekannte Angreifer"). Linie faded via
-     text-decoration-color ein – der Twist bleibt erhalten. */
+  /* Kein weißer Karton – Text direkt aufs Bild (immersiver Hero) */
+  .hero__bulletin {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  .hero__sentence { color: var(--text-on-dark); }
+  .hero__sub { color: rgba(245, 245, 245, 0.72); }
+
+  /* Durchgestrichener Text auf dunkel: hell + native line-through (wrappt korrekt) */
+  .hero__strike { color: rgba(245, 245, 245, 0.5); }
   html.anim .hero__strike {
     text-decoration: line-through;
     text-decoration-color: transparent;
     text-decoration-thickness: 3px;
-    color: var(--text-primary);
+    color: var(--text-on-dark);
     transition: text-decoration-color 0.35s ease, color 0.35s ease;
   }
   html.anim .hero__strike::after { display: none; }
   html.anim .hero.is-struck .hero__strike {
     text-decoration-color: var(--accent);
-    color: var(--text-muted);
+    color: rgba(245, 245, 245, 0.5);
   }
+}
+
+/* Mobile + reduced-motion: durchgestrichenen Text hell halten */
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  html.anim .hero__strike { color: rgba(245, 245, 245, 0.5); }
 }
 
 /* ── Reduced Motion: Animation-Layer komplett neutralisieren ─ */
