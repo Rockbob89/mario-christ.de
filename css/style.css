@@ -587,7 +587,7 @@ em {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(26, 26, 46, 0.85);
+  background-color: rgba(26, 26, 46, 0.95);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border-light);
@@ -619,7 +619,8 @@ em {
 .site-nav__links a {
   font-size: var(--text-sm);
   font-weight: 500;
-  color: rgba(245, 245, 245, 0.6);
+  letter-spacing: 0.04em;
+  color: rgba(245, 245, 245, 0.55);
   text-decoration: none;   /* .legal-page a unterstreicht sonst Nav-Links */
   transition: color var(--transition-base);
 }
