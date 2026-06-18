@@ -598,7 +598,11 @@ em {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
+  /* full-bleed: Logo ganz links, gleiche Position wie auf /tischfussball */
+  max-width: none;
   padding-block: var(--space-3);
+  padding-inline-start: clamp(var(--space-6), 7vw, 6.5rem);
+  padding-inline-end: clamp(var(--space-4), 5vw, var(--space-12));
 }
 
 .site-nav__links {

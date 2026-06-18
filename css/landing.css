@@ -12,6 +12,14 @@
   padding-block: var(--section-padding);
 }
 
+/* Hero full-bleed: linksbündig, Logo fluchtet (gleiches Padding wie Nav) */
+.hero .container {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline-start: clamp(var(--space-6), 7vw, 6.5rem);
+  padding-inline-end: clamp(var(--space-4), 5vw, var(--space-12));
+}
+
 .hero__bulletin {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -38,6 +46,7 @@
   letter-spacing: -0.02em;
   color: var(--text-primary);
   max-width: none;
+  margin-top: 1.5em;   /* Platz für die handschriftliche Korrektur über Zeile 1 */
 }
 
 /* del/ins: statischer End-State (no-JS = SEO-Wahrheit) */
@@ -49,15 +58,25 @@
   color: var(--text-muted);
 }
 
+/* Wrap = Anker für die über dem durchgestrichenen Text schwebende Korrektur */
+.hero__correction-wrap {
+  position: relative;
+}
+
 .hero__correction {
+  position: absolute;
+  left: 0.15em;
+  bottom: 100%;
+  margin-bottom: -0.12em;   /* nah an den durchgestrichenen Text ranrücken */
   font-family: var(--font-handwriting);
   font-weight: 600;
+  font-size: 0.62em;        /* kleiner → liest sich als handschriftliche Annotation */
+  line-height: 1;
   color: var(--accent);
   text-decoration: none;
-  /* leicht überhängend für Authentizität */
-  display: inline-block;
-  transform: rotate(-2deg);
-  margin-inline: 0.1em;
+  white-space: nowrap;
+  transform: rotate(-3deg);
+  transform-origin: left bottom;
 }
 
 .hero__sub {
