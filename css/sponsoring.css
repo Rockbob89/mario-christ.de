@@ -15,16 +15,63 @@
   border-bottom: 1px solid var(--border-light);
 }
 
-.sticky-nav__list {
+.sticky-nav__inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-8);
+  justify-content: space-between;
+  gap: var(--space-4);
   max-width: var(--max-width);
   margin-inline: auto;
   padding: var(--space-3) clamp(var(--space-4), 5vw, var(--space-12));
+}
+
+.sticky-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
   flex-wrap: wrap;
 }
+
+/* MC-Badge: helle Variante auf dunklem Nav-Grund */
+.sticky-nav .mc-badge {
+  background-color: var(--text-on-dark);
+  color: var(--page-bg-dark);
+}
+
+/* Burger: Desktop versteckt */
+.sticky-nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sticky-nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin-inline: auto;
+  background-color: var(--text-on-dark);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.sticky-nav__burger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Burger offen: X-Animation */
+.sticky-nav--open .sticky-nav__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.sticky-nav--open .sticky-nav__burger span:nth-child(2) { opacity: 0; }
+.sticky-nav--open .sticky-nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .sticky-nav__link {
   font-family: var(--font-body);
@@ -503,8 +550,32 @@
     display: block;
   }
 
+  .sticky-nav__burger {
+    display: flex;
+  }
+
   .sticky-nav__list {
-    gap: var(--space-4);
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2) clamp(var(--space-4), 5vw, var(--space-12)) var(--space-4);
+    background-color: rgba(26, 26, 46, 0.98);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .sticky-nav--open .sticky-nav__list {
+    display: flex;
+  }
+
+  .sticky-nav__list .sticky-nav__link {
+    display: block;
+    padding-block: var(--space-3);
+    font-size: var(--text-base);
   }
 
   .sticky-nav__link {

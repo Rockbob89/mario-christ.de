@@ -56,8 +56,38 @@ function initStickyNav() {
   sections.forEach(section => observer.observe(section));
 }
 
+/* ── Sponsoring Page: Mobile Burger ─────────────────────── */
+function initFoosBurger() {
+  const nav    = document.querySelector('.sticky-nav');
+  if (!nav) return;
+  const burger = nav.querySelector('.sticky-nav__burger');
+  const menu   = nav.querySelector('.sticky-nav__list');
+  if (!burger || !menu) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('sticky-nav--open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  }
+
+  burger.addEventListener('click', () => {
+    setOpen(!nav.classList.contains('sticky-nav--open'));
+  });
+
+  // Schließen bei Link-Klick (Anker-Navigation)
+  menu.addEventListener('click', (e) => {
+    if (e.target.closest('.sticky-nav__link')) setOpen(false);
+  });
+
+  // Schließen bei Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+}
+
 /* ── Init ────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initHero();
   initStickyNav();
+  initFoosBurger();
 });

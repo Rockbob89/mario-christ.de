@@ -29,14 +29,22 @@
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
   <!-- ── Sticky Anker-Navigation ───────────────────────── -->
+  <!-- MC-BADGE: später <img src="/img/mc-logo.svg" alt="Mario Christ" width="40" height="40"> statt Text "MC" -->
   <nav class="sticky-nav" aria-label="Seitennavigation">
-    <ul class="sticky-nav__list">
-      <li><a class="sticky-nav__link" href="#argument">Das Argument</a></li>
-      <li><a class="sticky-nav__link" href="#ueber-mich">Über mich</a></li>
-      <li><a class="sticky-nav__link" href="#szene">Die Szene</a></li>
-      <li><a class="sticky-nav__link" href="#pakete">Pakete</a></li>
-      <li><a class="sticky-nav__link" href="#kontakt">Kontakt</a></li>
-    </ul>
+    <div class="sticky-nav__inner">
+      <a class="mc-badge" href="/" aria-label="Startseite">MC</a>
+      <button class="sticky-nav__burger" type="button" aria-label="Menü öffnen"
+              aria-expanded="false" aria-controls="foos-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="sticky-nav__list" id="foos-menu">
+        <li><a class="sticky-nav__link" href="#argument">Das Argument</a></li>
+        <li><a class="sticky-nav__link" href="#ueber-mich">Über mich</a></li>
+        <li><a class="sticky-nav__link" href="#szene">Die Szene</a></li>
+        <li><a class="sticky-nav__link" href="#pakete">Pakete</a></li>
+        <li><a class="sticky-nav__link" href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
   </nav>
 
   <main id="main">
