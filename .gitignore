@@ -27,3 +27,6 @@ img/**/*.JPG
 
 # Hero-Bild-Kandidaten (Quellmaterial, nur hero-tech.webp wird genutzt)
 img/ai_hero/
+
+# Interne Planungs-Docs (Specs/Pläne) – nicht auf GitHub Pages
+docs/
