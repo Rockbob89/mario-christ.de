@@ -81,7 +81,7 @@
 
 .hero__label {
   font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font-size: var(--text-2xl);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -143,6 +143,7 @@
   font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
   color: rgba(245, 245, 245, 0.75);   /* gleiche Subline-Farbe wie /tischfussball-Hero */
   max-width: 40ch;
+  margin-top: var(--space-8);
   padding-left: clamp(var(--space-2), 2vw, var(--space-6));
 }
 
