@@ -1,398 +1,175 @@
 /* ============================================================
-   Landing Page – Diagonale
+   Landing Page – Consulting (Phase 1)
    ============================================================ */
 
-/* ── Name Badge ──────────────────────────────────────────── */
-.name-badge {
-  position: fixed;
-  top: clamp(1rem, 3vh, 1.75rem);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  display: flex;
-  gap: 0.6em;
-  pointer-events: none;
-  font-family: var(--font-headline);
-  font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-on-dark);
-  white-space: nowrap;
-}
-
-/* ── Landing Wrapper ─────────────────────────────────────── */
-.landing {
-  position: relative;
-  width: 100vw;
-  height: 100dvh;
+/* ── Hero ────────────────────────────────────────────────── */
+.hero {
   min-height: 100svh;
-  overflow: hidden;
-}
-
-/* ── Sections: Dreieck-Hälften ───────────────────────────── */
-.landing .section {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  padding-block: 0; /* override global .section padding */
-  display: block;
-  cursor: pointer;
-  transition: filter 0.4s ease;
-  text-decoration: none;
-  outline: none;
-}
-
-.section--tech {
-  background-color: var(--page-bg-dark);
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-}
-
-.section--foos {
-  background-color: var(--kicker-bg);
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
-
-
-/* ── Photo Placeholders ──────────────────────────────────── */
-.section__photo {
-  position: absolute;
-  pointer-events: none;
-}
-
-/* Div-Platzhalter: schwach sichtbar */
-.section__photo:not(img) {
-  opacity: 0.15;
-}
-
-.section--tech .section__photo {
-  top: 8%;
-  left: 6%;
-  width: 26%;
-  height: 36%;
-  background-color: rgba(245, 245, 245, 0.08);
-  border-color: rgba(245, 245, 245, 0.2);
-  color: rgba(245, 245, 245, 0.5);
-}
-
-.section--foos .section__photo:not(img) {
-  top: 53%;
-  left: 57%;
-  width: 28%;
-  height: 36%;
-}
-
-/* Echtes Foto: füllt das Dreieck vollständig */
-.section--foos img.section__photo {
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-
-/* ── Mobile Labels (desktop: hidden) ─────────────────────── */
-.mobile-label {
-  display: none;
-}
-
-/* ── Mobile Bar (desktop: hidden) ────────────────────────── */
-.mobile-bar {
-  display: none;
-}
-
-/* ── Diagonal Bar ────────────────────────────────────────── */
-.bar {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150vmax;
-  height: 8px;
-  z-index: 10;
   display: flex;
-  align-items: stretch;
-  pointer-events: none;
-  visibility: hidden; /* shown after JS sets correct transform */
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-8);
+  padding-block: var(--section-padding);
 }
 
-.bar__shadow {
-  position: absolute;
-  inset: 0;
-  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.25);
-  pointer-events: none;
+.hero__bulletin {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-6), 5vw, var(--space-12));
+  background-color: #FFFFFF;
+  max-width: 60rem;
 }
 
-.bar__red {
-  flex: 1;
-  background: var(--kicker-accent);
-}
-
-.bar__separator {
-  width: 2px;
-  flex-shrink: 0;
-  background: #E8E8E8;
-}
-
-.bar__blue {
-  flex: 1;
-  background: var(--tech-accent);
-}
-
-/* ── Labels entlang der Diagonale ────────────────────────── */
-.label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 11;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  visibility: hidden; /* shown after JS sets correct transform */
-}
-
-.label span {
-  display: block;
-  font-family: var(--font-headline);
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.label--tech span {
-  color: var(--tech-bg);
-}
-
-.label--foos span {
-  color: var(--kicker-accent);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-}
-
-/* ── Hover Indicators ────────────────────────────────────── */
-.hover-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  padding: 0.8rem 2rem;
-  border-radius: 999px;
-  font-family: var(--font-headline);
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.hover-indicator--tech {
-  background: var(--tech-accent);
-}
-
-.hover-indicator--foos {
-  background: var(--kicker-accent);
-}
-
-/* ── Hover States ────────────────────────────────────────── */
-.landing.hover-tech .section--tech  { filter: brightness(1.15); }
-.landing.hover-tech .section--foos  { filter: brightness(0.9); }
-.landing.hover-tech .label--foos    { opacity: 0.5; }
-.landing.hover-tech .hover-indicator--tech { opacity: 0.9; }
-
-.landing.hover-foos .section--foos  { filter: brightness(1.05); }
-.landing.hover-foos .section--tech  { filter: brightness(0.85); }
-.landing.hover-foos .label--tech    { opacity: 0.5; }
-.landing.hover-foos .hover-indicator--foos { opacity: 0.9; }
-
-/* ── Focus Visible ───────────────────────────────────────── */
-.section--tech:focus-visible {
-  outline: 3px solid var(--tech-accent);
-  outline-offset: -4px;
-}
-
-.section--foos:focus-visible {
-  outline: 3px solid var(--kicker-accent);
-  outline-offset: -4px;
-}
-
-/* ── Landing Legal Pill (Impressum/Datenschutz) ─────────── */
-.landing-legal {
-  position: fixed;
-  bottom: clamp(0.75rem, 2vh, 1.25rem);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  padding: 0.4em 1em;
-  background-color: rgba(26, 26, 46, 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 999px;
+.hero__label {
   font-family: var(--font-body);
-  font-size: var(--text-xs);
-  color: rgba(245, 245, 245, 0.85);
-  letter-spacing: 0.04em;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: var(--space-4);
 }
 
-.landing-legal a {
-  color: inherit;
-  transition: color var(--transition-base);
+.hero__sentence {
+  font-family: var(--font-h1);
+  font-weight: 800;
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-6xl));
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  max-width: none;
 }
 
-.landing-legal a:hover {
-  color: #ffffff;
+/* del/ins: statischer End-State (no-JS = SEO-Wahrheit) */
+.hero__strike {
+  position: relative;
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  color: var(--text-muted);
 }
 
-.landing-legal a:focus-visible {
-  outline: 2px solid var(--text-on-dark);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
+.hero__correction {
+  font-family: var(--font-handwriting);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  /* leicht überhängend für Authentizität */
+  display: inline-block;
+  transform: rotate(-2deg);
+  margin-inline: 0.1em;
 }
 
-/* ── Mobile ──────────────────────────────────────────────── */
-@media (max-width: 767px) {
-  #main {
-    display: flex;
-    flex-direction: column;
-    height: 100dvh;
-    min-height: 100svh;
-  }
+.hero__sub {
+  font-family: var(--font-body);
+  font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+  color: var(--text-muted);
+  margin-top: var(--space-6);
+  max-width: 50ch;
+}
 
-  .name-badge {
-    position: static;
-    transform: none;
-    left: auto;
-    display: flex;
-    justify-content: center;
-    padding: var(--space-3) var(--space-4);
-    color: var(--text-primary);
-    font-size: var(--text-base);
-    flex-shrink: 0;
-  }
+.hero__reassure {
+  font-family: var(--font-body);
+  font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
+  color: var(--text-primary);
+  max-width: 40ch;
+  padding-left: clamp(var(--space-2), 2vw, var(--space-6));
+}
 
-  .landing {
-    flex: 1;
-    height: auto;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
+/* ── Hero Animation (nur wenn html.anim gesetzt) ─────────── */
+/* Pre-Animation-Zustand: ab erstem Paint, kein Flash, kein Layout-Shift */
+html.anim .hero__strike {
+  text-decoration: none;          /* native Linie aus, Pseudo übernimmt */
+  color: var(--text-primary);
+}
+html.anim .hero__strike::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 55%;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s ease;
+}
+html.anim .hero__correction {
+  opacity: 0;                     /* Breite bleibt reserviert → kein Shift */
+  transition: opacity 0.45s ease;
+}
+html.anim .hero__reassure {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 
-  .landing .section {
-    position: relative;
-    inset: auto;
-    flex: 1;
-    clip-path: none;
-    transition: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
+/* Sequenz-States (JS toggelt am .hero) */
+html.anim .hero.is-struck .hero__strike::after { transform: scaleX(1); }
+html.anim .hero.is-struck .hero__strike        { color: var(--text-muted); transition: color 0.35s ease; }
+html.anim .hero.is-corrected .hero__correction { opacity: 1; }
+html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
 
-  .section__photo {
-    display: none;
-  }
+/* ── Substanz (Was / Warum / Wie) ────────────────────────── */
+.substance__block + .substance__block {
+  border-top: 1px solid var(--border);
+}
 
-  /* Kickern-Foto auf Mobile als Cover der ganzen Kachel */
-  .section--foos img.section__photo {
-    display: block;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
+.substance__inner {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
 
-  .section--foos .mobile-label {
-    position: relative;
-    z-index: 1;
-    color: var(--kicker-accent);
-    background: color-mix(in srgb, var(--kicker-text) 90%, transparent);
-    padding: 0.2em 0.6em;
-    border-radius: 8px;
-    letter-spacing: 0.06em;
-  }
-
-  .mobile-label {
-    display: block;
-    font-family: var(--font-headline);
-    font-size: var(--text-lg);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  .mobile-label--tech {
-    color: var(--text-on-dark);
-  }
-
-  .mobile-label--foos {
-    color: var(--kicker-accent);
-  }
-
-  .mobile-bar {
-    display: flex;
-    height: 6px;
-    flex-shrink: 0;
-  }
-
-  .mobile-bar__red {
-    flex: 1;
-    background: linear-gradient(to right, transparent, var(--kicker-accent));
-  }
-
-  .mobile-bar__separator {
-    width: 2px;
-    background: #E8E8E8;
-    flex-shrink: 0;
-  }
-
-  .mobile-bar__blue {
-    flex: 1;
-    background: linear-gradient(to right, var(--tech-accent), transparent);
-  }
-
-  .bar,
-  .label,
-  .hover-indicator {
-    display: none;
-  }
-
-  /* No hover filters on mobile */
-  .landing.hover-tech .section--tech,
-  .landing.hover-tech .section--foos,
-  .landing.hover-foos .section--foos,
-  .landing.hover-foos .section--tech {
-    filter: none;
+@media (min-width: 768px) {
+  .substance__inner {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: start;
   }
 }
 
-/* ── Touch devices: hover effects deaktivieren ───────────── */
-@media (hover: none) {
-  .landing.hover-tech .section--tech,
-  .landing.hover-tech .section--foos,
-  .landing.hover-foos .section--foos,
-  .landing.hover-foos .section--tech {
-    filter: none;
-  }
+.substance__title {
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+}
 
-  .landing.hover-tech .label--foos,
-  .landing.hover-foos .label--tech {
-    opacity: 1;
-  }
+.substance__body p + p {
+  margin-top: var(--space-4);
+}
 
-  .landing.hover-tech .hover-indicator--tech,
-  .landing.hover-foos .hover-indicator--foos {
-    opacity: 0;
-  }
+/* ── Kickern-Teaser (dunkel) ─────────────────────────────── */
+.foos-teaser__inner {
+  max-width: 50rem;
+}
+
+.foos-teaser__title {
+  margin-bottom: var(--space-4);
+}
+
+.foos-teaser__body {
+  margin-bottom: var(--space-8);
+}
+
+/* ── Kontakt ─────────────────────────────────────────────── */
+.contact__inner {
+  max-width: 40rem;
+}
+
+.contact__title {
+  margin-bottom: var(--space-4);
+}
+
+.contact__body {
+  margin-bottom: var(--space-8);
+}
+
+.contact__mail {
+  font-size: clamp(var(--text-lg), 2vw, var(--text-2xl));
+}
+
+/* ── Reduced Motion: Animation-Layer komplett neutralisieren ─ */
+@media (prefers-reduced-motion: reduce) {
+  html.anim .hero__strike { text-decoration: line-through; text-decoration-color: var(--accent); text-decoration-thickness: 3px; color: var(--text-muted); }
+  html.anim .hero__strike::after { display: none; }
+  html.anim .hero__correction,
+  html.anim .hero__reassure { opacity: 1; transition: none; }
 }
