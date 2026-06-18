@@ -254,15 +254,17 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
   }
   .hero::before {
     background: linear-gradient(to bottom,
-      rgba(20, 20, 34, 0.82) 0%,
-      rgba(20, 20, 34, 0.93) 100%);
+      rgba(20, 20, 34, 0.62) 0%,
+      rgba(20, 20, 34, 0.85) 100%);
   }
 
-  /* Kein weißer Karton – Text direkt aufs Bild (immersiver Hero) */
+  /* Box bleibt (Incident-Meldung), aber als Frosted-Glass statt weiß –
+     rahmt die Meldung, blendet sich ins Bild, bleibt lesbar */
   .hero__bulletin {
-    background: transparent;
-    border: none;
-    padding: 0;
+    background: rgba(245, 245, 245, 0.06);
+    border-color: var(--border-light);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   .hero__sentence { color: var(--text-on-dark); }
   .hero__sub { color: rgba(245, 245, 245, 0.72); }
