@@ -42,10 +42,10 @@
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
   <!-- NAV: SINGLE SOURCE (/index.html) — bei Änderung in /impressum/, /datenschutz/ syncen (NICHT /tischfussball/) -->
-  <!-- MC-BADGE: später <img src="/img/mc-logo.svg" alt="Mario Christ" width="40" height="40"> statt Text "MC" -->
+  <!-- MC-BADGE: adaptives Monogramm – CSS-Kreis + inline-SVG-Buchstaben (fill=currentColor, passt sich hell/dunkel an). Bei Änderung in allen Nav-Blöcken syncen. -->
   <header class="site-nav">
     <div class="site-nav__inner container">
-      <a class="mc-badge" href="/" aria-label="Startseite">MC</a>
+      <a class="mc-badge" href="/" aria-label="Startseite"><svg class="mc-badge__mark" viewBox="0 0 112 52" aria-hidden="true" focusable="false"><text x="56" y="42" text-anchor="middle" font-family="'Futura','Century Gothic',sans-serif" font-size="52" font-weight="700" letter-spacing="-4" fill="currentColor">MC</text></svg></a>
       <nav class="site-nav__links" aria-label="Hauptnavigation">
         <a href="/" aria-current="page">Home</a>
         <a href="/tischfussball/">Foos</a>
