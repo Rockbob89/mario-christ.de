@@ -81,7 +81,7 @@
 
 .hero__label {
   font-family: var(--font-body);
-  font-size: var(--text-2xl);
+  font-size: clamp(var(--text-base), 4.5vw, var(--text-2xl));
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -247,6 +247,22 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
   .hero__br { display: none; }
   .hero__media { display: none; }
   .hero::before { display: none; }
+
+  /* Strike wrappt korrekt: native line-through statt absoluter Pseudo-Linie
+     (die versagt bei Umbruch von "Unbekannte Angreifer"). Linie faded via
+     text-decoration-color ein – der Twist bleibt erhalten. */
+  html.anim .hero__strike {
+    text-decoration: line-through;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 3px;
+    color: var(--text-primary);
+    transition: text-decoration-color 0.35s ease, color 0.35s ease;
+  }
+  html.anim .hero__strike::after { display: none; }
+  html.anim .hero.is-struck .hero__strike {
+    text-decoration-color: var(--accent);
+    color: var(--text-muted);
+  }
 }
 
 /* ── Reduced Motion: Animation-Layer komplett neutralisieren ─ */
