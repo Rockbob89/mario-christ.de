@@ -4,6 +4,8 @@
 
 /* ── Hero ────────────────────────────────────────────────── */
 .hero {
+  position: relative;
+  overflow: hidden;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -11,6 +13,54 @@
   gap: var(--space-8);
   padding-block: var(--section-padding);
   background-color: var(--page-bg-dark);
+}
+
+/* ── Hero-Foto (rechts, hinter der Box) ──────────────────── */
+.hero__media {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 52%;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+  /* Platzhalter-Optik bis das echte Foto da ist */
+  background: linear-gradient(135deg, #23253f, #14152a);
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__media-note {
+  color: rgba(245, 245, 245, 0.38);
+  font-size: var(--text-sm);
+  font-style: italic;
+  text-align: center;
+  max-width: 32ch;
+}
+
+/* Verlauf: schmilzt das Foto nach links in den dunklen Hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to right,
+    var(--page-bg-dark) 48%,
+    rgba(26, 26, 46, 0.55) 70%,
+    transparent 88%);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
 }
 
 /* Hero full-bleed: linksbündig, Logo fluchtet (gleiches Padding wie Nav) */
@@ -26,7 +76,7 @@
   border-radius: var(--radius-md);
   padding: clamp(var(--space-6), 5vw, var(--space-12));
   background-color: #FFFFFF;
-  max-width: 96rem;
+  max-width: 88rem;
 }
 
 .hero__label {
@@ -191,9 +241,11 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
   font-size: clamp(var(--text-lg), 2vw, var(--text-2xl));
 }
 
-/* ── Mobile: erzwungenen Hero-Umbruch raus (bricht sonst zu früh) ─ */
+/* ── Mobile: erzwungenen Hero-Umbruch raus + Foto-Zone aus ─────── */
 @media (max-width: 767px) {
   .hero__br { display: none; }
+  .hero__media { display: none; }
+  .hero::before { display: none; }
 }
 
 /* ── Reduced Motion: Animation-Layer komplett neutralisieren ─ */
