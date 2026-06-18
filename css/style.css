@@ -587,10 +587,16 @@ em {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(250, 250, 250, 0.85);
+  background-color: rgba(26, 26, 46, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* MC-Badge: helle Variante auf dunkler Nav */
+.site-nav .mc-badge {
+  background-color: var(--text-on-dark);
+  color: var(--page-bg-dark);
 }
 
 .site-nav__inner {
@@ -613,16 +619,17 @@ em {
 .site-nav__links a {
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--text-muted);
+  color: rgba(245, 245, 245, 0.6);
+  text-decoration: none;   /* .legal-page a unterstreicht sonst Nav-Links */
   transition: color var(--transition-base);
 }
 
 .site-nav__links a:hover {
-  color: var(--text-primary);
+  color: var(--text-on-dark);
 }
 
 .site-nav__links a[aria-current="page"] {
-  color: var(--text-primary);
+  color: var(--text-on-dark);
 }
 
 .site-nav__links a:focus-visible {

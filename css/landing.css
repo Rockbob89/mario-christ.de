@@ -91,7 +91,7 @@
 .hero__reassure {
   font-family: var(--font-body);
   font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
-  color: var(--text-on-dark);
+  color: rgba(245, 245, 245, 0.75);   /* gleiche Subline-Farbe wie /tischfussball-Hero */
   max-width: 40ch;
   padding-left: clamp(var(--space-2), 2vw, var(--space-6));
 }
