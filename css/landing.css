@@ -10,6 +10,7 @@
   justify-content: center;
   gap: var(--space-8);
   padding-block: var(--section-padding);
+  background-color: var(--page-bg-dark);
 }
 
 /* Hero full-bleed: linksbündig, Logo fluchtet (gleiches Padding wie Nav) */
@@ -90,7 +91,7 @@
 .hero__reassure {
   font-family: var(--font-body);
   font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
-  color: var(--text-primary);
+  color: var(--text-on-dark);
   max-width: 40ch;
   padding-left: clamp(var(--space-2), 2vw, var(--space-6));
 }
