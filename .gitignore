@@ -8,6 +8,7 @@ CONTENT.md
 DESIGN_CHOICES.md
 BACKLOG.md
 FRONTEND_DESIGN_SKILL.md
+PITCHDECK_V3.md
 
 # mocks
 mock*
@@ -19,3 +20,7 @@ C:\\*
 # Original JPGs – lokal behalten, nicht ins Repo
 img/**/*.jpg
 img/**/*.JPG
+
+# Ausnahme: OG-Vorschaubilder sind generierte Assets – müssen deployed werden
+!img/og-*.jpg
+
