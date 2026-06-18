@@ -229,7 +229,7 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
 }
 
 .contact__inner {
-  max-width: 40rem;
+  max-width: 50rem;
 }
 
 .contact__title {
@@ -238,10 +238,6 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
 
 .contact__body {
   margin-bottom: var(--space-8);
-}
-
-.contact__mail {
-  font-size: clamp(var(--text-lg), 2vw, var(--text-2xl));
 }
 
 /* ── Mobile: erzwungenen Hero-Umbruch raus + Foto-Zone aus ─────── */
