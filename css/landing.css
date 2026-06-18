@@ -170,6 +170,11 @@ html.anim .hero.is-settled .hero__reassure     { opacity: 1; }
 }
 
 /* ── Kontakt ─────────────────────────────────────────────── */
+/* Anker nicht unter die fixed Nav scrollen */
+#kontakt {
+  scroll-margin-top: 5rem;
+}
+
 .contact__inner {
   max-width: 40rem;
 }
