@@ -1,215 +1,369 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Über mich - Mario Christ, Cloud- &amp; DevOps-Engineer</title>
-  <meta name="description" content="Cloud- und DevOps-Engineer aus Hamburg. Plattformen für die sensibelsten Datenumfelder Deutschlands - heute lokale, DSGVO-konforme KI. Wer ich bin und was ich gebaut habe." />
-  <link rel="canonical" href="https://mario-christ.de/ueber-mich/" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Über mich - Mario Christ, Cloud- &amp; DevOps-Engineer</title>
+    <meta
+      name="description"
+      content="Cloud- und DevOps-Engineer aus Hamburg. Plattformen für die sensibelsten Datenumfelder Deutschlands - heute lokale, DSGVO-konforme KI. Wer ich bin und was ich gebaut habe."
+    />
+    <link rel="canonical" href="https://mario-christ.de/ueber-mich/" />
 
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://mario-christ.de/ueber-mich/" />
-  <meta property="og:title"       content="Über mich - Mario Christ, Cloud- &amp; DevOps-Engineer" />
-  <meta property="og:description" content="Plattformen für die sensibelsten Datenumfelder Deutschlands - heute lokale, DSGVO-konforme KI. Wer ich bin und was ich gebaut habe." />
-  <meta property="og:image"       content="https://mario-christ.de/img/og-default.jpg" />
-  <meta property="og:locale"      content="de_DE" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mario-christ.de/ueber-mich/" />
+    <meta
+      property="og:title"
+      content="Über mich - Mario Christ, Cloud- &amp; DevOps-Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Plattformen für die sensibelsten Datenumfelder Deutschlands - heute lokale, DSGVO-konforme KI. Wer ich bin und was ich gebaut habe."
+    />
+    <meta
+      property="og:image"
+      content="https://mario-christ.de/img/og-default.jpg"
+    />
+    <meta property="og:locale" content="de_DE" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Über mich - Mario Christ" />
-  <meta name="twitter:description" content="Plattformen für die sensibelsten Datenumfelder Deutschlands - heute lokale, DSGVO-konforme KI." />
-  <meta name="twitter:image"       content="https://mario-christ.de/img/og-default.jpg" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Über mich - Mario Christ" />
+    <meta
+      name="twitter:description"
+      content="Plattformen für die sensibelsten Datenumfelder Deutschlands - heute lokale, DSGVO-konforme KI."
+    />
+    <meta
+      name="twitter:image"
+      content="https://mario-christ.de/img/og-default.jpg"
+    />
 
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="/css/about.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/about.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-  <!-- NAV: SYNC mit Master /index.html (NICHT /tischfussball/) -->
-  <!-- MC-BADGE: adaptives Monogramm - CSS-Kreis + inline-SVG-Buchstaben (fill=currentColor, passt sich hell/dunkel an). Bei Änderung in allen Nav-Blöcken syncen. -->
-  <header class="site-nav">
-    <div class="site-nav__inner container">
-      <a class="mc-badge" href="/" aria-label="Startseite"><svg class="mc-badge__mark" viewBox="0 0 112 52" aria-hidden="true" focusable="false"><text x="56" y="42" text-anchor="middle" font-family="'Futura','Century Gothic',sans-serif" font-size="52" font-weight="700" letter-spacing="-4" fill="currentColor">MC</text></svg></a>
-      <nav class="site-nav__links" aria-label="Hauptnavigation">
-        <a href="/">Home</a>
-        <a href="/ueber-mich/" aria-current="page">Über mich</a>
-        <a href="/tischfussball/">Foos</a>
-        <a href="/#kontakt">Kontakt</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-
-    <!-- ── Block 1: Aufschlag ─────────────────────────────── -->
-    <section class="section section--dark about-hero" aria-label="Wer ich bin">
-      <div class="container about-hero__inner">
-        <div class="about-hero__box">
-          <p class="about-hero__eyebrow">Mario Christ</p>
-          <h1 class="about-hero__headline">Über mich</h1>
-          <p class="about-hero__lead">
-            Staff Cloud-/DevOps-Engineer aus Hamburg, CKA-zertifiziert, seit über
-            zehn Jahren im Infrastruktur-Bau. Unter der Woche baue ich Plattformen,
-            am Wochenende spiele ich Tischfußball in der Bundesliga - beides ist
-            mein voller Ernst.
-            <a class="link-external about-hero__fooslink" href="/tischfussball/">Mehr dazu unter Foos&nbsp;→</a>
-          </p>
-        </div>
-        <figure class="about-hero__figure">
-          <img class="about-hero__photo" src="/img/about-me.webp" width="800" height="800"
-               alt="Porträtfoto von Mario Christ" loading="eager" fetchpriority="high" />
-        </figure>
+    <!-- NAV: SYNC mit Master /index.html (NICHT /tischfussball/) -->
+    <!-- MC-BADGE: adaptives Monogramm - CSS-Kreis + inline-SVG-Buchstaben (fill=currentColor, passt sich hell/dunkel an). Bei Änderung in allen Nav-Blöcken syncen. -->
+    <header class="site-nav">
+      <div class="site-nav__inner container">
+        <a class="mc-badge" href="/" aria-label="Startseite"
+          ><svg
+            class="mc-badge__mark"
+            viewBox="0 0 112 52"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <text
+              x="56"
+              y="42"
+              text-anchor="middle"
+              font-family="'Futura','Century Gothic',sans-serif"
+              font-size="52"
+              font-weight="700"
+              letter-spacing="-4"
+              fill="currentColor"
+            >
+              MC
+            </text>
+          </svg></a
+        >
+        <nav class="site-nav__links" aria-label="Hauptnavigation">
+          <a href="/">Home</a>
+          <a href="/ueber-mich/" aria-current="page">Über mich</a>
+          <a href="/tischfussball/">Foos</a>
+          <a href="/#kontakt">Kontakt</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <!-- ── Block 2: Woher ich komme ───────────────────────── -->
-    <section class="section about-origin" aria-label="Woher ich komme">
-      <div class="container about-cols">
-        <div class="about-cols__head">
+    <main id="main">
+      <!-- ── Block 1: Aufschlag ─────────────────────────────── -->
+      <section
+        class="section section--dark about-hero"
+        aria-label="Wer ich bin"
+      >
+        <div class="container about-hero__inner">
+          <div class="about-hero__box">
+            <p class="about-hero__eyebrow">Mario Christ</p>
+            <h1 class="about-hero__headline">Über mich</h1>
+            <p class="about-hero__lead">
+              Staff Cloud-/DevOps-Engineer aus Hamburg, CKA-zertifiziert, seit
+              über zehn Jahren im Infrastruktur-Bau. Unter der Woche baue ich
+              Plattformen, am Wochenende spiele ich Tischfußball in der
+              Bundesliga - beides ist mein voller Ernst.
+              <a
+                class="link-external about-hero__fooslink"
+                href="/tischfussball/"
+                >Mehr dazu unter Foos&nbsp;→</a
+              >
+            </p>
+          </div>
+          <figure class="about-hero__figure">
+            <img
+              class="about-hero__photo"
+              src="/img/about-me.webp"
+              width="800"
+              height="800"
+              alt="Porträtfoto von Mario Christ"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ── Block 2: Woher ich komme ───────────────────────── -->
+      <section class="section about-origin" aria-label="Woher ich komme">
+        <div class="container about-cols">
+          <div class="about-cols__head">
+            <span class="accent-line" aria-hidden="true"></span>
+            <h2>Woher ich komme</h2>
+          </div>
+          <div class="about-cols__body">
+            <p>
+              Ich habe meine Laufbahn in den sensibelsten Datenumfeldern dieses
+              Landes verbracht: gesetzliche Krankenversicherung, öffentlicher
+              Sektor, Versicherungen, Handel. Plattformen, bei denen ein
+              Datenleck keine Option ist - gebaut und betrieben unter
+              Anforderungen wie dem B3S der GKV/PV und dem BSI IT-Grundschutz.
+            </p>
+            <p>
+              Am deutlichsten zeigt sich das an einem Projekt: dem
+              <strong>Cloud Native Archive</strong> bei Deepshore. Von 2018 bis
+              2022 haben wir dort eine cloud-agnostische, revisionssichere
+              Archivlösung für die GoBD-konforme Langzeitarchivierung von
+              Kassendaten gebaut - auf einem damals brandneuen Stack aus
+              Blockchain, CockroachDB und SeaweedFS.
+            </p>
+            <p>
+              Die Idee und das Produkt gehören Deepshore und dem Team. Meine
+              Rolle war die technische Realisierung: Entwicklung, Architektur,
+              Kubernetes, CI/CD, Metriken, Betrieb.
+            </p>
+
+            <ul
+              class="trust-strip"
+              aria-label="Belegbare Eckdaten zum Cloud Native Archive"
+            >
+              <li>
+                <a
+                  class="trust-strip__key link-external"
+                  href="https://www.presseportal.de/pm/129233/5082712"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >IDW PS 880</a
+                >
+                Wirtschaftsprüfer-Testat
+              </li>
+              <li>
+                <a
+                  class="trust-strip__key link-external"
+                  href="https://deepshore.de/en/knowledge/2018-09-21"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zuse-Institut Berlin</a
+                >
+                Forschungskooperation, BMWi/ZIM-gefördert
+              </li>
+              <li>
+                <span class="trust-strip__key">In der Praxis</span> umgesetzt
+                mit
+                <a
+                  class="link-external"
+                  href="https://deepshore.de/en/knowledge/2019-02-07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >METRO</a
+                >
+                und
+                <a
+                  class="link-external"
+                  href="https://deepshore.de/en/knowledge/kundenstory-bela"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Bartels-Langness</a
+                >
+              </li>
+            </ul>
+            <p class="trust-strip__source">
+              Jede Angabe verlinkt direkt auf ihre öffentliche Quelle.
+            </p>
+
+            <p class="about-bridge">
+              Dort habe ich gelernt, wie wertvoll es ist:<br />
+              <em
+                >Neues so zu bauen, dass es jahrzehntealten Regeln
+                standhält.</em
+              ><br />
+              Genau das mache ich heute mit KI.
+            </p>
+
+            <p class="about-closer">
+              Das Produkt gehört bis heute Deepshore - und ohne das Team dort
+              wäre ich nicht der, der ich bin.
+            </p>
+
+            <p class="about-chronicle">
+              Die vollständige Chronologie steht auf
+              <a
+                class="link-external"
+                href="https://www.linkedin.com/in/mario-christ/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn&nbsp;→</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Block 3: Mein lokaler Stack ────────────────────── -->
+      <section
+        class="section section--dark about-stack"
+        aria-label="Mein lokaler Stack"
+      >
+        <div class="container">
+          <div class="about-stack__head">
+            <span class="accent-line" aria-hidden="true"></span>
+            <h2>Mein lokaler Stack</h2>
+            <p class="about-stack__sub">
+              Ich rede nicht nur über lokale KI - ich betreibe sie. Real,
+              dokumentiert, auditierbar.
+            </p>
+          </div>
+          <dl class="stack-grid">
+            <div class="stack-tile">
+              <dt class="stack-tile__label">Hardware</dt>
+              <dd class="stack-tile__value">
+                AMD Strix Halo (Ryzen AI Max+ 395), 128 GB unified memory.
+                Externe RX&nbsp;7900&nbsp;XTX (24 GB) als eGPU über OCuLink.
+                Headless, 24/7 in Betrieb.
+              </dd>
+            </div>
+            <div class="stack-tile">
+              <dt class="stack-tile__label">Inference</dt>
+              <dd class="stack-tile__value">
+                llama.cpp Multi-Target-Build über ROCm, llama-swap für
+                Multi-Model-Serving. Speculative Decoding aktiv - bis zu
+                +90&nbsp;% Durchsatz am 122B-Modell.
+              </dd>
+            </div>
+            <div class="stack-tile">
+              <dt class="stack-tile__label">Modelle</dt>
+              <dd class="stack-tile__value">
+                Qwen 3.5/3.6-Familie: 122B MoE (Reasoning) · 35B (Vision) · 27B
+                (Coding). Embedding + Reranking parallel für RAG-Pipelines.
+              </dd>
+            </div>
+            <div class="stack-tile">
+              <dt class="stack-tile__label">Services</dt>
+              <dd class="stack-tile__value">
+                OpenWebUI als ChatUI, ComfyUI für Image-Generierung (on-demand),
+                OmniVoice für TTS. Frontends, die den Stack bedienbar machen.
+              </dd>
+            </div>
+            <div class="stack-tile">
+              <dt class="stack-tile__label">Datenhoheit</dt>
+              <dd class="stack-tile__value">
+                Mix aus lokaler und Cloud-AI-Inferenz, getrennt nach
+                Datenkritikalität. Tailscale als Zero-Trust-Access-Layer.
+                DSGVO-freundliche Grundarchitektur.
+              </dd>
+            </div>
+            <div class="stack-tile">
+              <dt class="stack-tile__label">Nachvollziehbarkeit</dt>
+              <dd class="stack-tile__value">
+                Wiki.js + Git als Single Source of Truth - Configs, Benchmarks
+                und Entscheidungen versioniert. Systematisches Benchmarking
+                statt „fühlt sich schnell an“.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ── Block 4: Was ich baue ──────────────────────────── -->
+      <section class="section about-projects" aria-label="Was ich baue">
+        <div class="container about-cols">
+          <div class="about-cols__head">
+            <span class="accent-line" aria-hidden="true"></span>
+            <h2>Was ich baue</h2>
+          </div>
+          <div class="about-cols__body">
+            <ul class="project-list">
+              <li class="project-card">
+                <h3 class="project-card__name">unpii.me</h3>
+                <p class="project-card__body">
+                  Ich erkenne und maskiere personenbezogene Daten, bevor sie an
+                  ein Sprachmodell gehen - genau das Thema, um das es in meiner
+                  Beratung geht, hier zum Anfassen. Ein aktives Projekt, das ich
+                  laufend weiterentwickle; die Kernfunktion können Sie direkt
+                  ausprobieren.
+                </p>
+                <a
+                  class="link-external"
+                  href="https://unpii.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >unpii.me ausprobieren&nbsp;→</a
+                >
+              </li>
+              <li class="project-card">
+                <h3 class="project-card__name">tifu.mario-christ.de</h3>
+                <p class="project-card__body">
+                  „tifu“ steht für Tischfußball. Ein kleiner Dienst für die
+                  Turnierszene: Er bündelt aktuelle Turnierdaten und macht sie
+                  durchsuchbar. Läuft seit Monaten in Produktion.
+                </p>
+                <a
+                  class="link-external"
+                  href="https://tifu.mario-christ.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >tifu ansehen&nbsp;→</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Block 5: CTA ───────────────────────────────────── -->
+      <section
+        class="section section--dark about-cta"
+        id="kontakt"
+        aria-label="Kontakt"
+      >
+        <div class="container about-cta__inner">
           <span class="accent-line" aria-hidden="true"></span>
-          <h2>Woher ich komme</h2>
+          <h2 class="about-cta__title">Lassen Sie uns reden.</h2>
+          <p class="about-cta__body">
+            Ob lokale KI für Ihr Problem das richtige Werkzeug ist, finden wir
+            in einem Gespräch heraus. Das kostet nichts und verpflichtet zu
+            nichts.
+          </p>
+          <a
+            class="btn btn--kicker"
+            href="mailto:hallo@mario-christ.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            >hallo@mario-christ.de</a
+          >
         </div>
-        <div class="about-cols__body">
-          <p>
-            Ich habe meine Laufbahn in den sensibelsten Datenumfeldern dieses Landes
-            verbracht: gesetzliche Krankenversicherung, öffentlicher Sektor,
-            Versicherungen, Handel. Plattformen, bei denen ein Datenleck keine Option
-            ist - gebaut und betrieben unter Anforderungen wie dem B3S der GKV/PV und
-            dem BSI IT-Grundschutz.
-          </p>
-          <p>
-            Am deutlichsten zeigt sich das an einem Projekt: dem
-            <strong>Cloud Native Archive</strong> bei Deepshore. Von 2018 bis 2022 haben
-            wir dort eine cloud-agnostische, revisionssichere Archivlösung für die
-            GoBD-konforme Langzeitarchivierung von Kassendaten gebaut - auf einem damals
-            brandneuen Stack aus Blockchain, CockroachDB und SeaweedFS.
-          </p>
-          <p>
-            Die Idee und das Produkt gehören Deepshore und dem Team. Meine Rolle war die
-            technische Realisierung: Kubernetes, CI/CD, Metriken, Betrieb.
-          </p>
+      </section>
+    </main>
 
-          <ul class="trust-strip" aria-label="Belegbare Eckdaten zum Cloud Native Archive">
-            <li><a class="trust-strip__key link-external" href="https://www.presseportal.de/pm/129233/5082712" target="_blank" rel="noopener noreferrer">IDW PS 880</a> Wirtschaftsprüfer-Testat</li>
-            <li><a class="trust-strip__key link-external" href="https://deepshore.de/en/knowledge/2018-09-21" target="_blank" rel="noopener noreferrer">Zuse-Institut Berlin</a> Forschungskooperation, BMWi/ZIM-gefördert</li>
-            <li><span class="trust-strip__key">In der Praxis</span> umgesetzt mit <a class="link-external" href="https://deepshore.de/en/knowledge/2019-02-07" target="_blank" rel="noopener noreferrer">METRO</a> und <a class="link-external" href="https://deepshore.de/en/knowledge/kundenstory-bela" target="_blank" rel="noopener noreferrer">Bartels-Langness</a></li>
-          </ul>
-          <p class="trust-strip__source">Jede Angabe verlinkt direkt auf ihre öffentliche Quelle.</p>
-
-          <p class="about-bridge">
-            Dort habe ich gelernt, wie wertvoll es ist:<br>
-            <em>Neues so zu bauen, dass es jahrzehntealten Regeln standhält.</em><br>
-            Genau das mache ich heute mit KI.
-          </p>
-
-          <p class="about-closer">
-            Das Produkt gehört bis heute Deepshore - und ohne das Team dort wäre ich
-            nicht der, der ich bin.
-          </p>
-
-          <p class="about-chronicle">
-            Die vollständige Chronologie steht auf
-            <a class="link-external" href="https://www.linkedin.com/in/mario-christ/" target="_blank" rel="noopener noreferrer">LinkedIn&nbsp;→</a>
-          </p>
-        </div>
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <a class="site-footer__home" href="/">← mario-christ.de</a>
+        <nav class="site-footer__legal" aria-label="Rechtliches">
+          <a href="/impressum/">Impressum</a>
+          <a href="/datenschutz/">Datenschutz</a>
+        </nav>
       </div>
-    </section>
-
-    <!-- ── Block 3: Mein lokaler Stack ────────────────────── -->
-    <section class="section section--dark about-stack" aria-label="Mein lokaler Stack">
-      <div class="container">
-        <div class="about-stack__head">
-          <span class="accent-line" aria-hidden="true"></span>
-          <h2>Mein lokaler Stack</h2>
-          <p class="about-stack__sub">Ich rede nicht nur über lokale KI - ich betreibe sie. Real, dokumentiert, auditierbar.</p>
-        </div>
-        <dl class="stack-grid">
-          <div class="stack-tile">
-            <dt class="stack-tile__label">Hardware</dt>
-            <dd class="stack-tile__value">AMD Strix Halo (Ryzen AI Max+ 395), 128 GB unified memory. Externe RX&nbsp;7900&nbsp;XTX (24 GB) als eGPU über OCuLink. Headless, 24/7 in Betrieb.</dd>
-          </div>
-          <div class="stack-tile">
-            <dt class="stack-tile__label">Inference</dt>
-            <dd class="stack-tile__value">llama.cpp Multi-Target-Build über ROCm, llama-swap für Multi-Model-Serving. Speculative Decoding aktiv - bis zu +90&nbsp;% Durchsatz am 122B-Modell.</dd>
-          </div>
-          <div class="stack-tile">
-            <dt class="stack-tile__label">Modelle</dt>
-            <dd class="stack-tile__value">Qwen 3.5/3.6-Familie: 122B MoE (Reasoning) · 35B (Vision) · 27B (Coding). Embedding + Reranking parallel für RAG-Pipelines.</dd>
-          </div>
-          <div class="stack-tile">
-            <dt class="stack-tile__label">Services</dt>
-            <dd class="stack-tile__value">OpenWebUI als ChatUI, ComfyUI für Image-Generierung (on-demand), OmniVoice für TTS. Frontends, die den Stack bedienbar machen.</dd>
-          </div>
-          <div class="stack-tile">
-            <dt class="stack-tile__label">Datenhoheit</dt>
-            <dd class="stack-tile__value">Mix aus lokaler und Cloud-AI-Inferenz, getrennt nach Datenkritikalität. Tailscale als Zero-Trust-Access-Layer. DSGVO-freundliche Grundarchitektur.</dd>
-          </div>
-          <div class="stack-tile">
-            <dt class="stack-tile__label">Nachvollziehbarkeit</dt>
-            <dd class="stack-tile__value">Wiki.js + Git als Single Source of Truth - Configs, Benchmarks und Entscheidungen versioniert. Systematisches Benchmarking statt „fühlt sich schnell an“.</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- ── Block 4: Was ich baue ──────────────────────────── -->
-    <section class="section about-projects" aria-label="Was ich baue">
-      <div class="container about-cols">
-        <div class="about-cols__head">
-          <span class="accent-line" aria-hidden="true"></span>
-          <h2>Was ich baue</h2>
-        </div>
-        <div class="about-cols__body">
-          <ul class="project-list">
-            <li class="project-card">
-              <h3 class="project-card__name">unpii.me</h3>
-              <p class="project-card__body">
-                Ich erkenne und maskiere personenbezogene Daten, bevor sie an ein
-                Sprachmodell gehen - genau das Thema, um das es in meiner Beratung geht,
-                hier zum Anfassen. Ein aktives Projekt, das ich laufend weiterentwickle;
-                die Kernfunktion können Sie direkt ausprobieren.
-              </p>
-              <a class="link-external" href="https://unpii.me" target="_blank" rel="noopener noreferrer">unpii.me ausprobieren&nbsp;→</a>
-            </li>
-            <li class="project-card">
-              <h3 class="project-card__name">tifu.mario-christ.de</h3>
-              <p class="project-card__body">
-                „tifu“ steht für Tischfußball. Ein kleiner Dienst für die Turnierszene:
-                Er bündelt aktuelle Turnierdaten und macht sie durchsuchbar. Läuft seit
-                Monaten in Produktion.
-              </p>
-              <a class="link-external" href="https://tifu.mario-christ.de" target="_blank" rel="noopener noreferrer">tifu ansehen&nbsp;→</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Block 5: CTA ───────────────────────────────────── -->
-    <section class="section section--dark about-cta" id="kontakt" aria-label="Kontakt">
-      <div class="container about-cta__inner">
-        <span class="accent-line" aria-hidden="true"></span>
-        <h2 class="about-cta__title">Lassen Sie uns reden.</h2>
-        <p class="about-cta__body">
-          Ob lokale KI für Ihr Problem das richtige Werkzeug ist, finden wir in einem
-          Gespräch heraus. Das kostet nichts und verpflichtet zu nichts.
-        </p>
-        <a class="btn btn--kicker" href="mailto:hallo@mario-christ.de" target="_blank" rel="noopener noreferrer">hallo@mario-christ.de</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <a class="site-footer__home" href="/">← mario-christ.de</a>
-      <nav class="site-footer__legal" aria-label="Rechtliches">
-        <a href="/impressum/">Impressum</a>
-        <a href="/datenschutz/">Datenschutz</a>
-      </nav>
-    </div>
-  </footer>
-</body>
+    </footer>
+  </body>
 </html>

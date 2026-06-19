@@ -34,3 +34,13 @@ docs/
 
 # Claude Code lokale Config – nicht öffentlich
 .claude/
+
+# Interne PDFs (Sales-Deck etc.) – nichts für öffentliche Pages (enthält ggf. Preise!)
+*.pdf
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
