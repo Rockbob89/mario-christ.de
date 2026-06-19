@@ -1,0 +1,247 @@
+/* ============================================================
+   Über mich (/ueber-mich) – page-specific
+   Lädt nur style.css (shared) + diese Datei. Kein landing.css.
+   Frosted-Glass-Scheme wie der Landing-Hero: rgba(245,245,245,0.06)
+   + border-light + blur(8px) auf dunklen Sections.
+   ============================================================ */
+
+/* Anker nicht unter die fixed Nav scrollen */
+#kontakt {
+  scroll-margin-top: 5rem;
+}
+
+/* ── Block 1: Aufschlag ───────────────────────────────────── */
+.about-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.about-hero__box {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-6), 5vw, var(--space-12));
+  background-color: rgba(245, 245, 245, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.about-hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.about-hero__headline {
+  color: var(--text-on-dark);
+  margin-bottom: var(--space-6);
+}
+
+.about-hero__lead {
+  font-size: clamp(var(--text-base), 1.4vw, var(--text-xl));
+  color: rgba(245, 245, 245, 0.82);
+  max-width: 52ch;
+}
+
+.about-hero__fooslink {
+  display: inline-block;
+}
+
+.about-hero__figure {
+  max-width: 22rem;
+  margin-inline: auto;
+  order: -1;   /* Mobile: Foto über der Box */
+}
+
+.about-hero__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+}
+
+@media (min-width: 768px) {
+  .about-hero__inner {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(var(--space-10), 6vw, var(--space-20));
+  }
+  .about-hero__figure {
+    margin-inline: 0;
+    order: 0;   /* Desktop: Foto rechts neben der Box (DOM-Reihenfolge) */
+  }
+}
+
+/* ── Zwei-Spalten-Layout (Titel-Spalte + Body) für Block 2 & 4 ── */
+.about-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .about-cols {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+}
+
+.about-cols__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Block 2: Woher ich komme ─────────────────────────────── */
+/* Trust-Anker: belegbare Eckdaten zum CNA, bescheiden gerahmt */
+.trust-strip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background-color: rgba(26, 26, 46, 0.025);
+}
+
+.trust-strip li {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.trust-strip li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.trust-strip__key {
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: var(--space-2);
+}
+
+.trust-strip__source {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* Brückensatz zur Marke – der wichtigste Satz des Blocks */
+.about-bridge {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(var(--text-lg), 1.6vw, var(--text-xl));
+  line-height: var(--leading-snug);
+}
+
+/* Hervorhebung rot, aber ohne Kursiv (em ist global rot+italic) */
+.about-bridge em {
+  font-style: normal;
+}
+
+/* Abschluss-Gruß */
+.about-closer {
+  font-family: var(--font-h1);
+  font-weight: 800;
+  font-size: clamp(var(--text-xl), 2vw, var(--text-2xl));
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.about-chronicle {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+}
+
+/* ── Block 3: Mein lokaler Stack (dunkel, Frosted-Tiles) ──── */
+.about-stack__head {
+  margin-bottom: var(--space-10);
+}
+
+.about-stack__sub {
+  font-size: clamp(var(--text-base), 1.4vw, var(--text-lg));
+  color: rgba(245, 245, 245, 0.72);
+  max-width: 48ch;
+  margin-top: var(--space-4);
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-6);
+}
+
+.stack-tile {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  background-color: rgba(245, 245, 245, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.stack-tile__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #F87171;   /* roter Akzent, auf Dunkel besser lesbar */
+  margin-bottom: var(--space-2);
+}
+
+.stack-tile__value {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: rgba(245, 245, 245, 0.82);
+}
+
+/* ── Block 4: Was ich baue (Projekt-Cards) ────────────────── */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.project-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-6), 3vw, var(--space-8));
+}
+
+.project-card__name {
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.project-card__body {
+  margin-bottom: var(--space-4);
+}
+
+/* ── Block 5: CTA (dunkel) ────────────────────────────────── */
+.about-cta__inner {
+  max-width: 50rem;
+}
+
+.about-cta__title {
+  margin-bottom: var(--space-4);
+}
+
+.about-cta__body {
+  margin-bottom: var(--space-8);
+}

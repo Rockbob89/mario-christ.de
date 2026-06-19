@@ -17,9 +17,10 @@ mock*
 *.Identifier
 C:\\*
 
-# Original JPGs – lokal behalten, nicht ins Repo
+# Original JPGs/PNGs – lokal behalten, nicht ins Repo (nur WebP wird deployed)
 img/**/*.jpg
 img/**/*.JPG
+img/**/*.png
 
 # Ausnahme: OG-Vorschaubilder sind generierte Assets – müssen deployed werden
 !img/og-*.jpg
@@ -30,3 +31,6 @@ img/ai_hero/
 
 # Interne Planungs-Docs (Specs/Pläne) – nicht auf GitHub Pages
 docs/
+
+# Claude Code lokale Config – nicht öffentlich
+.claude/
