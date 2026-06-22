@@ -63,6 +63,9 @@
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  /* Hochformat: Crop leicht nach oben biasen, sonst schneidet der Quadrat-Crop
+     (mobil) oben die Haare ab. Ganzer Kopf + etwas Hals, statt Mitte. */
+  object-position: 50% 15%;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
 }
@@ -71,10 +74,21 @@
   .about-hero__inner {
     grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     gap: clamp(var(--space-10), 6vw, var(--space-20));
+    align-items: stretch;   /* Foto zieht auf die Höhe der Box */
   }
   .about-hero__figure {
+    max-width: none;        /* füllt die Spalte statt 22rem-Deckel */
     margin-inline: 0;
     order: 0;   /* Desktop: Foto rechts neben der Box (DOM-Reihenfolge) */
+  }
+  .about-hero__photo {
+    height: 100%;           /* so hoch wie die Box, statt fixem Quadrat */
+    aspect-ratio: auto;
+  }
+  .about-hero__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* Text vertikal mittig, wenn Box mitgestreckt wird */
   }
 }
 
