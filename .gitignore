@@ -44,3 +44,6 @@ docs/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Scratch: Screenshots, Mockups, Wegwerf-Kram
+tmp/

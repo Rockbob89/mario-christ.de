@@ -641,7 +641,17 @@ em {
   border-radius: var(--radius-sm);
 }
 
-/* Mobile: 4 Links (Home/Über mich/Foos/Kontakt) müssen einzeilig passen.
+/* World-Switch: Foos rechts abgesetzt – gleiche Optik wie die Nav-Links
+   (NICHT gedimmt), nur ein dünner Trenner davor macht die Zweiteilung sichtbar. */
+.site-nav__sep {
+  align-self: center;
+  flex-shrink: 0;
+  width: 1px;
+  height: 1.1rem;
+  background-color: var(--border-light);
+}
+
+/* Mobile: Home/Über mich/Kontakt + Trenner + Foos müssen einzeilig passen.
    Padding + Gap + Font straffen statt Burger (No-JS-Ethos). */
 @media (max-width: 640px) {
   .site-nav__inner {

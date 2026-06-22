@@ -100,6 +100,17 @@
   color: var(--text-on-dark);
 }
 
+/* World-Switch (Tech): Rückweg in die professionelle Welt, rechts abgesetzt.
+   Gleiche Link-Optik wie die Anker (NICHT gedimmt), nur ein Trenner davor.
+   href="/" → vom IntersectionObserver (a[href^="#"]) bewusst ignoriert. */
+.sticky-nav__sep {
+  align-self: center;
+  flex-shrink: 0;
+  width: 1px;
+  height: 1.1rem;
+  background-color: var(--border-light);
+}
+
 /* Nav-Höhe als Offset damit Sections nicht hinter der Nav landen */
 :target {
   scroll-margin-top: 4rem;
@@ -577,6 +588,14 @@
     display: block;
     padding-block: var(--space-3);
     font-size: var(--text-base);
+  }
+
+  /* Dropdown: Trenner wird zur horizontalen Linie über dem Tech-Switch */
+  .sticky-nav__sep {
+    align-self: stretch;
+    width: auto;
+    height: 1px;
+    margin-block: var(--space-2);
   }
 
   .sticky-nav__link {

@@ -21,6 +21,7 @@
   <meta name="twitter:description" content="KI rechtssicher einsetzen – DSGVO- und EU-AI-Act-konform, Sovereign-first, On-Premise." />
   <meta name="twitter:image"       content="https://mario-christ.de/img/og-default.jpg" />
 
+  <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/landing.css" />
@@ -49,8 +50,9 @@
       <nav class="site-nav__links" aria-label="Hauptnavigation">
         <a href="/" aria-current="page">Home</a>
         <a href="/ueber-mich/">Über mich</a>
-        <a href="/tischfussball/">Foos</a>
         <a href="/#kontakt">Kontakt</a>
+        <span class="site-nav__sep" aria-hidden="true"></span>
+        <a class="site-nav__switch" href="/tischfussball/">Foos</a>
       </nav>
     </div>
   </header>
@@ -60,22 +62,30 @@
     <!-- ── Hero ──────────────────────────────────────────── -->
     <section class="hero" id="hero" aria-label="Sicherheitsvorfall">
       <div class="hero__media" aria-hidden="true">
-        <img class="hero__photo" src="/img/hero-tech.webp" alt="" />
+        <img class="hero__photo" src="/img/hero-tech.webp" alt="" loading="eager" fetchpriority="high" />
       </div>
       <div class="container">
-        <div class="hero__bulletin">
-          <p class="hero__label">Sicherheitsvorfall:</p>
-          <p class="hero__sentence">
-            <span class="hero__correction-wrap"><del class="hero__strike">Unbekannte Angreifer</del><ins class="hero__correction">Legal &amp; HR</ins></span>
-            laden <br class="hero__br">sensible Verträge auf ausländische Server.
-          </p>
-          <p class="hero__sub">
-            Wissen Sie, was ChatGPT, Claude und Gemini mit Ihren Uploads machen?
-          </p>
+        <div class="hero__stage">
+          <div class="hero__bulletin">
+            <p class="hero__label">Sicherheitsvorfall:</p>
+            <p class="hero__sentence">
+              <span class="hero__correction-wrap"><del class="hero__strike">Unbekannte Angreifer</del><ins class="hero__correction">Legal &amp; HR</ins></span>
+              laden <br class="hero__br">sensible Verträge auf ausländische Server
+            </p>
+            <p class="hero__sub">
+              Wissen Sie, was ChatGPT, Claude und Gemini mit Ihren Uploads machen?
+            </p>
+          </div>
+          <figure class="hero__portrait">
+            <img src="/img/hero-portrait.webp" alt="Mario Christ" loading="eager" />
+          </figure>
+          <div class="hero__payoff-text">
+            <p class="hero__reassure">
+              Kein Grund zur Panik.<br>Schauen wir mal, was heute möglich ist.
+            </p>
+            <a class="btn btn--kicker hero__cta" href="#kontakt">Lassen Sie uns reden →</a>
+          </div>
         </div>
-        <p class="hero__reassure">
-          Kein Grund zur Panik.<br>Lassen Sie uns doch mal schauen, was heute möglich ist.
-        </p>
       </div>
     </section>
 
@@ -88,7 +98,7 @@
         </div>
         <div class="substance__body">
           <p>Ich helfe mittelständischen Unternehmen, KI einzusetzen, ohne dabei mit der DSGVO oder dem EU AI Act zu kollidieren. Das beginnt bei der Beratung: Wo bringt KI Ihnen wirklich etwas, welche Werkzeuge sind rechtlich sauber, was muss dokumentiert werden.</p>
-          <p>Wenn ein Projekt zur Umsetzung kommt, baue ich auch mit – On-Premise-Setups, lokale Sprachmodelle, die nötige Infrastruktur.</p>
+          <p>Wenn ein Projekt zur Umsetzung kommt, baue ich auch mit - On-Premise-Setups, lokale Sprachmodelle, die nötige Infrastruktur.</p>
         </div>
       </div>
     </section>
@@ -100,8 +110,8 @@
           <h2 class="substance__title">Warum ich</h2>
         </div>
         <div class="substance__body">
-          <p>Ich komme aus dem DevOps. Ich rede nicht über Infrastruktur, ich baue sie – jeden Tag. Und ich arbeite täglich mit lokalen Sprachmodellen auf eigener Hardware, von der Quantisierung bis zum Deployment.</p>
-          <p>Ich kenne die Stolperstellen, weil ich selbst über sie gefallen bin. Wenn KI für Ihr Problem das falsche Werkzeug ist, sage ich Ihnen das – bevor Sie Geld ausgeben.</p>
+          <p>Ich komme aus dem DevOps. Ich rede nicht über Infrastruktur, ich baue sie - jeden Tag. Und ich arbeite täglich mit lokalen Sprachmodellen auf eigener Hardware, von der Quantisierung bis zum Deployment.</p>
+          <p>Ich kenne die Stolperstellen, weil ich selbst über sie gefallen bin. Wenn KI für Ihr Problem das falsche Werkzeug ist, sage ich Ihnen das - bevor Sie Geld ausgeben.</p>
         </div>
       </div>
     </section>
@@ -113,7 +123,7 @@
           <h2 class="substance__title">Wie ich arbeite</h2>
         </div>
         <div class="substance__body">
-          <p><strong>Sovereign first.</strong> EU-Hosting oder On-Premise sind der Standard, US-Cloud nur, wenn es einen guten Grund gibt – und den nenne ich Ihnen.</p>
+          <p><strong>Sovereign first.</strong> EU-Hosting oder On-Premise sind der Standard, US-Cloud nur, wenn es einen guten Grund gibt - und den nenne ich Ihnen.</p>
           <p><strong>Pragmatismus vor Hype.</strong> Die Frage ist nicht, ob wir einen KI-Agenten bauen können, sondern ob Sie einen brauchen. Klare Scopes, feste Absprachen, keine versteckten Kosten.</p>
         </div>
       </div>
@@ -123,9 +133,9 @@
     <section class="section section--dark foos-teaser" aria-label="Tischfußball">
       <div class="container foos-teaser__inner">
         <span class="accent-line" aria-hidden="true"></span>
-        <h2 class="foos-teaser__title">Nebenbei spiele ich in der Bundesliga.</h2>
-        <p class="foos-teaser__body">Tischfußball, um genau zu sein – seit über zehn Saisons, aktuell mit dem HSV Kurbelkraft. Falls Sie aus der Tech-Branche kommen und über Sponsoring, Teambuilding oder Recruiting nachdenken: Das ist eine eigene Geschichte.</p>
-        <a class="btn btn--kicker" href="/tischfussball/">Zum Sponsoring →</a>
+        <h2 class="foos-teaser__title">Wer behauptet, ein Mensch könne nur eine Leidenschaft haben?</h2>
+        <p class="foos-teaser__body">Tischfußball, um genau zu sein, seit über zehn Saisons, aktuell mit dem HSV Kurbelkraft. Eine zweite Welt neben der Arbeit, mit eigenen Regeln, eigener Bundesliga und eigener Weltrangliste.</p>
+        <a class="foos-teaser__link" href="/tischfussball/">Mehr übers Kickern&nbsp;→</a>
       </div>
     </section>
 
@@ -134,7 +144,7 @@
       <div class="container contact__inner">
         <span class="accent-line" aria-hidden="true"></span>
         <h2 class="contact__title">Lassen Sie uns reden.</h2>
-        <p class="contact__body">Ein Erstgespräch kostet nichts und verpflichtet zu nichts. Schreiben Sie mir, worum es geht – ich melde mich.</p>
+        <p class="contact__body">Ein Erstgespräch kostet nichts und verpflichtet zu nichts. Schreiben Sie mir, worum es geht - ich melde mich.</p>
         <a class="btn btn--kicker" href="mailto:hallo@mario-christ.de" target="_blank" rel="noopener noreferrer">hallo@mario-christ.de</a>
       </div>
     </section>

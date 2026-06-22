@@ -15,17 +15,32 @@ function initHero() {
 
   const READ_PAUSE = 3300; // Lesepause – Zeit, die ganze Zeile zu lesen, bevor der Twist zündet
   const STRIKE_TO_CORRECTION = 400;
-  const CORRECTION_TO_REASSURE = 450;
+  const CORRECTION_TO_REVEAL = 1200; // Twist sacken lassen, dann Payoff (Bild+Reassure+CTA) gemeinsam
 
-  window.setTimeout(() => {
-    hero.classList.add('is-struck');
+  function runSequence() {
     window.setTimeout(() => {
-      hero.classList.add('is-corrected');
+      hero.classList.add('is-struck');
       window.setTimeout(() => {
-        hero.classList.add('is-settled');
-      }, CORRECTION_TO_REASSURE);
-    }, STRIKE_TO_CORRECTION);
-  }, READ_PAUSE);
+        hero.classList.add('is-corrected');
+        window.setTimeout(() => {
+          hero.classList.add('is-revealed');
+        }, CORRECTION_TO_REVEAL);
+      }, STRIKE_TO_CORRECTION);
+    }, READ_PAUSE);
+  }
+
+  // Erst starten, wenn die Seite sichtbar ist – sonst spielt der Twist im
+  // Hintergrund-Tab (shift-/cmd-click) unbemerkt ab und ist beim Wechsel verpufft.
+  if (document.visibilityState === 'visible') {
+    runSequence();
+  } else {
+    const onVisible = function () {
+      if (document.visibilityState !== 'visible') return;
+      document.removeEventListener('visibilitychange', onVisible);
+      runSequence();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+  }
 }
 
 /* ── Sponsoring Page: Sticky Nav Active State ───────────── */
