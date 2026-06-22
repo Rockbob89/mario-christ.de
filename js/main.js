@@ -71,27 +71,27 @@ function initStickyNav() {
   sections.forEach(section => observer.observe(section));
 }
 
-/* ── Sponsoring Page: Mobile Burger ─────────────────────── */
-function initFoosBurger() {
-  const nav    = document.querySelector('.sticky-nav');
+/* ── Mobile Burger (Hub-Nav + Sponsoring-Nav, gleiches Muster) ── */
+function initBurger(navSel, openClass, burgerSel, menuSel, linkSel) {
+  const nav = document.querySelector(navSel);
   if (!nav) return;
-  const burger = nav.querySelector('.sticky-nav__burger');
-  const menu   = nav.querySelector('.sticky-nav__list');
+  const burger = nav.querySelector(burgerSel);
+  const menu   = nav.querySelector(menuSel);
   if (!burger || !menu) return;
 
   function setOpen(open) {
-    nav.classList.toggle('sticky-nav--open', open);
+    nav.classList.toggle(openClass, open);
     burger.setAttribute('aria-expanded', String(open));
     burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
   }
 
   burger.addEventListener('click', () => {
-    setOpen(!nav.classList.contains('sticky-nav--open'));
+    setOpen(!nav.classList.contains(openClass));
   });
 
-  // Schließen bei Link-Klick (Anker-Navigation)
+  // Schließen bei Link-Klick (Anker-/Seiten-Navigation)
   menu.addEventListener('click', (e) => {
-    if (e.target.closest('.sticky-nav__link')) setOpen(false);
+    if (e.target.closest(linkSel)) setOpen(false);
   });
 
   // Schließen bei Escape
@@ -104,5 +104,6 @@ function initFoosBurger() {
 document.addEventListener('DOMContentLoaded', () => {
   initHero();
   initStickyNav();
-  initFoosBurger();
+  initBurger('.sticky-nav', 'sticky-nav--open', '.sticky-nav__burger', '.sticky-nav__list', '.sticky-nav__link');
+  initBurger('.site-nav', 'site-nav--open', '.site-nav__burger', '.site-nav__links', 'a');
 });

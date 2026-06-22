@@ -70,7 +70,11 @@
             </text>
           </svg></a
         >
-        <nav class="site-nav__links" aria-label="Hauptnavigation">
+        <button class="site-nav__burger" type="button" aria-label="Menü öffnen"
+                aria-expanded="false" aria-controls="hub-menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav__links" id="hub-menu" aria-label="Hauptnavigation">
           <a href="/">Home</a>
           <a href="/ueber-mich/" aria-current="page">Über mich</a>
           <a href="/#kontakt">Kontakt</a>
@@ -366,5 +370,7 @@
         </nav>
       </div>
     </footer>
+
+    <script src="/js/main.js"></script>
   </body>
 </html>

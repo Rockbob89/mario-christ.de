@@ -601,6 +601,41 @@ em {
   color: var(--page-bg-dark);
 }
 
+/* Burger: Desktop versteckt, ab 767px sichtbar (gleiches Muster wie /tischfussball) */
+.site-nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.site-nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin-inline: auto;
+  background-color: var(--text-on-dark);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.site-nav__burger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Burger offen: X-Animation */
+.site-nav--open .site-nav__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.site-nav--open .site-nav__burger span:nth-child(2) { opacity: 0; }
+.site-nav--open .site-nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 .site-nav__inner {
   display: flex;
   align-items: center;
@@ -651,27 +686,41 @@ em {
   background-color: var(--border-light);
 }
 
-/* Mobile: Home/Über mich/Kontakt + Trenner + Foos müssen einzeilig passen.
-   Padding + Gap + Font straffen statt Burger (No-JS-Ethos). */
-@media (max-width: 640px) {
-  .site-nav__inner {
-    padding-inline-start: var(--space-4);
-    padding-inline-end: var(--space-4);
-    gap: var(--space-3);
+/* Mobile: Burger-Dropdown statt einzeiliger Nav – einheitlich mit /tischfussball */
+@media (max-width: 767px) {
+  .site-nav__burger {
+    display: flex;
   }
-  .site-nav__links {
-    gap: var(--space-4);
-  }
-  .site-nav__links a {
-    letter-spacing: 0.01em;
-  }
-}
 
-@media (max-width: 360px) {
   .site-nav__links {
-    gap: var(--space-3);
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2) clamp(var(--space-4), 5vw, var(--space-12)) var(--space-4);
+    background-color: rgba(26, 26, 46, 0.98);
+    border-bottom: 1px solid var(--border-light);
   }
+
+  .site-nav--open .site-nav__links {
+    display: flex;
+  }
+
   .site-nav__links a {
-    font-size: var(--text-xs);
+    display: block;
+    padding-block: var(--space-3);
+    font-size: var(--text-base);
+  }
+
+  /* Dropdown: Trenner wird zur horizontalen Linie über dem Foos-Switch */
+  .site-nav__sep {
+    align-self: stretch;
+    width: auto;
+    height: 1px;
+    margin-block: var(--space-2);
   }
 }
