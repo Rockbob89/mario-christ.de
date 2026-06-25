@@ -246,6 +246,18 @@ html.anim .hero.is-corrected .hero__correction { opacity: 1; }
 html.anim .hero.is-revealed .hero__portrait,
 html.anim .hero.is-revealed .hero__payoff-text { opacity: 1; visibility: visible; transform: none; transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s; }
 
+/* Die Frage erst mit dem "Legal & HR"-Reveal einblenden (Kumpel-Feedback):
+   bis dahin unsichtbar, Höhe bleibt reserviert → kein Layout-Shift.
+   Landet per Delay kurz NACH dem Twist, vor dem Payoff. */
+html.anim .hero__sub {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+html.anim .hero.is-corrected .hero__sub {
+  opacity: 1;
+  transition: opacity 0.5s ease 0.25s;
+}
+
 /* ── Substanz (Was / Warum / Wie) ────────────────────────── */
 .substance__block + .substance__block {
   border-top: 1px solid var(--border);
@@ -274,31 +286,43 @@ html.anim .hero.is-revealed .hero__payoff-text { opacity: 1; visibility: visible
 }
 
 /* ── Kickern-Teaser (dunkel) ─────────────────────────────── */
+/* Addon nach dem CTA: bewusst flacher als eine volle Section (--section-padding
+   wäre zu wuchtig fürs Ausklingen). */
+.foos-teaser {
+  padding-block: clamp(var(--space-10), 4vw, var(--space-12));
+}
+
 .foos-teaser__inner {
   max-width: 50rem;
 }
 
 .foos-teaser__title {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.foos-teaser__sub {
+  font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
 }
 
 .foos-teaser__body {
   margin-bottom: var(--space-8);
 }
 
-/* Textlink statt Button: bewusst KEIN CTA – Foos ist hier ein menschlicher
-   Beat, keine Handlungsaufforderung wie der Kontakt-Button darunter. */
+/* Textlink statt Button: bewusst KEIN CTA – Foos ist hier ein leiser Ausklang,
+   keine Handlungsaufforderung. Section ist jetzt hell → roter Akzent auf Hell. */
 .foos-teaser__link {
   display: inline-block;
   font-family: var(--font-body);
   font-weight: 500;
   font-size: var(--text-lg);
-  color: #F87171;   /* roter Akzent auf Dunkel (wie em auf .section--dark) */
+  color: var(--accent);
   transition: color var(--transition-base);
 }
 
 .foos-teaser__link:hover {
-  color: #FCA5A5;
+  color: var(--accent-hover);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -321,6 +345,13 @@ html.anim .hero.is-revealed .hero__payoff-text { opacity: 1; visibility: visible
 
 .contact__title {
   margin-bottom: var(--space-4);
+}
+
+/* Kontakt ist dunkel → helle Subline (gleiche Optik wie .foos-teaser__sub) */
+.contact__sub {
+  font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+  color: rgba(245, 245, 245, 0.72);
+  margin-bottom: var(--space-6);
 }
 
 .contact__body {
@@ -421,11 +452,20 @@ html.anim .hero.is-revealed .hero__payoff-text { opacity: 1; visibility: visible
   .hero__stage { justify-content: center; }
 }
 
+/* ── Kurze Hochkant-Screens: das Boden-Portrait braucht ≥844px Höhe, um als
+   volles 332px-Band zu grounden (Marios Qualitätslinie). Drunter schneidet es
+   das Gesicht ab → raus, Message-Hero zentriert. ── */
+@media (max-width: 1199.98px) and (max-height: 843.98px) {
+  .hero__portrait { display: none; }
+  .hero__stage { justify-content: center; }
+}
+
 /* ── Reduced Motion: Animation-Layer komplett neutralisieren ─ */
 @media (prefers-reduced-motion: reduce) {
   html.anim .hero__strike { text-decoration: line-through; text-decoration-color: var(--accent); text-decoration-thickness: 3px; color: rgba(245, 245, 245, 0.5); }
   html.anim .hero__strike::after { display: none; }
   html.anim .hero__correction { opacity: 1; transition: none; }
+  html.anim .hero__sub { opacity: 1; transition: none; }
   html.anim .hero__portrait,
   html.anim .hero__payoff-text { opacity: 1; transform: none; transition: none; }
 }

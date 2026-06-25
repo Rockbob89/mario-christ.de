@@ -13,7 +13,9 @@ function initHero() {
   // (sonst reduced-motion oder no-JS → statischer End-State steht schon im HTML/CSS)
   if (!document.documentElement.classList.contains('anim')) return;
 
-  const READ_PAUSE = 3300; // Lesepause – Zeit, die ganze Zeile zu lesen, bevor der Twist zündet
+  const READ_PAUSE = 2900; // Lesepause – Zeit, die ganze Zeile zu lesen, bevor der Twist zündet
+                           // (von 3300 auf 2900 runter, seit die ChatGPT-Line erst mit dem Reveal kommt
+                           //  und den Pre-Twist-Moment nicht mehr füllt)
   const STRIKE_TO_CORRECTION = 400;
   const CORRECTION_TO_REVEAL = 1200; // Twist sacken lassen, dann Payoff (Bild+Reassure+CTA) gemeinsam
 

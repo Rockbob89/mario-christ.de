@@ -74,35 +74,46 @@
 .sticky-nav--open .sticky-nav__burger span:nth-child(2) { opacity: 0; }
 .sticky-nav--open .sticky-nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Farbcode Foos = rot: die Anker-Items tragen das Nav-Rot (AA-sicher auf Navy),
+   die aktive Section leuchtet heller. Die Tech-Tür (Switch) bricht bewusst aus
+   und trägt die helle Hub-Optik – Farbcode Tech = hell. */
 .sticky-nav__link {
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: rgba(245, 245, 245, 0.55);
+  color: var(--accent-nav);
   white-space: nowrap;
   transition: color var(--transition-base);
   padding-block: var(--space-1);
 }
 
 .sticky-nav__link:hover {
-  color: var(--text-on-dark);
+  color: var(--accent-nav-hi);
 }
 
 .sticky-nav__link.is-active {
-  color: var(--accent);
+  color: var(--accent-nav-hi);
+  font-weight: 700;
 }
 
 .sticky-nav__link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
-  color: var(--text-on-dark);
 }
 
-/* World-Switch (Tech): Rückweg in die professionelle Welt, rechts abgesetzt.
-   Gleiche Link-Optik wie die Anker (NICHT gedimmt), nur ein Trenner davor.
-   href="/" → vom IntersectionObserver (a[href^="#"]) bewusst ignoriert. */
+/* World-Switch (Tech): Rückweg in die Tech-Welt, rechts abgesetzt. Trägt die
+   helle Hub-Nav-Optik (gedimmtes Weiß), nicht das Foos-Rot – so signalisiert
+   die Farbe die Zielwelt. href="/" → vom IntersectionObserver bewusst ignoriert. */
+.sticky-nav__list .sticky-nav__switch {
+  color: rgba(245, 245, 245, 0.55);
+  font-weight: 500;
+}
+
+.sticky-nav__list .sticky-nav__switch:hover {
+  color: var(--text-on-dark);
+}
 .sticky-nav__sep {
   align-self: center;
   flex-shrink: 0;
@@ -406,15 +417,17 @@
   /* volle breite für grid */
 }
 
+/* Pakete-Section ist hell (section--dark entfernt) → Section-Text dunkel,
+   aber die Kacheln sind solides Navy mit roter Akzentlinie. */
 .packages__headline {
-  color: var(--text-on-dark);
+  color: var(--text-primary);
   margin-bottom: var(--space-6);
   text-wrap: balance;
 }
 
 .packages__intro {
   font-size: clamp(var(--text-base), 1.5vw, var(--text-lg));
-  color: rgba(245, 245, 245, 0.75);
+  color: var(--text-muted);
   margin-bottom: var(--space-12);
 }
 
@@ -426,9 +439,10 @@
 }
 
 .package {
-  background-color: rgba(245, 245, 245, 0.05);
-  border: 1px solid var(--border-light);
+  background-color: var(--page-bg-dark);
+  border: 1px solid rgba(130, 150, 220, 0.22);
   border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(18, 22, 48, 0.20);
   padding: var(--space-8);
   display: flex;
   flex-direction: column;
@@ -437,8 +451,17 @@
 }
 
 .package:hover {
-  border-color: var(--accent);
-  background-color: rgba(220, 38, 38, 0.05);
+  border-color: rgba(150, 170, 240, 0.45);
+  background-color: #20243f;
+}
+
+/* Rote Akzentlinie als erstes Flex-Item → sitzt über dem Titel (3rem × 3px, Brand-Stil) */
+.package::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background-color: var(--accent);
 }
 
 .package__title {
@@ -452,23 +475,23 @@
 
 .package__body {
   font-size: var(--text-base);
-  color: rgba(245, 245, 245, 0.75);
+  color: rgba(245, 245, 245, 0.82);
   flex: 1;
 }
 
 .package__punchline {
   font-size: var(--text-sm);
-  color: rgba(245, 245, 245, 0.65);
+  color: var(--accent-nav);
   max-width: none;
 }
 
 .package__punchline em {
-  color: rgba(245, 245, 245, 0.65);
+  color: var(--accent-nav);
   font-style: italic;
 }
 
 .packages__outro {
-  color: rgba(245, 245, 245, 0.6);
+  color: var(--text-muted);
   font-style: italic;
   font-size: var(--text-base);
   max-width: none; /* Fix 8: kein künstlicher Umbruch */

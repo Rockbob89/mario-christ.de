@@ -4,11 +4,12 @@
    ============================================================ */
 
 /* ── Self-hosted Fonts ───────────────────────────────────── */
-/* DM Sans – normal 400 + 500 (variable font, gleiche Datei) */
+/* DM Sans – normal 400..700 (variable font, gleiche Datei – Achse reicht bis 1000,
+   600/700 für echtes Bold bei <strong> freigeschaltet, kein Extra-Download) */
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
-  font-weight: 400 500;
+  font-weight: 400 700;
   font-display: swap;
   src: url('../fonts/dm-sans-normal-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -16,7 +17,7 @@
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
-  font-weight: 400 500;
+  font-weight: 400 700;
   font-display: swap;
   src: url('../fonts/dm-sans-normal-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -106,6 +107,11 @@
   --text-muted:   #6B7280;
   --accent:       #DC2626;
   --accent-hover: #B91C1C;
+  /* Nav-Rot auf dunklem Navy (rgba(26,26,46)): heller als --accent, damit WCAG AA
+     hält (--accent macht dort nur 3.53:1). Farbcode World-Switch: Foos = rot.
+     --accent-nav 6.17:1 (dezent), --accent-nav-hi 8.99:1 (hover/aktiv). */
+  --accent-nav:    #F87171;
+  --accent-nav-hi: #FCA5A5;
   --border:       rgba(26, 26, 46, 0.1);
   --border-light: rgba(245, 245, 245, 0.15);
 
@@ -245,7 +251,7 @@ p {
 }
 
 strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 em {
@@ -272,6 +278,40 @@ em {
 
 .section--dark em {
   color: #F87171; /* Roter Akzent auf Dunkel – besser lesbar */
+}
+
+/* ── CTA-Themenliste (shared: Landing-Kontakt, /ueber-mich-CTA, …) ──────── */
+.cta-lead {
+  margin-bottom: var(--space-3);
+}
+
+.cta-topics {
+  list-style: none;
+  margin: 0 0 var(--space-8);
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.cta-topics li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.cta-topics li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--accent);
+  border-radius: 50%;
+}
+
+/* Auf dunklen Sections: helleres Rot (wie .section--dark em), damit der Dot nicht absäuft */
+.section--dark .cta-topics li::before {
+  background-color: var(--accent-nav);
 }
 
 /* ── Buttons ─────────────────────────────────────────────── */
@@ -676,8 +716,18 @@ em {
   border-radius: var(--radius-sm);
 }
 
-/* World-Switch: Foos rechts abgesetzt – gleiche Optik wie die Nav-Links
-   (NICHT gedimmt), nur ein dünner Trenner davor macht die Zweiteilung sichtbar. */
+/* World-Switch Foos: rote Tür in die Hobby-Welt. Farbcode Foos = rot,
+   überall (auch auf /tischfussball tragen die Items dieses Rot). */
+.site-nav__links a.site-nav__switch {
+  color: var(--accent-nav);
+}
+
+.site-nav__links a.site-nav__switch:hover {
+  color: var(--accent-nav-hi);
+}
+
+/* World-Switch: Foos rechts abgesetzt, ein dünner Trenner davor macht die
+   Zweiteilung sichtbar. */
 .site-nav__sep {
   align-self: center;
   flex-shrink: 0;
