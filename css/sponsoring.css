@@ -497,6 +497,11 @@
   max-width: none; /* Fix 8: kein künstlicher Umbruch */
 }
 
+/* CTA direkt unter den Paket-Kacheln: Shortcut zum Kontakt, bevor die Story kommt */
+.packages__cta {
+  margin-top: var(--space-8);
+}
+
 /* ── Section: Kontakt ────────────────────────────────────── */
 .contact__inner {
   display: flex;
