@@ -285,6 +285,49 @@ html.anim .hero.is-corrected .hero__sub {
   margin-top: var(--space-4);
 }
 
+/* Warmer Textlink auf /ueber-mich (kein CTA, spiegelt .foos-teaser__link):
+   leiser Discoverability-Anker am Ende des letzten Substanz-Blocks. */
+.substance__about {
+  color: var(--text-muted);
+}
+
+/* Eigene Grid-Row (col 2, unter dem Body) ab 768px – sonst klebt der Link
+   optisch am letzten Absatz. Mobil stapelt er als 3. Grid-Kind ohnehin. */
+@media (min-width: 768px) {
+  .substance__about {
+    grid-column: 2;
+  }
+}
+
+.substance__about-link {
+  display: block;
+  margin-top: var(--space-2);
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: color var(--transition-base);
+}
+
+/* Erst ab 1024px inline hinter die Frage, darunter eigene Zeile. */
+@media (min-width: 1024px) {
+  .substance__about-link {
+    display: inline;
+    margin-top: 0;
+  }
+}
+
+.substance__about-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.substance__about-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
 /* ── Kickern-Teaser (dunkel) ─────────────────────────────── */
 /* Addon nach dem CTA: bewusst flacher als eine volle Section (--section-padding
    wäre zu wuchtig fürs Ausklingen). */
