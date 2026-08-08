@@ -1,0 +1,100 @@
+name: Build & Deploy
+
+# Baut die Seite mit Eleventy und veroeffentlicht sie auf GitHub Pages.
+# Voraussetzung: Settings > Pages > Source steht auf "GitHub Actions".
+# Steht sie noch auf "Deploy from a branch", laeuft der build-Job durch und
+# nur der deploy-Job schlaegt fehl – die Live-Seite bleibt dabei unberuehrt.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Nicht zwei Deploys gleichzeitig. cancel-in-progress bleibt aus, damit ein
+# laufendes Deploy nicht mittendrin abgebrochen wird.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Dependencies installieren
+        run: npm ci
+
+      - name: Eleventy-Build
+        run: npx @11ty/eleventy
+
+      # Drei Dinge, die still kaputtgehen koennen und im Browser erst
+      # auffallen, wenn es zu spaet ist.
+      - name: Guard – Artefakt pruefen
+        run: |
+          set -euo pipefail
+
+          # 1. Kein internes Markdown im Output (CLAUDE.md, BACKLOG.md, ...).
+          leaked="$(find _site -name '*.md' || true)"
+          if [ -n "$leaked" ]; then
+            echo "::error::Interne Markdown-Dateien im Build:"
+            echo "$leaked"
+            exit 1
+          fi
+
+          # 2. Ohne CNAME im Artefakt verliert Pages die Custom Domain.
+          test -f _site/CNAME || { echo "::error::_site/CNAME fehlt"; exit 1; }
+
+          # 3. Bestandsseiten muessen da sein – ein kaputtes Passthrough
+          #    wuerde die halbe Seite verschwinden lassen.
+          for f in index.html ueber-mich/index.html impressum/index.html \
+                   datenschutz/index.html tischfussball/index.html \
+                   css/style.css js/main.js robots.txt sitemap.xml; do
+            test -f "_site/$f" || { echo "::error::_site/$f fehlt"; exit 1; }
+          done
+
+          # 4. Blog gebaut, Feed vorhanden.
+          test -f _site/blog/index.html || { echo "::error::_site/blog/index.html fehlt"; exit 1; }
+          test -f _site/blog/feed.xml   || { echo "::error::_site/blog/feed.xml fehlt"; exit 1; }
+
+          echo "Guard ok."
+
+      # Solange der Blog in der Preview-Phase ist: noindex muss drin sein.
+      # Der Schritt entfaellt automatisch, sobald PREVIEW in _data/site.js
+      # auf false steht.
+      - name: Guard – noindex in der Preview-Phase
+        run: |
+          set -euo pipefail
+          if grep -q 'BLOG_PUBLIC !== "true"' _data/site.js; then
+            grep -q 'noindex, nofollow' _site/blog/index.html \
+              || { echo "::error::Preview aktiv, aber kein noindex in /blog/"; exit 1; }
+            echo "noindex ok."
+          else
+            echo "Preview-Flag nicht mehr aktiv – Pruefung uebersprungen."
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

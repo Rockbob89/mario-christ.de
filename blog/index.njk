@@ -1,0 +1,52 @@
+---
+layout: blog-base.njk
+permalink: /blog/index.html
+navCurrent: blog
+title: "Blog"
+metaTitle: "Blog - Mario Christ"
+description: "Notizen aus der Praxis: lokale Sprachmodelle, Datenschutz, Infrastruktur."
+---
+    <!-- ── Block 1: Kopf (dunkel) ────────────────────────── -->
+    <section class="section section--dark blog-hero" aria-label="Blog">
+      <div class="container blog-hero__inner">
+        <span class="accent-line" aria-hidden="true"></span>
+        <h1 class="blog-hero__title">Blog</h1>
+        <p class="blog-hero__sub">Notizen aus der Praxis. Was ich baue, was dabei schiefgeht und was davon übrig bleibt: lokale Sprachmodelle, Datenschutz, Infrastruktur.</p>
+      </div>
+    </section>
+
+    <!-- ── Block 2: Beitragsliste (hell) ─────────────────── -->
+    <section class="section blog-list" aria-label="Beiträge">
+      <div class="container blog-list__inner">
+{% if collections.posts | length %}
+        <ol class="post-list">
+{% for post in collections.posts | reverse %}
+          <li class="post-list__item">
+            <p class="post-list__meta">
+              <time datetime="{{ post.date | dateISO }}">{{ post.date | dateDE }}</time>
+            </p>
+            <h2 class="post-list__title">
+              <a class="post-list__link" href="{{ post.url }}">{{ post.data.title }}</a>
+            </h2>
+{% if post.data.description %}
+            <p class="post-list__excerpt">{{ post.data.description }}</p>
+{% endif %}
+{% if post.data.tags %}
+            <ul class="post-tags" aria-label="Themen">
+{% for tag in post.data.tags %}
+              <li class="post-tags__item">{{ tag }}</li>
+{% endfor %}
+            </ul>
+{% endif %}
+          </li>
+{% endfor %}
+        </ol>
+{% else %}
+        <p class="blog-list__empty">Hier steht noch nichts.</p>
+{% endif %}
+
+        <p class="blog-list__feed">
+          <a class="link-external" href="{{ site.blog.feed }}">Feed abonnieren&nbsp;→</a>
+        </p>
+      </div>
+    </section>

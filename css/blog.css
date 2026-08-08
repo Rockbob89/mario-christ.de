@@ -1,0 +1,360 @@
+/* ============================================================
+   Blog (/blog) – page-specific
+   Lädt nur style.css (shared) + diese Datei. Kein landing.css.
+   Frosted-Glass-Scheme wie überall: rgba(245,245,245,0.06)
+   + border-light + blur(8px) auf dunklen Sections, Rot als Akzent,
+   nie als Fläche.
+
+   Besonderheit gegenüber den anderen Seiten: der Post-Text kommt aus
+   Markdown und liefert nacktes h2/h3/p/ul/ol/blockquote/pre/code/img/hr.
+   Dafür gibt es den .prose-Scope weiter unten. Vorbild sind die
+   .legal-page-Regeln in style.css – gleiche Maße, damit Fließtext
+   überall auf der Seite gleich liest.
+   ============================================================ */
+
+/* ── Kopfraum unter der fixed Nav ─────────────────────────── */
+/* Die Nav ist 65px hoch (64 + 1px Border), --section-padding faengt bei
+   genau 64px an. Beide Blog-Seiten starten mit einer accent-line, und die
+   laege damit exakt unter der Nav-Kante. max() gibt nur da Luft dazu, wo
+   der Clamp am unteren Anschlag steht (Mobile); ab ~810px Viewport ist
+   --section-padding ohnehin groesser und der Rhythmus bleibt unveraendert. */
+.blog-hero,
+.post-header {
+  padding-top: max(var(--section-padding), 6.5rem);
+}
+
+/* ── Block 1: Übersicht, Kopf (dunkel) ────────────────────── */
+.blog-hero__inner {
+  max-width: 50rem;
+}
+
+/* Kleiner als der globale h1-Clamp: "Blog" allein in 72px wirkt wie ein
+   Plakat, nicht wie ein Seitenkopf. */
+.blog-hero__title {
+  font-size: clamp(var(--text-4xl), 5vw, var(--text-5xl));
+  color: var(--text-on-dark);
+}
+
+.blog-hero__sub {
+  font-size: clamp(var(--text-base), 1.4vw, var(--text-lg));
+  line-height: var(--leading-normal);
+  color: rgba(245, 245, 245, 0.82);
+  max-width: 52ch;
+  margin-top: var(--space-4);
+}
+
+/* ── Block 2: Übersicht, Beitragsliste (hell) ─────────────── */
+.blog-list__inner {
+  max-width: 50rem;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Trennlinie oben statt unten: der letzte Beitrag endet dann ohne Linie
+   ins Nichts, und der erste braucht keine, weil die Section-Padding
+   schon trennt. */
+.post-list__item {
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.post-list__item:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.post-list__meta {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.post-list__title {
+  font-size: clamp(var(--text-xl), 2.4vw, var(--text-3xl));
+  margin-bottom: var(--space-3);
+  text-wrap: balance;
+}
+
+.post-list__link {
+  color: var(--text-primary);
+  transition: color var(--transition-base);
+}
+
+.post-list__link:hover {
+  color: var(--accent);
+}
+
+.post-list__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.post-list__excerpt {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+  max-width: 65ch;
+}
+
+.blog-list__empty {
+  color: var(--text-muted);
+}
+
+.blog-list__feed {
+  margin-top: var(--space-12);
+  font-size: var(--text-sm);
+}
+
+/* ── Themen-Tags (Liste + Einzelpost) ─────────────────────── */
+/* Neutral gerahmt, nicht rot gefüllt: Rot bleibt Akzent, keine Fläche. */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.post-tags__item {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.section--dark .post-tags__item {
+  color: rgba(245, 245, 245, 0.72);
+  border-color: var(--border-light);
+  background-color: rgba(245, 245, 245, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Block 3: Einzelpost, Kopf (dunkel) ───────────────────── */
+.post-header__inner {
+  max-width: 50rem;
+}
+
+/* Datum in Rot wie die stack-tile__label: #F87171 statt --accent, das
+   hält auf dem Navy die AA-Schwelle (6.17:1 statt 3.53:1). */
+.post-header__meta {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #F87171;
+  margin-bottom: var(--space-3);
+}
+
+/* Wieder kleiner als der globale h1-Clamp – Beitragstitel sind lang,
+   72px würden über drei Zeilen laufen. */
+.post-header__title {
+  font-size: clamp(var(--text-3xl), 4.5vw, var(--text-5xl));
+  color: var(--text-on-dark);
+  text-wrap: balance;
+}
+
+.post-header__lead {
+  font-size: clamp(var(--text-base), 1.4vw, var(--text-xl));
+  line-height: var(--leading-normal);
+  color: rgba(245, 245, 245, 0.82);
+  max-width: 52ch;
+  margin-top: var(--space-6);
+}
+
+/* ── Block 4: Einzelpost, Text (hell) ─────────────────────── */
+.post-body__inner {
+  max-width: 50rem;
+}
+
+/* ── .prose: der gerenderte Markdown-Output ───────────────── */
+.prose > *:last-child {
+  margin-bottom: 0;
+}
+
+.prose p {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  max-width: 70ch;
+  margin-bottom: var(--space-4);
+}
+
+.prose h2 {
+  font-size: clamp(var(--text-xl), 2.2vw, var(--text-2xl));
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-4);
+}
+
+.prose h3 {
+  font-size: var(--text-lg);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+}
+
+.prose h4 {
+  font-size: var(--text-base);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+
+/* Beginnt ein Post direkt mit einer Überschrift, soll die nicht
+   zusätzlich nach unten rutschen. */
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  max-width: 70ch;
+  margin-bottom: var(--space-2);
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--transition-base);
+}
+
+.prose a:hover {
+  color: var(--accent-hover);
+}
+
+.prose a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-6);
+  margin-block: var(--space-8);
+}
+
+.prose blockquote p {
+  font-size: clamp(var(--text-lg), 1.6vw, var(--text-xl));
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+  max-width: 60ch;
+}
+
+/* Inline-Code. Das :not(pre) verhindert, dass jede Zeile in einem
+   Code-Block zusätzlich ihren eigenen Kasten bekommt. */
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.15em 0.4em;
+  color: var(--text-primary);
+  background-color: rgba(26, 26, 46, 0.05);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  tab-size: 2;
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  background-color: rgba(26, 26, 46, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  /* Lange Zeilen scrollen im Kasten, statt die Seite breit zu ziehen. */
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.prose pre code {
+  font: inherit;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  max-width: 70ch;
+  margin-block: var(--space-12);
+}
+
+.prose img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-8);
+}
+
+/* Tabellen: display:block macht die Tabelle selbst scrollbar. Ohne das
+   schiebt eine breite Tabelle auf dem Handy die ganze Seite seitlich raus. */
+.prose table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-6);
+}
+
+.prose th,
+.prose td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.prose th {
+  font-family: var(--font-headline);
+  font-weight: 700;
+}
+
+/* ── Block 5: Fuß des Beitrags ────────────────────────────── */
+.post-nav {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.post-nav__back {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  transition: color var(--transition-base);
+}
+
+.post-nav__back:hover {
+  color: var(--text-primary);
+}
+
+.post-nav__back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}

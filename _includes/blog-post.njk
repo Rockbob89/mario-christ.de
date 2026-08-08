@@ -1,0 +1,40 @@
+---
+layout: blog-base.njk
+ogType: article
+navCurrent: blog
+---
+    <!-- ── Block 1: Kopf (dunkel) ────────────────────────── -->
+    <article class="post">
+      <header class="section section--dark post-header" aria-label="{{ title }}">
+        <div class="container post-header__inner">
+          <span class="accent-line" aria-hidden="true"></span>
+          <p class="post-header__meta">
+            <time datetime="{{ page.date | dateISO }}">{{ page.date | dateDE }}</time>
+          </p>
+          <h1 class="post-header__title">{{ title }}</h1>
+{% if description %}
+          <p class="post-header__lead">{{ description }}</p>
+{% endif %}
+{% if tags %}
+          <ul class="post-tags" aria-label="Themen">
+{% for tag in tags %}
+            <li class="post-tags__item">{{ tag }}</li>
+{% endfor %}
+          </ul>
+{% endif %}
+        </div>
+      </header>
+
+      <!-- ── Block 2: Text (hell) ────────────────────────── -->
+      <div class="section post-body">
+        <div class="container post-body__inner">
+          <div class="prose">
+{{ content | safe }}
+          </div>
+
+          <nav class="post-nav" aria-label="Weiter">
+            <a class="post-nav__back" href="/blog/">← Alle Beiträge</a>
+          </nav>
+        </div>
+      </div>
+    </article>

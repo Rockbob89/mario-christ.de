@@ -38,6 +38,10 @@ docs/
 # Interne PDFs (Sales-Deck etc.) – nichts für öffentliche Pages (enthält ggf. Preise!)
 *.pdf
 
+# Eleventy (Blog-Build) – Output und Dependencies bleiben lokal
+node_modules/
+_site/
+
 # Editor / OS
 .vscode/
 .idea/
