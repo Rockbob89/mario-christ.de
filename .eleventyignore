@@ -1,0 +1,18 @@
+# Was Eleventy NICHT als Template anfassen darf.
+# Eleventy respektiert zusaetzlich die .gitignore – das hier ist der zweite Riegel,
+# damit interne Dokumente auch dann nicht nach /<name>/ gerendert werden, wenn sie
+# mal versehentlich getrackt sind. README.md ist genau so ein Fall: getrackt, aber
+# nichts fuer die oeffentliche Seite.
+
+node_modules/
+_site/
+
+# Alle Markdown-Dateien direkt im Repo-Root (CLAUDE.md, BACKLOG.md, README.md, …).
+# Fuehrender Slash = nur Root-Ebene, blog/posts/*.md bleibt unberuehrt.
+/*.md
+
+docs/
+tmp/
+
+# Anleitung fuer die Blog-Pflege – gehoert ins Repo, nicht auf die Seite.
+blog/README.md

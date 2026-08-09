@@ -1,0 +1,16 @@
+{
+  "name": "mario-christ-de",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "mario-christ.de - statische Seiten + Eleventy-Blog unter /blog",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "build:public": "BLOG_PUBLIC=true eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.2"
+  }
+}

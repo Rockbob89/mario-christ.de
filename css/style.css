@@ -120,6 +120,9 @@
   --font-headline: 'Syne', sans-serif;
   --font-body:     'DM Sans', sans-serif;
   --font-handwriting: 'Caveat', cursive;
+  /* Nur Code-Bloecke im Blog. Bewusst Systemschriften: kein zusaetzlicher
+     woff2-Download fuer etwas, das auf den meisten Seiten nie vorkommt. */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   color-scheme: light; /* Fix 10: kein Browser-Dark-Mode-Override */
 

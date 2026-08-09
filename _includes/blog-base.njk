@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ metaTitle if metaTitle else title + " - Mario Christ" }}</title>
+  <meta name="description" content="{{ description }}" />
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{# Preview-Phase: Blog ist erreichbar, aber nicht auffindbar.
+   Zum Launch: PREVIEW in _data/site.js auf false setzen.
+   Bewusst KEIN Disallow in der robots.txt - sonst crawlt Google die Seite
+   nie, liest dieses noindex nie und kann die URL trotzdem listen.
+   Nunjucks-Kommentar statt HTML-Kommentar: was den Preview-Aufbau erklaert,
+   muss nicht im ausgelieferten Quelltext stehen. #}
+{% if site.blog.preview %}
+  <meta name="robots" content="noindex, nofollow" />
+{% endif %}
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="{{ ogType if ogType else 'website' }}" />
+  <meta property="og:url"         content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:title"       content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:image"       content="{{ site.url }}{{ site.ogImage }}" />
+  <meta property="og:locale"      content="de_DE" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="{{ title }}" />
+  <meta name="twitter:description" content="{{ description }}" />
+  <meta name="twitter:image"       content="{{ site.url }}{{ site.ogImage }}" />
+
+  <link rel="alternate" type="application/atom+xml" title="Blog - Mario Christ" href="{{ site.blog.feed }}" />
+
+  <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/blog.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  {# NAV: Hub-Nav wie /index.html, plus "Blog". Solange der Blog in der
+     Preview-Phase ist, traegt NUR dieses Layout das Blog-Item, die
+     statischen Seiten bleiben unveraendert. Zum Launch wandert der Link
+     in den Master /index.html und von dort in impressum + datenschutz
+     + ueber-mich. #}
+  <!-- MC-BADGE: adaptives Monogramm – CSS-Kreis + inline-SVG-Buchstaben (fill=currentColor, passt sich hell/dunkel an). Bei Änderung in allen Nav-Blöcken syncen. -->
+  <header class="site-nav">
+    <div class="site-nav__inner container">
+      <a class="mc-badge" href="/" aria-label="Startseite"><svg class="mc-badge__mark" viewBox="0 0 112 52" aria-hidden="true" focusable="false"><text x="56" y="42" text-anchor="middle" font-family="'Futura','Century Gothic',sans-serif" font-size="52" font-weight="700" letter-spacing="-4" fill="currentColor">MC</text></svg></a>
+      <button class="site-nav__burger" type="button" aria-label="Menü öffnen"
+              aria-expanded="false" aria-controls="hub-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav__links" id="hub-menu" aria-label="Hauptnavigation">
+        <a href="/">Home</a>
+        <a href="/ueber-mich/">Über mich</a>
+        <a href="/blog/"{% if navCurrent == "blog" %} aria-current="page"{% endif %}>Blog</a>
+        <a href="/#kontakt">Kontakt</a>
+        <span class="site-nav__sep" aria-hidden="true"></span>
+        <a class="site-nav__switch" href="/tischfussball/">Foos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+{{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <a class="site-footer__home" href="/">← mario-christ.de</a>
+      <nav class="site-footer__legal" aria-label="Rechtliches">
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
