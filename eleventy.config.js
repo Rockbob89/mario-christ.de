@@ -37,6 +37,12 @@ export default function (eleventyConfig) {
     "CNAME",
     "robots.txt",
     "sitemap.xml",
+    /* .nojekyll schaltet die Jekyll-Verarbeitung ab. Fuer den Actions-Deploy
+       ist das egal (da laeuft ohnehin kein Jekyll), aber es deckt zwei Faelle:
+       das Fenster zwischen Merge und Umstellen der Pages-Source, und einen
+       spaeteren Rollback auf Branch-Deploy. Ohne die Datei wuerde Jekyll die
+       Post-Markdowns zu eigenen, nicht-noindexten Seiten rendern. */
+    ".nojekyll",
   ];
   passthrough.forEach((path) => eleventyConfig.addPassthroughCopy(path));
 
